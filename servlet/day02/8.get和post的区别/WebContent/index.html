@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>登录页面</h3>
+<br>
+<!-- action指提交到的处理页面  method指提交方式 -->
+<form action="login" method="post">
+	<table>
+		<tr>
+			<td>登录名：</td>
+			<!-- type指html控件的类型text指文本框  
+			 name="loginname"指当前控件的名称，用于后台接收参数，可以重复
+			 id="loginname" 指当前控件的标示符，id是不能重复的，用于javascript查找控件的
+			 -->
+			<td><input type="text" name="loginname" id="loginname"></td>
+		</tr>
+		<tr>
+			<td>密码：</td>
+			<td><input type="text" name="password" id="password"></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="提交"></td>
+		</tr>
+	</table>
+</form>
+
+</body>
+</html>

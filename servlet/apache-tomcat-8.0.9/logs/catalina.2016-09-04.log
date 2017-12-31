@@ -1,0 +1,134 @@
+04-Sep-2016 14:30:38.121 INFO [main] org.apache.catalina.core.AprLifecycleListener.init The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: F:\jdk1.8.0_65_x64\jdk1.8.0_65_x64\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\oracle\product\10.2.0\db_1\bin;D:\app\Admin\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\TortoiseSVN\bin;F:\jdk1.8.0_65_x64\jdk1.8.0_65_x64\bin;F:\javaEE\Svn_Maven\maven\maven\apache-maven-3.2.5\bin;.
+04-Sep-2016 14:30:38.731 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Sep-2016 14:30:38.949 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+04-Sep-2016 14:30:38.949 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+04-Sep-2016 14:30:38.949 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+04-Sep-2016 14:30:38.965 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1602 ms
+04-Sep-2016 14:30:39.153 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+04-Sep-2016 14:30:39.153 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.9
+04-Sep-2016 14:30:39.215 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\OA-0.0.1-SNAPSHOT.war
+04-Sep-2016 14:30:40.668 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\OA-0.0.1-SNAPSHOT.war has finished in 1,438 ms
+04-Sep-2016 14:30:40.715 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\struts2-blank.war
+04-Sep-2016 14:30:45.465 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\struts2-blank.war has finished in 4,750 ms
+04-Sep-2016 14:30:45.481 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\docs
+04-Sep-2016 14:30:45.543 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\docs has finished in 78 ms
+04-Sep-2016 14:30:45.543 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\examples
+04-Sep-2016 14:30:46.184 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\examples has finished in 641 ms
+04-Sep-2016 14:30:46.184 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\host-manager
+04-Sep-2016 14:30:46.387 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\host-manager has finished in 203 ms
+04-Sep-2016 14:30:46.387 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\manager
+04-Sep-2016 14:30:46.418 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\manager has finished in 31 ms
+04-Sep-2016 14:30:46.418 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\ROOT
+04-Sep-2016 14:30:46.481 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\ROOT has finished in 63 ms
+04-Sep-2016 14:30:46.497 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+04-Sep-2016 14:30:46.497 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+04-Sep-2016 14:30:46.512 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 7550 ms
+04-Sep-2016 14:54:53.708 INFO [main] org.apache.catalina.core.AprLifecycleListener.init The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: F:\jdk1.8.0_65_x64\jdk1.8.0_65_x64\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\oracle\product\10.2.0\db_1\bin;D:\app\Admin\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\TortoiseSVN\bin;F:\jdk1.8.0_65_x64\jdk1.8.0_65_x64\bin;F:\javaEE\Svn_Maven\maven\maven\apache-maven-3.2.5\bin;.
+04-Sep-2016 14:54:54.027 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Sep-2016 14:54:54.138 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+04-Sep-2016 14:54:54.142 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+04-Sep-2016 14:54:54.146 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+04-Sep-2016 14:54:54.147 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 879 ms
+04-Sep-2016 14:54:54.196 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+04-Sep-2016 14:54:54.196 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.9
+04-Sep-2016 14:54:54.232 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\OA-0.0.1-SNAPSHOT.war
+04-Sep-2016 14:54:55.260 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\OA-0.0.1-SNAPSHOT.war has finished in 1,028 ms
+04-Sep-2016 14:54:55.262 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\struts2-blank.war
+04-Sep-2016 14:54:59.273 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\struts2-blank.war has finished in 4,011 ms
+04-Sep-2016 14:54:59.275 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\docs
+04-Sep-2016 14:54:59.325 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\docs has finished in 50 ms
+04-Sep-2016 14:54:59.327 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\examples
+04-Sep-2016 14:54:59.762 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\examples has finished in 435 ms
+04-Sep-2016 14:54:59.765 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\host-manager
+04-Sep-2016 14:54:59.873 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\host-manager has finished in 108 ms
+04-Sep-2016 14:54:59.876 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\manager
+04-Sep-2016 14:54:59.917 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\manager has finished in 40 ms
+04-Sep-2016 14:54:59.919 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\ROOT
+04-Sep-2016 14:54:59.957 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\ROOT has finished in 37 ms
+04-Sep-2016 14:54:59.965 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+04-Sep-2016 14:54:59.980 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+04-Sep-2016 14:54:59.985 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 5837 ms
+04-Sep-2016 23:06:38.820 INFO [main] org.apache.catalina.core.AprLifecycleListener.init The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: F:\jdk1.8.0_65_x64\jdk1.8.0_65_x64\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\oracle\product\10.2.0\db_1\bin;D:\app\Admin\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\TortoiseSVN\bin;F:\jdk1.8.0_65_x64\jdk1.8.0_65_x64\bin;F:\javaEE\Svn_Maven\maven\maven\apache-maven-3.2.5\bin;.
+04-Sep-2016 23:06:39.367 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Sep-2016 23:06:39.414 SEVERE [main] org.apache.coyote.AbstractProtocol.init Failed to initialize end point associated with ProtocolHandler ["http-nio-8080"]
+ java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:433)
+	at sun.nio.ch.Net.bind(Net.java:425)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:343)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:727)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:456)
+	at org.apache.coyote.http11.AbstractHttp11JsseProtocol.init(AbstractHttp11JsseProtocol.java:120)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:960)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:567)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:834)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:576)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:599)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:310)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:484)
+
+04-Sep-2016 23:06:39.414 SEVERE [main] org.apache.catalina.core.StandardService.initInternal Failed to initialize connector [Connector[HTTP/1.1-8080]]
+ org.apache.catalina.LifecycleException: Failed to initialize component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:106)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:567)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:834)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:576)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:599)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:310)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:484)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler initialization failed
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:962)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	... 12 more
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:433)
+	at sun.nio.ch.Net.bind(Net.java:425)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:343)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:727)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:456)
+	at org.apache.coyote.http11.AbstractHttp11JsseProtocol.init(AbstractHttp11JsseProtocol.java:120)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:960)
+	... 13 more
+
+04-Sep-2016 23:06:39.414 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+04-Sep-2016 23:06:39.539 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+04-Sep-2016 23:06:39.539 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1270 ms
+04-Sep-2016 23:06:39.633 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+04-Sep-2016 23:06:39.633 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.9
+04-Sep-2016 23:06:39.727 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\OA-0.0.1-SNAPSHOT.war
+04-Sep-2016 23:06:40.977 INFO [localhost-startStop-1] org.apache.catalina.util.SessionIdGenerator.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [110] milliseconds.
+04-Sep-2016 23:06:41.149 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\OA-0.0.1-SNAPSHOT.war has finished in 1,422 ms
+04-Sep-2016 23:06:41.149 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\oa.war
+04-Sep-2016 23:06:46.258 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\oa.war has finished in 5,109 ms
+04-Sep-2016 23:06:46.321 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\struts2-blank.war
+04-Sep-2016 23:06:51.337 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\struts2-blank.war has finished in 5,016 ms
+04-Sep-2016 23:06:51.337 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\docs
+04-Sep-2016 23:06:51.696 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\docs has finished in 359 ms
+04-Sep-2016 23:06:51.696 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\examples
+04-Sep-2016 23:06:52.305 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\examples has finished in 609 ms
+04-Sep-2016 23:06:52.321 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\host-manager
+04-Sep-2016 23:06:52.415 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\host-manager has finished in 94 ms
+04-Sep-2016 23:06:52.415 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\manager
+04-Sep-2016 23:06:52.462 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\manager has finished in 47 ms
+04-Sep-2016 23:06:52.462 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\ROOT
+04-Sep-2016 23:06:52.509 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory F:\javaEE\servlet\apache-tomcat-8.0.9\webapps\ROOT has finished in 47 ms
+04-Sep-2016 23:06:52.509 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+04-Sep-2016 23:06:52.524 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 12987 ms

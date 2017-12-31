@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<users>
+	<user>
+		<loginname>jack</loginname>
+		<password>123</password>
+		<username>周杰伦</username>
+		<sex>男</sex>
+		<age>32</age>
+	</user>
+	<user>
+		<loginname>scott</loginname>
+		<password>123</password>
+		<username>斯科特</username>
+		<sex>男</sex>
+		<age>28</age>
+	</user>
+	<user>
+		<loginname>屌丝</loginname>
+		<password>123</password>
+		<username>周立波</username>
+		<sex>男</sex>
+		<age>38</age>
+	</user>
+</users>
+ 

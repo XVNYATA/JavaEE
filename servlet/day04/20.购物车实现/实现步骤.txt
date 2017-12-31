@@ -1,0 +1,14 @@
+1. index.html中定义控件，提交到login代表的servlet
+
+2. 获得登录名loginname和密码password
+   调用UserDao的login(String loginname,String password)方法进行验证
+   
+	2.1. 创建user对应user.xml的user元素，创建users对应user.xml的users根元素
+
+	2.2. 在UserDao（负责User对象的增删改查操作）的构造器当中通过JAXB解析user.xml.
+   完成login(String loginname,String password)方法，
+   使用loginname和password到所有的User当中去进行匹配
+   
+3. 如果输入的登录名和密码在user.xml中找到，打印欢迎语句，
+	否则提示登录失败，让用户重新登录。
+
