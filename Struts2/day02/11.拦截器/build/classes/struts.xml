@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="default" namespace="/" extends="struts-default">
+		
+		<action name="login" class="org.fkjava.action.LoginAction">
+			<result name="success">/success.jsp</result>
+			<interceptor-ref name="timer">
+				<param name="logLevel">WARN</param>
+			</interceptor-ref>
+			<interceptor-ref name="params"/>
+		</action>
+        
+    </package>
+
+
+</struts>

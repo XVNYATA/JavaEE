@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+		
+		<action name="*">
+			<result>/WEB-INF/{1}.jsp</result>
+		</action>
+		<!-- action的访问地址应该是： 它所在命名空间 + action的name
+		/listUsers
+		 -->
+		<action name="listUsers"
+			class="org.fkjava.action.ListUsersAction">
+			<result>/WEB-INF/listUsers.jsp</result>	
+		</action>
+		
+		<action name="tag1"
+			class="org.fkjava.action.TagAction">
+			<result name="done">/WEB-INF/success.jsp</result>	
+		</action>
+		
+		<action name="tag2"
+			class="org.fkjava.action.TagAction" method="login">
+			<result name="done">/WEB-INF/loginSuccess.jsp</result>	
+		</action>
+        
+    </package>
+
+</struts>

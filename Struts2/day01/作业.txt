@@ -1,0 +1,18 @@
+
+总结：
+
+1. 搭建struts2框架
+2. struts2的核心控制器（StrutsPrepareAndExecuteFilter）
+和业务控制器（每一Action）
+3. Action的创建方式以及参数接收的方式
+4. struts.xml配置文件，package、action、result
+
+
+
+课堂练习
+   1. 做一个注册、登录的表单页面。
+   2. 写两个个Action，并配置它。
+   3. 注册成功，跳转到登录页面。登录成功时，把用户名添加到Session中。
+   4. 登录成功后，跳转到相应的视图页面。
+   5. 显示所有书籍信息。
+

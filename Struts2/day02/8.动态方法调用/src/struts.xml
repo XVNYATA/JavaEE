@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 开启动态方法调用，默认false -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+
+	<!-- 所有处理请求的Action都是写在package下面 -->
+    <package name="default" namespace="/" extends="struts-default">
+		<!-- 动态页面跳转 loginForm.action 
+			action没有写class的情况下，默认ActionSupport，
+			ActionSupport的execute方法直接返回success
+			result没有写name默认success
+		-->
+		<action name="*">
+			<result>/WEB-INF/{1}.jsp</result>
+		</action>
+		
+		<!-- 一个action表示一个请求 action="login.action"
+			class 表示请求实际由那个java类进行处理 -->
+		<action name="user" class="org.fkjava.action.UserAction">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+		<!-- 
+			book_login.action {1}就是login，就会调用login方法
+		 -->
+		<action name="book_*" class="org.fkjava.action.BookAction" 
+		method="{1}">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+		<!-- 
+			StudentAction/login.action {1}就是StudentAction，
+			{2}就是login
+		 -->
+		<action name="*_*" class="org.fkjava.action.{1}" 
+		method="{2}">
+			<result name="success">/success.jsp</result>
+		</action>
+        
+    </package>
+
+
+</struts>

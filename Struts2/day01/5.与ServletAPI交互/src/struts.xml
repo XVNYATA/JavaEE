@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 所有处理请求的Action都是写在package下面
+		struts-default是继承一个父包
+	 -->
+    <package name="default" namespace="/" extends="struts-default">
+	
+		<!-- 一个action表示一个请求 action="login.action"
+			class 表示请求实际由那个java类进行处理 -->
+		<action name="login1" class="org.fkjava.action.Login1Action">
+			<result name="success">/main.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="login2" class="org.fkjava.action.Login2Action">
+			<result name="success">/main.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="login3" class="org.fkjava.action.Login3Action">
+			<result name="success">/main.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		
+		
+    </package>
+
+
+</struts>

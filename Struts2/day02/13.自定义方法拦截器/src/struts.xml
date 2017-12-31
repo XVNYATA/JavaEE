@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="default" namespace="/" extends="struts-default">
+    
+    	<interceptors>
+    	
+    		<interceptor name="userInterceptor" class="org.fkjava.interceptor.UserInterceptor">
+    			<param name="includeMethods">remove</param>
+    		</interceptor>
+    		
+    		<interceptor-stack name="fkDefaultStack">
+    			<interceptor-ref name="userInterceptor"/>
+    			<interceptor-ref name="defaultStack"/>
+    		</interceptor-stack>
+    	</interceptors>
+    	
+    	<default-interceptor-ref name="fkDefaultStack"/>
+    
+		<action name="login" class="org.fkjava.action.UserAction" method="login">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+		<action name="register" class="org.fkjava.action.UserAction" method="register">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+		<action name="remove" class="org.fkjava.action.UserAction" method="remove">
+			<result name="success">/success.jsp</result>
+		</action>
+        
+    </package>
+
+
+</struts>

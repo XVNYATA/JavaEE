@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- package 表示一个包，为了方便项目的分模块开发，一般将对相同的数据的操作放在同一个包中进行管理
+    这个一个struts.xml中可以存在多个  不同名称 的package，每个package元素定义了一个包配置。
+    package中可以存在  多个不同名称  的action
+    定义package元素时可以指定如下几个属性：
+     － name：这是一个必填属性，该属性指定该包的名字，该名字是该包被其他包引用的key。
+     － extends：该属性是一个可选属性，该属性指定该包继承其他包。继承其他包，可以继承其他包中的Action定义、拦截器定义等。
+     － namespace：该属性是一个可选属性，该属性定义该包的命名空间。
+     － abstract：该属性是一个可选属性，它指定该包是否是一个抽象包。
+          抽象包中不能包含Action定义。 
+    struts-default 是struts框架的一个默认配置包，我们继承这个包可以非常方便的使用struts框架提供的通用功能
+   -->
+    <package name="user" namespace="/user" extends="struts-default">
+		<!-- 当我们的一个action类继承ActionSupper 父类或实现Action接口
+		     后就可以定义多个不同的方法来处理 不同的 用户请求
+		     action 表示指定一个不同的请求处理
+		     class 表示 请求的业务逻辑处理  具体的类
+		     method 表示当请求本action的时候 执行业务逻辑的类中 什么 方法
+		      如果没有指定method 将默认执行 execute方法
+		  -->
+		<action name="login" class="org.fkjava.action.UserAction"
+		method="login">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+		<action name="register" class="org.fkjava.action.UserAction"
+		method="register">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+    </package>
+
+	
+
+</struts>
