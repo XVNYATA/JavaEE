@@ -1,0 +1,11 @@
+lucene官网：
+	http://lucene.apache.org (lucene-4.0.0.zip )
+
+
+中文分词器:
+	1. http://code.google.com/p/ik-analyzer/ (IK_Analyzer_2012FF_hf1.zip)
+        2. https://code.google.com/p/mmseg4j/ (mmseg4j-1.9.1.v20130120-SNAPSHOT.zip)
+
+
+查看分词库:
+	http://code.google.com/p/luke/downloads/list (lukeall-4.0.0-ALPHA.jar )

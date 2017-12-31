@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 定时器 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+     <script type="text/javascript">
+          
+		  var count = 1;
+		  
+		  //开始计时
+		  function timeStart(){
+
+		      if(window.timeId){
+                   //清空定时器
+			      window.clearTimeout(window.timeId);
+			  }
+		  
+		      document.getElementById("time").innerHTML = "<font color='red'>"+count+"</font>"
+		          
+               count++;
+		       
+			   //启动定期时 会返回一个唯一标识符
+		       window.timeId =  window.setTimeout("timeStart()",1000);
+
+			   //将暂停按钮设置成可点击
+               document.getElementById("timeEnd").disabled = false;
+			   document.getElementById("timestart").disabled = true;
+		  }
+
+
+		  //暂停
+		  function timeEnd(){
+		      //清空定时器
+		      window.clearTimeout(window.timeId);
+              document.getElementById("timeEnd").disabled = true;
+			  document.getElementById("timestart").disabled = false;
+		  }
+   
+		 
+     </script>
+      
+ </head>
+
+ <body>
+     <div id="time"></div>
+     <input type="button" value="开始计时" id="timestart" onclick="timeStart()"/>
+	 <input type="button" id="timeEnd" value="暂停" onclick="timeEnd()" disabled/>
+ </body>
+</html>

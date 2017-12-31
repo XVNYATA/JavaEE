@@ -1,0 +1,66 @@
+1. 员工资料导出EXCEL.
+   /**
+ * 写入EXCEL方法
+ * @param fileName 生成EXCEL的文件名
+ * @param sheetName 工作单的名字
+ * @param titles 第一行标题行
+ * @param data 导出的数据
+ * @param response 响应
+ */
+public static void exportExcel(String fileName, String sheetName, String[] titles,
+						 List<?> data, HttpServletResponse response){
+	// 创建工作簿
+	HSSFWorkbook workbook = new HSSFWorkbook();
+	// 创建工作单
+	HSSFSheet sheet = workbook.createSheet(sheetName);
+	
+	// 创建第一行作为标题行
+	HSSFRow row = sheet.createRow(0);
+	for (int i = 0; i < titles.length; i++){
+		// 创建行中的单元格
+		HSSFCell cell = row.createCell(i);
+		// 为单元格设置值
+		cell.setCellValue(titles[i]);
+	}
+	try{
+		// 创建数据行
+		for (int i = 0; i < data.size(); i++){
+			// 获取集合中一个实体
+			Object obj = data.get(i);
+			// 创建行
+			row = sheet.createRow(i + 1);
+			// 获取所有的属性
+			Field[] fields = obj.getClass().getDeclaredFields();
+			// 循环创建单元格
+			for (int j = 0; j < fields.length; j++){
+				HSSFCell cell = row.createCell(j);
+				// 获取一个字段
+				Field field = fields[j];
+				// 设置该字段可以访问
+				field.setAccessible(true);
+				// 获取字段的值
+				Object res = field.get(obj);
+				cell.setCellValue(res == null ? "" : res.toString());
+			}
+		}
+		String userAgent =  ServletActionContext.getRequest().getHeader("user-agent");
+		if (userAgent.toLowerCase().indexOf("msie") != -1){
+			fileName = URLEncoder.encode(fileName, "utf-8"); // msie
+		}else{
+			fileName = new String(fileName.getBytes("utf-8"), "iso8859-1");
+		}
+		// 设置响应头 <param name="contentDisposition">attachment;filename=${downFileName}</param>
+		response.setHeader("Content-Disposition", "attachment;filename="+ fileName +".xls");
+		// 最后输出
+		workbook.write(response.getOutputStream());
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
+
+
+
+
+
+

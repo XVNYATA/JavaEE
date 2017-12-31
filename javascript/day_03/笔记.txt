@@ -1,0 +1,91 @@
+1、Dom(Document Object Model)文档对象模型:页面中任意标签都已对应一个DOM对象,操作页面中的标签的属性时，首先需要获取
+   标签对应的dom对象，可以文档操作基类document；
+   <input value="admin" id="userName"/>
+
+  Bom对象(Browser Object Model):浏览器对象模型，用于获取浏览器相关信息，以及对浏览器进行相关操作；
+  1. window、navigator、document、screen、location、history
+  
+
+2、Ajax:(Async javascript and XML)异步请求，实现页面的局部刷新。
+   
+ 传统的WEB请求：
+   请求:
+	html页面(会丢弃) -- > http协议 --> WEB服务器
+   响应:
+       WEB服务器 ---> http协议  ---> (新的)html页面
+
+ Ajax请求：
+
+   请求：html页面(不会丢弃) --> XMLHttpRequest这个内置函数 ---> WEB服务器
+
+   响应: WEB服务器 ---> http协议 --> 数据 --> XMLHttpRequest接收 -- > dom编程.
+
+
+ Ajax请求：
+
+   请求：html页面(不会丢弃) --> XMLHttpRequest这个内置函数 ---> WEB服务器
+
+   响应: WEB服务器 ---> http协议 --> 数据 --> XMLHttpRequest接收 -- > dom编程.
+
+
+   GET请求：
+   //第一步创建内置对象XMLHttpRequest
+   var xrt = new XMLHttpRequest();
+    	  
+  //通过open方法发送打开与服务器的连接     GET请求中传递的参数只能通过url地址传递
+  第一个参数:请求方式     
+  第二个参数:请求方地址    
+  第三个参数：同步还是异步   true表示异步
+  xrt.open("get","${pageContext.request.contextPath}/validUser.action?name="+name,true);
+   
+
+  //发送请求
+  xrt.send();
+  
+  //为XMLHttpRequest对象绑定onreadystatechange事件
+  xrt.onreadystatechange = function(){
+	   //alert(xrt.readyState);
+	  if(xrt.readyState==4&&xrt.status==200){
+		  //获取服务器响应至前台的数据
+		  var data = xrt.responseText;
+		  if(data){
+			  document.getElementById("message").innerHTML = "<font color='red'>"+data+"</font>";
+		  }
+		  
+	  }
+	  
+  }
+
+
+  POST请求：
+   //通过XMLHttpRequest对象来发送异步请求
+  var xrt = new XMLHttpRequest();
+  
+  //通过open方法发送打开与服务器的连接    参数的传递可以在send方法中传递，也可以在url地址后拼接
+    如果在send方法中传递参数时需要设置请求头
+   第一个参数:请求方式     
+   第二个参数:请求方地址    
+   第三个参数：同步还是异步   true表示异步
+  xrt.open("post","${pageContext.request.contextPath}/validUser.action",true);
+  
+  
+  //假设需要在send方法中传递参数，则需要设置请求头,如果参数直接拼在url地址后时，可以不设置请求头
+  xrt.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  
+  //发送请求   post请求可以在send方法中传递参数
+  xrt.send("name="+name);
+  
+  //为XMLHttpRequest对象绑定onreadystatechange事件
+  xrt.onreadystatechange = function(){
+	   //alert(xrt.readyState);
+	  if(xrt.readyState==4&&xrt.status==200){
+		  //获取服务器响应至前台的数据
+		  var data = xrt.responseText;
+		  if(data){
+			  document.getElementById("message").innerHTML = "<font color='red'>"+data+"</font>";
+		  }
+		  
+	  }
+	  
+  }
+    	

@@ -1,0 +1,52 @@
+1、实现公告模块的分页查询
+
+
+
+
+2、删除公告
+  //为删除按钮绑定事件
+  $("#deletebut").click(function(){
+	  //获取被选中的checkbox
+	  var boxes = $("input[id^='box_']:checked");
+	  if(boxes.length==0){
+		  alert("请选择需要删除的数据！")
+	  }else{
+		  if(window.confirm("您确认删除该记录吗?")){
+			  //获取被选中的公告的id值
+			  var ids = new Array();
+			  $.each(boxes,function(i,item){
+				  ids.push(item.value);
+			  })
+			  //发送请求删除记录
+			  window.location = "${ctx}/notice/deleteNotice.action?page.pageIndex=${page.pageIndex}&notice.title=${notice.title}&ids="+ids.join(",");
+		  }
+	  }
+  })
+
+
+
+
+3、预览公告
+    //弹出模态窗体
+   //第一个参数：请求的地址   第二个参数：参数   第三个参数：样式
+   window.showModalDialog("${ctx}/notice/prveNotice.action",id,"dialogWidth:500px;dialogHeight:500px;dialogLeft:450px;");
+
+ 
+
+
+4、添加公告
+   第一步：跳转到添加公告的页面
+
+   第二步：添加公告
+    a. 防表单重复提交
+
+      1). s:token       页面中添加方表单重复提交标签
+     
+      2). token拦截器   action中引入拦截器
+      3). invalid.token 表单重复提交时，拦截器返回invalid.token   
+      4). struts.messages.invalid.token  配置国际化提示信息
+
+
+5、修改公告
+
+   

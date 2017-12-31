@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 绑定多事件 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <!-- 引入jquery -->
+  <script type="text/javascript" src="jquery.js"></script>
+
+  <script type="text/javascript">
+      
+	  $(function(){
+	     //绑定多事件的第一种方式
+         //$("tr[id]").mouseover(function(){
+		   // $(this).css("backgroundColor","#9933cc");
+		 
+		 
+		 //}).mouseout(function(){
+		    // $(this).css("backgroundColor","");
+		  
+		 //})
+   
+         //绑定多事件的第二种方式
+         //$("tr[id]").on({"mouseover":function(){
+		      //$(this).css("backgroundColor","#9933cc");
+		 
+           //},"mouseout":function(){
+		      //$(this).css("backgroundColor","");
+		 
+		 //}})
+
+         //绑定多事件的第三种方式
+
+        //该方式绑定多事件时，所有的事件都是触发相同的代码块
+        //$("div").on("mouseover click",function(){
+		
+              //alert("div事件绑定成功！");
+		
+		//})
+
+
+         $("tr[id]").hover(function(){
+		 
+		    $(this).css("backgroundColor","#9933cc");
+		 
+		 },function(){
+		    $(this).css("backgroundColor","");
+		 
+		 
+		 
+		 })
+
+		 
+	    
+	  
+	  })
+          
+  </script>
+
+ </head>
+
+ <body>
+      <table border="1" width="100%">
+        <tr><th align="left"></th><th>账号</th><th>姓名</th><th>性别</th></tr>
+		<tr id="1"><td></td><td>0001</td><td>admin</td><td>男</td></tr>
+		<tr id="2"><td></td><td>0002</td><td>jack</td><td>男</td></tr>
+		<tr id="3"><td></td><td>0003</td><td>孙悟空</td><td>女</td></tr>
+		<tr id="4"><td></td><td>0004</td><td>猪八戒</td><td>男</td></tr>
+	</table>
+
+	<hr color="red">
+	<div>绑定多事件</div>
+ </body>
+</html>

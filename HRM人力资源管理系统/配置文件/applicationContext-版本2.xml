@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      				  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      				  http://www.springframework.org/schema/tx
+      				  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+      				  http://www.springframework.org/schema/aop
+      				  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+      				  http://www.springframework.org/schema/context
+      				  http://www.springframework.org/schema/context/spring-context-4.0.xsd
+      				  http://www.springframework.org/schema/util
+      				  http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 这里默认就会到所有的org.fkjava.oa中进行注解搜索告诉Spring我们用了注解来声明bean。 -->
+	<!-- 如果不指定将不会进行依赖注入！！ -->
+	<context:component-scan base-package="org.fkjava.oa"></context:component-scan>
+
+	<!-- 开启annotation注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 配置数据源 c3p0.properties属性文件中的key必须要以c3p0开头. c3p0.xxxx=值.
+	 这样会被自动加载 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" />
+
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="packagesToScan">
+			<value>
+				org.fkjava.oa.admin.identity.domain,
+				org.fkjava.oa.admin.leave.domain
+			</value>
+		</property>
+	</bean>
+
+	<!-- 配置TransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+	
+<!-- 	    第一步, 需要在 applicationContext.xml中配置 -->
+	    <!-- 开启aop对aspectj做自动代理 -->
+	<aop:aspectj-autoproxy/>
+	<!-- 配置日志切面类 -->
+	<bean class="org.fkjava.oa.core.common.aop.LogAdvice"/>
+	
+	  <!-- ################ Spring4邮件发送 ####################### -->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
+    	  p:host="smtp.163.com"
+    	  p:username="dlei0009"
+    	  p:password="fppadnatdllxzwep"   
+    	  p:defaultEncoding="utf-8">
+    	  <property name="javaMailProperties">
+    	  	 <props>
+    	  	 	<prop key="mail.smtp.auth">true</prop>
+    	  	 </props>
+    	  </property>
+    </bean>
+    
+    <bean id="emailSender" class="org.fkjava.oa.core.common.email.impl.EmailSenderImpl"
+    	  p:javaMailSender-ref="javaMailSender"
+    	  p:from="dlei0009@163.com"/> 
+
+
+</beans>

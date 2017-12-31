@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 常用事件 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="yueqian">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+
+     <script type="text/javascript">
+             function clickFn(){
+			 
+			    alert("触发点击事件");
+			 }
+
+			 function blurFn(){
+			   alert("失去焦点");
+			 
+			 }
+
+			 function mouseoverFn(){
+			   alert("触发mouseover事件");
+			 }
+
+			 function mouseoutFn(){
+			   alert("鼠标离开目标元素上方");
+			 }
+
+			 function changeFn(value){
+			   alert(value);
+			   //发送请求
+			   window.location = "http://127.0.0.1:8080/shopApp/list?value="+value;
+			 }
+
+			 function focusFn(){
+			   alert("获取焦点");
+			 }
+ 
+     </script>
+ </head>
+
+ <body>
+  
+
+     单击事件:<input type="button" value="单击事件" onclick="clickFn()"/>
+	 失去焦点：<input type="text" onblur="blurFn()"/>
+     鼠标在目标元素上方：<img src="9.jpg" onmouseover="mouseoverFn()"/>
+	 鼠标离开目标元素上方：<img src="9.jpg" onmouseout="mouseoutFn()"/>
+     <hr color="red">
+	 onchange事件：
+	 
+	    <select onchange="changeFn(this.value)">
+            <option value="0001">苹果6s</option>
+			<option value="0002">三星S7</option>
+			<option value="0003">华为</option>
+	    </select>
+     
+     获取焦点：<input type="text" onfocus="focusFn()"/>
+
+ </body>
+</html>

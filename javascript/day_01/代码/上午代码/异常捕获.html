@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 异常捕获 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+     <script type="text/javascript">
+     
+	    
+         
+		 var a = "admin";
+
+		 try{
+		 //a中没有test方法 因此会报错
+		   a.test();
+		 
+		 }catch(e){
+		    //e:变量名 可以随便定义
+		   alert("异常信息："+e.message);
+		 
+		 }finally{
+		    alert("一定会执行的代码");
+		 }
+     </script>
+ </head>
+
+ <body>
+  
+ </body>
+</html>

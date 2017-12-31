@@ -1,0 +1,133 @@
+A、绑定事件
+ 1、绑定单个事件:
+
+  $("selector").Xxxxx(function(){
+  
+  });
+               Xxxxx(fn):
+  onclick == > click();
+  onblur  ==>   blur();
+  onmouseover ==> mouseover();
+  onmouseout ==> mouseout();
+  onchange ==>  chage();
+
+
+ 2、绑定多事件
+
+    a、$("selector").on("click mouseover mouseout", function(){
+  
+       })
+
+     // 绑定多个事件(用这种方式)
+     b、$("selector").on({
+     "click" : function(){
+        //执行体
+      },
+     "mouseover" : function(){
+
+     },
+     "mouseout" : function(){}
+       });
+
+    c、$("selector").on("click", function(){})
+                    .on("mouseover", function(){});
+
+      $("selector").click(funciton(){}).mouseover(function(){})
+
+    d、 $("selector").bind("click mouseover mouseout", data, function(event){
+     // event.data : 数据
+     // event.type : 获取事件类型
+       });
+       第一个参数："事件名 事件名"
+       第二个参数：数据(可选) json对象
+       第三个参数：事件处理函数
+
+      // 绑定多个事件(用这种方式)
+      $("selector").bind({
+     "click" : function(){},
+     "mouseover" : function(){},
+     "mouseout" : function(){}
+       });
+
+      $("selector").bind("click", function(){})
+                    .bind("mouseover", function(){});
+
+
+  3. 事件触发：
+
+     $("selector").trigger("事件名");
+
+ 4. hover: 集成了onmouseover 与 onmouseout这个两个事件
+      $("selector").hover(
+     function(){},  // onmouseover 鼠标放在上面
+     function(){}   // onmouseout  鼠标离开时
+     );
+
+
+B、jquery工具方法：
+    1. $.trim() : 去掉字符串前后的空格.
+      // 去掉字符串前后的空格.
+     alert("b" + $.trim("  hello, how are you?  ") + "e"); 
+
+    2. $.grep() : 数组过滤，返回一个新的数组。
+      var arr = $.grep([10,20,30], function(item, i){
+     // i : 索引
+     // item: 数组中的元素
+     return item > 10; // true : 保留 , false：不保留 
+  });
+    3. $.map(): 将一个数组转换成一个新的数组
+       var arr = $.map([10,20,30], function(item, i){
+       // i : 索引
+       // item: 数组中的元素
+        return item * item;
+       });
+    4. $.merge: 两个数组的合并。
+     // 两个数组合并
+     var res = $.merge( [0,1,2],[2,3,4] );
+     //得到的值res[0,1,2,2,3,4]
+
+    5. $.parseJSON: 把一个json格式的字符串解析成json对象
+      var jsonStr = “{\"key1:\"value1,\"key2\":value2}”
+      2015/11/10var json = $.parseJSON(jsonStr);
+      alert(json.key1)
+       格式：key : 用双引号引起来.
+       {"key" : "value"}
+
+    6. $.each(): 迭代数组      
+       $.each([数组], function(i, item){
+       // i : 索引
+       // item: 数组中的元素
+       // this : 数组中的元素
+       });
+
+
+C、基于jquery，实现自定义插件
+  
+    $.ajax({
+	 type:"post",//请求方式
+	 url:"${pageContext.request.contextPath}/ajaxLogin.action",//请求地址
+	 data:"userName="+userName+"&password="+password,//{userName:userName,password:password}//传递至后台的参数
+	 dataType:"text",//预期服务器返回的数据类型
+	 async:false,//true表示异步   false：同步   默认是异步请求
+	 success:function(data){   //成功时回调函数      data：后台响应至前台的数据
+		i++;
+		 if(data){
+			 //用户名或密码输入不正确  弹出提示信息
+			alert(data);
+		}else{
+			//提交表单
+			$("#form").submit();
+			
+		}
+		 
+		 
+	 },error:function(){//后台出现异常时回调函数 
+		 alert("数据加载异常！");
+	 }
+	
+   
+	 
+ })
+
+    
+   

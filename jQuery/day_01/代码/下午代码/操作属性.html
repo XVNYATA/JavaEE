@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 操作属性 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <!-- 引入jQuery -->
+  <script type="text/javascript" src="../上午代码/jquery.js"></script>
+
+      <script type="text/javascript">
+         function operaAttr(){
+		     
+			 //获取属性值
+			 var attr = $("#img").attr("title");
+			 alert(attr);
+
+			 //设置属性
+			 //$("#img").attr("title","阳光boy").attr("src","2.jpg");
+			 //$("#img").attr({"title":"阳光boy","src":"2.jpg"});
+
+			 //删除属性
+             //$("#img").attr("title","");
+             //$("#img").removeAttr("title");
+		  
+		    
+		    
+		 }
+
+		 function operaBox(){
+		     $("#checkAll").attr("checked",true);
+		 }
+           
+      </script>
+ </head>
+
+ <body>
+       <input type="checkbox"  id="checkAll">
+
+	  <input type="button" value="操作box" onclick="operaBox()">
+	  <hr color="red">
+       <img src="3.png" id="img" title="帅哥"/>
+	  
+	   <input type="button" value="操作属性" onclick="operaAttr()">
+ </body>
+</html>

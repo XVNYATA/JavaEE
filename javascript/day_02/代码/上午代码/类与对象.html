@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 类与对象 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+     
+	 <script type="text/javascript">
+	      //定义类，js中函数就是类,函数也可以看成是方法，可以被调用
+		  var Person = function(name,age){    
+		      this.name = name;
+			  this.age = age;
+		  }
+
+		  //创建对象
+		  var p = new Person("杨过",30);
+          //alert(p.name+"=="+p.age);
+
+          //给对象动态的添加属性
+          p.height = 180;
+		  //给属性赋值
+		  p.height = 180;
+		  //alert(p.height);
+
+		  //给对象动态的添加方法
+		  p.say = function(){
+		     alert(this.name);
+		  }
+
+
+		  //调用对象的方法
+		  p.say();
+
+
+           
+	 </script>
+       
+ </head>
+
+ <body>
+  
+ </body>
+</html>

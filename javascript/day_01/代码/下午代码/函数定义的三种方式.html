@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 函数定义的三种方式 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    
+	<script type="text/javascript">
+	      //定义函数的第一种方式
+          function   Test(name){
+		  
+		    alert(name);
+		  }  
+
+		  //第二种定义函数的方式
+		  var test2 = function(){
+		      alert("函数被触发");
+		  }
+
+		  //调用函数
+          // Test("admin");
+
+
+		   //第三定义函数的方式
+		   var arg1 = "num1";
+           var arg2 = "num2";
+           //定义函数的执行体
+           var str = "alert(arg1 * arg2);";
+           //定义函数     Function:内置函数，可以new Function可以得到一个自定义函数
+           var test3 = new Function(arg1, arg2, str);
+
+           test3(3,4);
+            
+
+		   //alert(typeof(Test)+"=="+typeof(test2)+"=="+typeof(test3)+"=="+typeof(Function));
+
+		   //匿名函数   不需要被触发，可以直接执行，基于js的插件都可以匿名函数的形式存在以及js框架
+		   (function(obj){
+		     alert(obj);
+		   
+		   
+		    })(50)
+
+	</script>
+
+ </head>
+  
+ <body>
+    <input type="button" value="搓我一下" onclick="test2()"/>
+
+ </body> 
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 职位下拉选择 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+       <script type="text/javascript">
+       
+	    window.onload = function(){
+		      //为向右移除全部绑定事件
+			  document.getElementById("moveRightAll").onclick = function(){
+			       //获取职位下拉框  HTMLSelectElement
+				   var job = document.getElementById("job");
+                   //获取右侧我的职位下拉框
+				   var myjob = document.getElementById("myjob");
+				   //获取所有的职位
+				   var optiones = job.options;
+				   for(var i=optiones.length - 1;i>=0;i--){
+				       //将职位追加至右侧下拉框
+					   myjob.appendChild(optiones[i]);
+				   
+				   }
+
+				   //判断‘左右移动’按钮是否可点击
+                   disabledFn();
+			     
+			  }
+
+               //为向左移除全部绑定事件
+			   document.getElementById("moveLeftAll").onclick = function(){
+			       //获取职位下拉框  HTMLSelectElement
+				   var job = document.getElementById("job");
+                   //获取右侧我的职位下拉框
+				   var myjob = document.getElementById("myjob");
+				   //获取所有的职位
+				   var optiones = myjob.options;
+				   for(var i=optiones.length - 1;i>=0;i--){
+				       //将职位追加至右侧下拉框
+					   job.appendChild(optiones[i]);
+				   
+				   }
+
+				   //判断‘左右移动’按钮是否可点击
+                   disabledFn();
+			     
+			  }
+ 
+               
+			   //为向右移除指定option绑定事件
+			  document.getElementById("moveRight").onclick = function(){
+			       //获取职位下拉框  HTMLSelectElement
+				   var job = document.getElementById("job");
+                   //获取右侧我的职位下拉框
+				   var myjob = document.getElementById("myjob");
+				   //获取被选中的职位
+				   var arr = getSelectOpiones(job);
+				   for(var i=arr.length - 1;i>=0;i--){
+				       //将职位追加至右侧下拉框
+					   myjob.appendChild(arr[i]);
+				   
+				   }
+
+				   //判断‘左右移动’按钮是否可点击
+                   disabledFn();
+			     
+			  }
+
+			  //为向左移除指定option绑定事件
+			  document.getElementById("moveLeft").onclick = function(){
+			       //获取职位下拉框  HTMLSelectElement
+				   var job = document.getElementById("job");
+                   //获取右侧我的职位下拉框
+				   var myjob = document.getElementById("myjob");
+				   //获取被选中的职位
+				   var arr = getSelectOpiones(myjob);
+				   for(var i=arr.length - 1;i>=0;i--){
+				       //将职位追加至右侧下拉框
+					   job.appendChild(arr[i]);
+				   
+				   }
+
+				   //判断‘左右移动’按钮是否可点击
+                   disabledFn();
+			     
+			  }
+
+
+		
+		}
+	      
+            
+			//判断‘左右移动’按钮是否可点击
+			function disabledFn(){
+			    
+			//获取位置下拉框中所有的option
+			var optiones = document.getElementById("job").options;
+			
+			document.getElementById("moveLeftAll").disabled = optiones.length==5;
+			document.getElementById("moveLeft").disabled = optiones.length==5;
+			document.getElementById("moveRightAll").disabled = optiones.length==0;
+			document.getElementById("moveRight").disabled = optiones.length==0;
+			}
+
+
+			//获取被选中的option
+			function getSelectOpiones(obj){
+			   var arr = new Array();
+			   var optiones = obj.options;
+			   for(var i=0;i<optiones.length;i++){
+			       //HTMLOptionElement
+			      if(optiones[i].selected){
+				     //将被选中的option存放在数组中
+					 arr.push(optiones[i]);
+				  }
+			   
+			   }
+			   //将被选中的option返回
+			   return arr;
+			
+			}
+
+
+            //获取被选中的职位
+			function getSelectJob(){
+			   var myjob = document.getElementById("myjob");
+			   var optiones = myjob.options;
+			   var arr = new Array();
+			   for(var i=0;i<optiones.length;i++){
+			       arr.push("编号:"+optiones[i].value+" \t职位名称:"+optiones[i].text);
+			   }
+
+			   alert(arr.join("\n"));//\n:换行
+			}
+       </script>
+ </head>
+
+ <body>
+
+
+      <center>
+           <table>
+               <tr colspan="3"><td>职位选择：</td></tr>
+			   <tr>
+			   <td>
+			      <select id="job" style="width:150px;height:100px;" size="5" multiple>
+			       <option value="0001">项目经理</option>
+				   <option value="0002">架构师</option>
+				   <option value="0003">高级工程师</option>
+				   <option value="0004">中级工程师</option>
+				   <option value="0005">初级工程师</option>
+			      </select>
+			   </td>
+			    <td><button id="moveLeftAll" disabled>全部&lt;&lt;</button><br>
+			        <button id="moveLeft" disabled>&lt;&lt;</button><br>
+			        <button id="moveRight">&gt;&gt;</button><br>
+					<button id="moveRightAll">&gt;&gt;全部</button>
+			    </td>
+			   <td>
+			      <select id="myjob" style="width:150px;height:100px;" size="5" multiple>
+			    
+			      </select>
+			   
+			   </td>
+			   </tr>
+			   <tr colspan="3" align="left"><td><input type="button" value="确定" id="but" onclick="getSelectJob()"/></td></tr>
+
+		   </table>
+	  </center>
+  
+ </body>
+</html>

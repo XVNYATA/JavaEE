@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 操作css样式以及全选 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <!-- 引入jQuery -->
+  <script type="text/javascript" src="../上午代码/jquery.js"></script>
+
+
+    <script type="text/javascript">
+         
+		 $(function(){
+		   //获取所有的子checkbox
+			var boxs = $("input[type='checkbox'][id^='check_']");
+		    
+			
+			//为全选绑定事件
+		    $("#checkAll").click(function(){
+			  
+             //判断全选checkbox是否选中
+			 var flag = $("#checkAll").prop("checked");
+			  
+            //操作checkbox的属性
+			boxs.prop("checked",flag);
+		
+		   })
+
+
+		   //为所有的子checkbox绑定事件
+		   boxs.click(function(){
+		       //如果子checkbox的个数等于被选中的个数  全选则选中
+                
+			   var length = boxs.length;
+               //获取选中的checkbox的个数
+               var checkedLength = $("input[type='checkbox'][id^='check_']:checked").length;
+		   
+		       $("#checkAll").prop("checked",length == checkedLength);
+		   })
+
+
+           //给所有的tr绑定mouseover、mouseout事件
+             $("tr[id]").mouseover(function(){
+			     $(this).css("backgroundColor","#9900cc");
+			 })	
+			 
+			  $("tr[id]").mouseout(function(){
+
+                 //如果当前checkbox是选中的  则tr的背景色不去掉
+                  //获取tr的id
+				  var trid = this.id;
+                   //获取checkbox的id
+				   var boxid = "check_"+trid;
+
+				   //判断当前checkbox是否选中
+				   var flag = $("#"+boxid).prop("checked");
+				   if(!flag){
+				        //this：表示当前tr,且为dom对象
+			             $(this).css("backgroundColor","");
+				   }
+                
+               
+			 })	
+		 
+		 })
+		
+
+    </script>
+ </head>
+
+ <body>
+
+     <table border="1" width="100%">
+        <tr><th align="left"><input type="checkbox" id="checkAll"/></th><th>账号</th><th>姓名</th><th>性别</th></tr>
+		<tr id="1"><td><input type="checkbox" id="check_1"/></td><td>0001</td><td>admin</td><td>男</td></tr>
+		<tr id="2"><td><input type="checkbox" id="check_2"/></td><td>0002</td><td>jack</td><td>男</td></tr>
+		<tr id="3"><td><input type="checkbox" id="check_3"/></td><td>0003</td><td>孙悟空</td><td>女</td></tr>
+		<tr id="4"><td><input type="checkbox" id="check_4"/></td><td>0004</td><td>猪八戒</td><td>男</td></tr>
+	</table>
+ </body>
+</html>

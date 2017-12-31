@@ -1,0 +1,31 @@
+<ehcache>
+
+	<!-- 当二级缓存溢出时，数据保存到磁盘的哪里  -->
+    <diskStore path="C:/fkCache"/>
+
+	<!--
+	defaultCache元素配置一个默认的缓存区。
+	maxElementsInMemory：内存中最多缓存几个对象
+	eternal：设置缓存是否永久有效
+	timeToIdleSeconds：一个对象多久没用就会被清除
+	timeToLiveSeconds：对象在清除之前还可以活多久
+	overflowToDisk：当内存快溢出时，是否写入磁盘
+	 -->  
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+        />
+
+   <!-- 自定义cache -->
+    <cache name="fkCache"
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+
+</ehcache>

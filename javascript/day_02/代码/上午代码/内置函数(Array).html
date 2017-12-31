@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 内置函数(Array) </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+      <script type="text/javascript">
+          //定义数组
+		  var arr1 = [3,"admin",new Date()];
+
+		  var arr2 = new Array();
+          var arr3 = new Array(10);
+		  var arr4  = new Array(10,20);
+
+		  //alert(arr1.length+"=="+arr2.length+"=="+arr3.length+"=="+arr4.length);
+          //往数组最后添加数据
+           arr4.push("admin");
+		   //alert(arr4);
+
+		   //删除元素，从数组最后面开始删
+		   arr4.pop();
+		   //alert(arr4);
+
+		   //往数组最前面添加元素
+		   arr4.unshift("小龙女");
+		   //alert(arr4);
+
+		   //往数组最前面删除元素
+		   arr4.shift();
+           //alert(arr4);
+    
+           arr1 = arr1.concat(4,"admin");
+		   //alert(arr1);
+
+           //alert(arr1.join(",")+"=="+typeof(arr1)+"=="+typeof(arr1.join(",")));
+               
+		  var a = [1,2,3,4,5,6,7,8]
+       
+          alert(a.splice(4));        // Returns [5,6,7,8]; a is [1,2,3,4]
+
+
+
+
+
+		  
+      </script>
+ </head>
+
+ <body>
+  
+ </body>
+</html>

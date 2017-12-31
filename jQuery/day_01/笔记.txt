@@ -1,0 +1,130 @@
+1、jQuery(javaScript框架)：官网：http://www.jQuery.com
+   框架:在项目开发过程中，我们会发现项目中的很多的代码都是公用并且重复的，为了简化开发，将这些公用
+   并且重复的代码抽出去，做一个所谓的‘代码库’，这个代码库就是框架。
+   前端框架一般是以css文件+js文件的形式存在 
+   后台框架以jar包的形式存在
+
+
+
+
+
+2、JQuery的发展：
+   2006.8: 第一个版本.
+   2012.11.14: 1.8.3 (学的版本) (所有主流的浏览器都兼容).
+   2013.4.18: 2.0 (不兼容IE6、7、8)
+   2014年5月1日，jQuery2.1.1版发布
+   理念：write less do more (写更少、做更多).
+   jQuery的市场占有率：80%
+   prototype --->jQuery取代
+
+
+
+3、学习jquery的好处
+    a、简化Dom操作
+    b、解决js跨浏览器兼容性问题   
+    c、提供了一批工具方法
+    d、简化ajax请求
+    e、目前市场上很多的前端框架都是基于jQuery，比如 bootStrap、jqueryEasyUi、hightChart(报表插件)
+        WebUpload（文件上传插件）等等。
+
+
+4、集成Jquery:引入外部的js文件
+   <script type="text/javascript" src="jquery文件地址"></script>
+
+ 5、jQuery核心语法
+   jQuery([selector,[context]])：
+   第一个参数：选择器(dom对象、函数、jquery规定的特殊字符窜) 
+   第二个参数：查找范围，默认是当前页面
+
+
+
+6、选择器
+
+ 1. $("#html元素的id属性值").--id选择器   document.getElementId()
+ 2. $("html元素的标签名").--元素选择器    document.getElementsByTagName()
+                                           document.getElementsByName()   
+ 3. 属性选择器
+      $([属性名]) : $([id]).
+      $(html元素的标签名[属性名]) : $(input[id]).
+      $(html元素的标签名[属性名=属性值]) : $(div[id='box_1']) 
+      $(html元素的标签名[属性名!=属性值]) : $(input[id!='box_1'])
+      $(html元素的标签名[属性名^=属性值]) : $(input[id^='box_']) ^:以开始
+      $(html元素的标签名[属性名$=属性值]) : $(input[id$='2'])    $:以结束
+      $(html元素的标签名[属性名*=属性值]) : $(input[id*='x'])    *:包含
+      $(html元素的标签名[属性名!=属性值][属性名=属性值][属性名^=属性值]) 
+
+
+ 4、类选择器
+ $(".html元素class类名")   
+   
+ 5、选择器组合
+      $("[selector1],[selector2],[selectorN]"):多个选择器之间用逗号隔开 
+        可以是id选择器，可以是class类选择器，可以是html元素选择器，可以是属性选择器等
+
+ //遍历jquery数组   i：索引值  item：dom对象
+   $("selector").each(function(i,item){
+      
+
+   })
+
+7、 jQuery对象与dom对象之间的转换
+   
+      //将dom对象转换成jquery对象
+      var jquery对象 = $(dom对象);  
+      //jquery对象转换成dom对象
+
+      var dom对象 = jquery数组.get(0);
+      var dom对象 = jquery数组.get()[0];
+      var dom对象 = jquery数组.toArray()[0];  
+
+
+8、操作属性
+8.1 //设置属性
+   $("selector").attr("属性名1","属性值1").attr("属性名2","属性值2");
+   $("selector").attr({"属性名1":"属性值1","属性名2":"属性值2"});
+
+   $(selector).prop("属性名", "属性值")
+             .prop("属性名", "属性值");
+   $(selector).prop({"属性名" : "属性值", "属性名" : "属性值"});
+   
+
+   8.2//获取属性
+   $(selector).attr("属性名");
+   $(selector).prop("属性名");
+
+
+   8.3//删除属性
+   $(selector).removeAttr("属性名"); (建议用这种)
+   $(selector).removeProp("属性名");
+
+9、操作Value
+
+   a. 获取value属性值
+     1. $(selector).attr("value");
+     2. $(selector).prop("value");
+   △3. $(selector).val();
+     4. $(selector)[0].value;
+
+    b. 设置value属性值
+     1. $(selector).attr("value", "属性值");
+     2. $(selector).prop("value", "属性值");
+   △3. $(selector).val("属性值");
+     4. $(selector)[0].value = "属性值";
+
+
+
+10、操作class样式：
+       a. 添加样式：
+          $(selector).addClass("样式名1 样式名2 样式名3");
+          $(selector).addClass("样式名1").addClass("样式名2");
+
+       b. 删除样式：
+          $(selector).removeClass("样式名1 样式名2"); // 删除指定的样式
+         $(selector).removeClass(); // 删除所有的样式
+        
+       c. 样式开关：
+        $(selector).toggleClass("样式名");
+
+
+
+  

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<title></title> 
+<script type="text/javascript" src="jquery.js"></script> 
+<script type="text/javascript"> 
+var timeOut; 
+var count = 10; 
+$(function() { 
+$("#btnSubmit").attr("disabled", "disabled"); 
+$("#btnSubmit").val("确(" + count.toString() + ")定"); 
+timeOut = setTimeout(ButtonCount, 1000); 
+}); 
+ButtonCount = function() { 
+if (count == 0) { 
+$("#btnSubmit").attr("disabled", ""); 
+$("#btnSubmit").val("确 定"); 
+clearTimeout(timeOut); 
+} 
+else { 
+count--; 
+$("#btnSubmit").attr("disabled", "disabled"); 
+$("#btnSubmit").val("确(" + count.toString() + ")定"); 
+setTimeout(ButtonCount, 1000); 
+} 
+} 
+</script> 
+</head> 
+<body> 
+<input type="button" value="确 定" id="btnSubmit" /> 
+</body> 
+</html> 

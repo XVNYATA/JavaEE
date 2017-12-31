@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 定时器 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+     
+    <script type="text/javascript">
+     //当整个页面加载完成之后会执行该函数中的代码
+     window.onload = function(){
+	     //alert("整个页面已加载完成");
+	   
+         //timeRun();
+	 }
+
+
+	  function timeRun(){
+	  
+	       //获取当前事件
+		 var date = new Date();
+
+		 //获取年份
+		 var year = date.getFullYear();
+		 //获取月份
+		 var month = date.getMonth()+1;
+		 //获取天
+		 var day = date.getDate();
+
+		 //定义星期数组
+		 var arr = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+		 var week = date.getDay();
+		 
+         //获取小时
+		 var hour = date.getHours();
+		 //获取分钟
+		 var minute = date.getMinutes();
+		 //获取秒
+		 var second = date.getSeconds();
+
+		 //将时间拼成字符窜
+		 var timeStr = year+"年"+month+"月"+day+"日&nbsp;"+arr[week]+"&nbsp;"+calcTime(hour)+":"+calcTime(minute)+":"+calcTime(second);
+ 
+        var timeDiv = document.getElementById("time");
+        //给dom对象的属性赋值
+		timeDiv.innerHTML = timeStr;
+
+
+        
+		//window.setTimeout("timeRun()",1000);//只会调用一次
+
+
+	  
+	  }
+
+
+      //判断时分秒是否需要补零
+	  function calcTime(time){
+	    
+		return time < 10?"0"+time:time;
+	  
+	  }
+
+
+      //启动定时器   第一个参数：被调用函数   第二个参数：多久调用一次，单位毫秒
+	  window.setInterval("timeRun()",1000);//该定时器的特点：会不断的调用目标函数
+ 
+
+         
+     </script>
+
+  
+ </head>
+
+ <body>
+     <div id="time"></div>
+ </body>
+
+  
+</html>

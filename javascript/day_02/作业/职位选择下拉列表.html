@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title> Java-JavaScript </title>
+	<meta name="author" content="LEE.SIU.WAH" />
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+	<meta http-equiv="pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+	<meta name="Keywords" content="keyword1,keyword2,keyword3"/>
+	<meta name="Description" content="网页信息的描述"/>
+	<meta name="Author" content="yueqianjava.org"/>
+	<meta name="Copyright" content="All Rights Reserved."/>
+	<link rel="shortcut icon" type="image/x-icon" href="java.ico"/>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		
+		// 当整个文件加载完后会触发onload事件
+		window.onload = function(){
+			// 往右移
+			document.getElementById("moveRight").onclick = function(){
+				var job = document.getElementById("job");
+				var array = getSelectedOptions(job);
+				// 删除与添加
+				var myJob = document.getElementById("myJob");
+				for (var i = 0; i < array.length; i++)
+				{
+					//job.removeChild(array[i]);
+					myJob.appendChild(array[i]);
+				}
+				disabledFn();
+			};
+			// 往左移
+			document.getElementById("moveLeft").onclick = function(){
+				var myJob = document.getElementById("myJob");
+				var array = getSelectedOptions(myJob);
+				// 删除与添加
+				var job = document.getElementById("job");
+				for (var i = 0; i < array.length; i++)
+				{
+					//myJob.removeChild(array[i]);
+					job.appendChild(array[i]);
+				}
+				disabledFn();
+			};
+			// 往右移全部
+			document.getElementById("moveRightAll").onclick = function(){
+				var job = document.getElementById("job");
+				var collection = job.options;
+				var myJob = document.getElementById("myJob");
+				for (var i = collection.length - 1; i >= 0; i--)
+				{
+					var option = collection[i];
+					//job.removeChild(option);
+					myJob.appendChild(option);
+				}
+				this.setAttribute("disabled", true);
+				document.getElementById("moveLeftAll").disabled = false;
+			};
+			// 往左移全部
+			document.getElementById("moveLeftAll").onclick = function(){
+				var myJob = document.getElementById("myJob");
+				var collection = myJob.options;
+				var job = document.getElementById("job");
+				for (var i = collection.length - 1; i >= 0; i--)
+				{
+					var option = collection[i];
+					//myJob.removeChild(option);
+					job.appendChild(option);
+				}
+				this.setAttribute("disabled", true);
+				document.getElementById("moveRightAll").disabled = false;
+			};
+			// 查看选中的职位
+			document.getElementById("btn").onclick = function(){
+				var myJob = document.getElementById("myJob");
+				var collection = myJob.options;
+				var array = new Array();
+				for (var i = 0; i < collection.length; i++)
+				{
+					array.push("编号：" + collection[i].value 
+							 + "\t职位：" + collection[i].text);
+				}
+				alert(array.join("\n"));
+			};
+		}
+		// 获取下拉列表选中的选项
+		function getSelectedOptions(select){
+			var collection = select.options;
+			var array = new Array();
+			for (var i = 0; i < collection.length ; i++)
+			{
+				if (collection[i].selected)
+				{
+					array.push(collection[i]);
+				}
+			}
+			return array;
+		}
+		// 判断两个按钮是否可用
+		function disabledFn(){
+			var myJob = document.getElementById("myJob");
+			var job = document.getElementById("job");
+
+			document.getElementById("moveLeftAll").disabled = myJob.length <= 0 ;
+			document.getElementById("moveRightAll").disabled = job.length <= 0;
+		}
+	</script>
+</head>
+
+<body>
+	<div align="center">
+		<table>
+			<tr align="left">
+				<td colspan="3">职位选择：</td>
+			</tr>
+			<tr>
+				<td>
+					<select id="job" size="5" style="width:150px" multiple="true">
+						<option value="1">项目经理</option>
+						<option value="2">架构师</option>
+						<option value="3">高级Java工程师</option>
+						<option value="4">中级Java工程师</option>
+						<option value="5">Java工程师</option>
+					</select>
+				</td>
+				<td>
+					<button id="moveLeftAll" disabled="disabled">全部&lt;&lt;</button><br/>
+					<button id="moveLeft">&lt;&lt;</button><br/>
+					<button id="moveRight">&gt;&gt;</button><br/>
+					<button id="moveRightAll">&gt;&gt;全部</button>
+				</td>
+				<td>
+					<select id="myJob" size="5" style="width:150px;" multiple="true">
+						
+					</select>
+				</td>
+			</tr>
+			<tr align="left">
+				<td colspan="3">
+					<input type="button" id="btn" value="确定"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

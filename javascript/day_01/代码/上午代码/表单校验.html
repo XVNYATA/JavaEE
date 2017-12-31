@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 表单输入校验 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+     <script type="text/javascript">
+         function  validData(){
+		    //校验用户输入的信息
+			var username = document.getElementById("userName").value;
+			var pass = document.getElementById("pass").value;
+			
+			if(!username){
+			   alert("请输入用户名！");
+			}else if(!pass){
+			   alert("请输入密码！");
+			}else{
+			  //提交表单
+              //获取<form>对象的dom对象   HTMLFormElement
+			  var form = document.getElementById("form");
+              //提交表单
+			  form.submit();
+			
+			}
+		 }
+		
+     </script>
+ </head>
+
+ <body>
+       <h2>用户登录</h2>
+	   <form id="form" action="http://www.baidu.com">
+	      <table>
+            <tr><td>用户名<input type="text" name="userName" id="userName"/></td></tr>
+            <tr><td>密码<input type="password" name="password" id="pass"/></td></tr>
+			<tr><td><input type="button" value="提交" onclick="validData()"/></td></tr>
+		  </table>
+	   </form>
+ </body>
+</html>

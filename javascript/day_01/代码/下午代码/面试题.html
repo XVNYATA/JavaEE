@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 面试题 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    
+       <script type="text/javascript">
+            var dataChange = function(obj){
+			    //obj  == >HTMLSelectElement
+			  
+
+				//获取被选中的option的位置
+				var index = obj.selectedIndex
+
+				 //获取所有的option
+				 var optiones = obj.options;
+				 //optiones[index]:HTMLOptionElement    
+			    alert("城市:"+optiones[index].text+" 城市编号："+optiones[index].value);
+			}
+       </script>
+ </head>
+
+ <body>
+
+    <select onchange="dataChange(this)">
+          <option value="0001">北京</option>
+		  <option value="0002">上海</option>
+		  <option value="0003">广州</option>
+		  <option value="0004">深圳</option>
+	</select>
+  
+ </body>
+</html>

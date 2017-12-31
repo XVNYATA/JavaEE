@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> jquery对象与dom对象之间的转换 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+ <!--  引入jquery -->
+ <script src="jquery.js" type="text/javascript"></script>
+
+       <script type="text/javascript">
+           $(function(){
+		       
+			   var dom = document.getElementById("user");
+               
+               //将dom对象转换成jquery对象
+			   var jquery = $(dom);
+			   //alert(jquery instanceof jQuery);
+
+		   
+		       //将jquery转换成dom对象
+                var j = $("#user");
+                var d = j.get(0);
+				//alert(d);
+
+				//获取所有的div
+				var divs = $("div");//获取jquery对象
+				var doms = divs.get();//将jquery转成dom数组
+				for(var i=0;i<doms.length;i++){
+				    //alert(doms[i].innerText);
+				}
+                
+				//将jquery数组转成dom数组
+				var arrs = divs.toArray();
+                for(var i=0;i<arrs.length;i++){
+				    alert(arrs[i].innerText);
+				}
+
+                //遍历jquery数组
+				$(arrs).each(function(){
+				   alert(this.innerHTML);
+				
+				
+				})
+		   
+		   
+		   })
+		   
+            
+
+ 
+       </script>
+ </head>
+
+ <body>
+  
+     <input type="text" value="admin" id="user"/>
+	 <div>北京</div>
+	 <div>上海</div>
+	 <div>广州</div>
+ </body>
+</html>

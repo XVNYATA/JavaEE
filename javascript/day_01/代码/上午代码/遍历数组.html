@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 遍历数组 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="yueqian">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+     <script type="text/javascript">
+          //定义数组   不限制数据的类型
+		  var arr = [3,"admin",new Date()];
+		  //遍历数组
+		  for(var i=0;i<arr.length;i++){
+		      //alert(arr[i]);
+		  }
+          //forEach循环   将：  换成in
+		  for(var i in arr){
+		      //alert(i+"=="+arr[i]);
+		  }
+
+          //json对象    可以用于封装数据，取代xml文件 ，异构平台之间的数据交换  以及前后台数据的交换都可以通过json对象来实现
+		  var json = {"city":"广州","wendu":30};
+          //alert(typeof(json));
+		  for(var key in json){
+		      alert(key+"=="+json[key]);
+		  }
+
+		
+
+         
+
+
+
+
+ 
+
+     </script>
+ </head>
+
+ <body>
+  
+ </body>
+</html>

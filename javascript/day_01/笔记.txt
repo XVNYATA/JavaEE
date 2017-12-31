@@ -1,0 +1,141 @@
+指导工程师：罗春龙
+手机：15622266642
+QQ:584614151@qq.com
+
+
+1、Javascript:(JS、EcmaScript、JScript)是一门基于对象以及事件的弱类型、动态的、解释型(不需要编译，可以直接运行)、独立的编程语言；
+弱类型：所有的变量都用var来定义   var i =3;  var name = "admin"; var obj = new Date();数据的实际类型
+看等号的右边；
+运行环境：只需要浏览器就能运行js代码，IE 、火狐（firefox）、谷歌（chrome）、欧朋(opera)等 
+前端代码的调试(html、css、js)：通过审查元素，查看以及调试代码
+
+
+2、学习JavaScript的作用：
+1、实现表单输入校验
+2、监听HTML元素事件（监听的方式有三种）
+3、进行Dom操作
+4、发送ajax异步请求,实现页面局部刷新
+
+
+3、javaScript中常用的事件
+   onclick：点击事件
+   onblur:失去焦点
+   onfocus：获得焦点
+   onmouseover:鼠标在目标位置上方时触发
+   onmouseout:鼠标离开目标位置时触发
+   onchange:数据发生改变时触发   
+
+
+
+4、隐式boolean类型     
+   任何的非空字符窜,可以转换成 true  空字符窜转换成false
+   任何的非空对象,可以转换成 true   null可以转换成false
+   任何的非0数字,可以转换成 true    0转成成false
+  
+
+5、dom操作简介：
+   html页面中的任何标签都会对应一个dom对象
+   <input value="" id=""/>   ==>   HTMLInputElement
+   <form />==>HTMLFormElement
+   <br/> ==>HTMLBrElement
+
+   var dom对象 = document.getElementById("html页面元素的id");
+   document是一个文档操作类，它的方法getElementById，根据页面元素的id，获取到该页面元素对应的
+   dom对象；
+
+
+6、学习javascript需要掌握的知识点
+    a、函数的定义、函数的声明、函数的调用、绑定事件、类、对象、继承、内置函数
+    b、Dom对象(Document Object Model)
+    c、Bom对象(Browser Object Model)
+    d、发送ajax异步请求实现页面的局部刷新
+
+
+7、 函数定义的三种方式
+   第一种定义函数的方式
+  function  test(arg1,arg2,..., argN){   //arg1,arg2,..., argN形参列表
+     // 函数的执行体
+  }
+
+  语法：
+  function 函数的引用(形参列表){
+     // 函数的执行体
+  }
+
+ 形参可以零值N个
+
+  第二种定义函数的方式  
+  var 函数的引用 = function(arg1, arg2,..., argN){
+     // 函数的执行体
+  }
+  语法：
+  var 函数的引用 = function (形参列表){
+     // 函数的执行体
+  }
+
+  // 匿名函数  
+  (function(arg1, arg2,..., argN){
+     // 函数的执行体
+  })(50);
+
+
+
+  语法：
+  (function(形参列表){
+   // 函数的执行体
+  })(实参列表);
+
+
+  
+  第三种定义函数的方式
+  var arg1 = "num1";
+  var arg2 = "num2";
+  var str = "alert(num1 * num2);";
+  var test2 = new Function(arg1, arg2, str);
+ 
+  //函数的调用
+  test2(2,3);
+
+  语法：
+  var 函数的引用 = new Function(arg1, arg2, ..., argN);
+  ar1-argN-1 : 形参列表
+  argN : 函数的执行体。
+
+   
+8、函数调用的三种方式
+     //定义一个函数
+     var test = function (num1, num2){
+       alert((num1 + num2));
+     }    
+     //第一种调用函数的方式
+     window.test(10,20);  // window：javascript中最顶级的对象，可以省略
+
+  
+
+     // 第二种调用函数的方式
+     test.call(window, 30,40);
+
+     // 第三种调用函数的方式
+     test.apply(window, [100,200]);
+     test(500,600); 
+
+
+9、绑定事件的三种方式
+   
+
+
+10、javascript书写位置
+   1. 可以写在<script type="text/javascript"></script>之间。
+   2. 可以外部js文件中,在html页面中要引用<script type="text/javascript" src="外部的js文件名"></script>
+   3. 可以写在html元素事件的属性中。<input type="button" onclick="var a=3;var b = 4;alert(a*b)" value="确定"/>
+      onmouseover、onmouseout、onchange (onXxxx="1-N条js语句")
+   4. a标签中
+     onmouseover、onmouseout、onchange (onXxxx="1-N条js语句")
+     用javascript:作为前缀定义的js语句是属性window的(全局的).
+    <a href="javascript:var j = 20; j+= 20; alert(j);">跳转</a>当点击跳转时没有任何反应，原因是void是一个运算符，该运算的作用就是无返回值
+
+
+
+<input type="button" onclick="var i = 10; i += 10; alert(i);" value="确定"/>
+<a href="javascript:var j = 20; j+= 20; alert(j);">a标签</>
+

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> js代码书写的位置 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+      <!--  第一种：将js代码写在   <script type="text/javascript"><script> -->
+      <script type="text/javascript">
+	    
+          var i = 3;
+
+          //定义函数
+		  function formSubmit(){
+		    
+			alert("函数被调用");
+		  
+		  
+		  }
+
+          //调用函数
+		 // formSubmit();
+
+		  //第二种：将js代码写在外部的js文件中  
+
+      </script>
+ </head>
+
+ <body>
+        <!-- 第三种：书写在标签的事件中  比如onclick   onblur等 -->
+ 		<input type="button" value="测试1" onclick="formSubmit()"/>
+        <input type="button" value="测试2" onclick="var i=3;var j = 4;alert(i*j);"/>
+		<hr color="red">
+        <!-- 第四种：书写在a标签的href属性中，但是需要以javascript:开始-->
+        a标签中书写js代码时，需要以javascript：开始
+		<a href="javascript:formSubmit()">测试3</a>
+ </body>
+</html>

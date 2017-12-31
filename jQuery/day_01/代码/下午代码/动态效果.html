@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 动态效果 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <!-- 引入jQuery -->
+  <script type="text/javascript" src="../上午代码/jquery.js"></script>
+
+     <script type="text/javascript">
+     
+             function show1(){
+			    //显示目标元素
+			   // $("p").show(5000);
+			   //$("img").slideDown(5000);
+			   $("img").fadeIn(10000);
+			   
+			 }
+
+
+			  function hide1(){
+			    //显示目标元素
+			    //$("p").hide(5000);
+			      //$("img").slideUp(5000);
+				  $("img").fadeOut(5000);
+			 }
+
+
+     </script>
+    
+ </head>
+
+ <body>   
+          <!--  style="display:none"  隐藏目标元素 -->
+         <p id="p1" style="display:none">我已经隐身啦，看不到我！</p>
+		 <p id="p2" style="display:none">我已经隐身啦，看不到我！</p> 
+		 <img src="3.png" style="display:none"/>
+		 <input type="button" value="显示隐藏元素" onclick="show1()"/>
+		 <input type="button" value="隐藏元素" onclick="hide1()"/>
+		 <div>toggle触发器测试</div>
+ </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 绑定事件的三种方式 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+      <script type="text/javascript">
+         
+		  function formSubmit(){
+		     alert("绑定事件的第一种方式");
+		  
+		  }
+
+
+		  window.onload = function(){
+		    //绑定事件的第二种方式
+		    //先将目标元素转换成dom对象
+		    var form = document.getElementById("but");
+		    form.onclick = function(){
+		        alert("绑定事件的第二种方式");
+		    }
+
+
+			//绑定事件的第三种方式(存在兼容性问题)
+			var form3 = document.getElementById("button");
+             form3.addEventListener("click",function(){
+			    alert("绑定事件的第三种方式");
+			 });
+
+		  }
+
+		 
+
+      </script>
+ </head>
+
+ <body>
+
+
+      <h2>用户登录</h2>
+	   <form id="form" action="http://www.baidu.com">
+	      <table>
+            <tr><td>用户名<input type="text" name="userName" id="userName"/></td></tr>
+            <tr><td>密码<input type="password" name="password" id="pass"/></td></tr>
+			 <!-- 绑定事件的第一种方式 -->
+			<tr><td><input type="button" value="提交" onclick="formSubmit()"/></td></tr>
+		  </table>
+	   </form>
+
+
+
+
+	   <hr color="red">
+        <h2>用户登录</h2>
+	   <form id="form2" action="http://www.baidu.com">
+	      <table>
+            <tr><td>用户名<input type="text" name="userName" id="userName"/></td></tr>
+            <tr><td>密码<input type="password" name="password" id="pass"/></td></tr>
+			 <!-- 绑定事件的第一种方式 -->
+			<tr><td><input type="button" value="提交" id="but"/></td></tr>
+		  </table>
+	   </form>
+
+	   <hr color="red">
+        <h2>用户登录</h2>
+	   <form id="form3" action="http://www.baidu.com">
+	      <table>
+            <tr><td>用户名<input type="text" name="userName" id="userName"/></td></tr>
+            <tr><td>密码<input type="password" name="password" id="pass"/></td></tr>
+			 <!-- 绑定事件的第一种方式 -->
+			<tr><td><input type="button" value="提交" id="button"/></td></tr>
+		  </table>
+	   </form>
+  
+ </body>
+</html>

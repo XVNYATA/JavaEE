@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 全选以及反选 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+
+      <script type="text/javascript">
+
+	      //为全选绑定事件
+		  function checkAllFn(obj){
+             //获取所有的子checkbox
+		     var boxes = document.getElementsByName("box");
+			 //alert(boxes.length);
+             for(var i=0;i<boxes.length;i++){
+
+			     boxes[i].checked = obj.checked;
+			 }
+		  }
+
+
+        window.onload = function(){
+		  //为反选按钮绑定事件
+		  document.getElementById("btn").onclick = function(){ 
+             //获取所有的子checkbox
+		     var boxes = document.getElementsByName("box");
+		     for(var i=0;i<boxes.length;i++){
+			     boxes[i].checked = !boxes[i].checked;
+			 }
+
+			 //判断全选是否需要选中
+              checkFn();
+		  
+		  }
+
+		}
+		
+        //为子checkbox绑定事件
+		function checkFn(){
+		     //获取所有的子checkbox
+		     var boxes = document.getElementsByName("box");
+			 var count = 0;
+             for(var i=0;i<boxes.length;i++){
+			     //如果子checkbox选中 则count自增
+				 if(boxes[i].checked){
+				 
+				     ++count;
+				 }
+			 }
+
+			 document.getElementById("checkAll").checked = boxes.length == count?true :false;
+		
+		}
+           
+      </script>
+ </head>
+
+ <body>
+
+  <input type="checkbox" checked="true" id="checkAll" onclick="checkAllFn(this)"/>全选</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>1</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>2</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>3</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>4</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>5</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>6</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>7</br>
+  <input type="checkbox" name="box" onclick = "checkFn()"/>8</br>
+
+  <input type="button" value="反选" id="btn"/>
+
+  
+ </body>
+</html>

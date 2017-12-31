@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 操作Dom对象的属性 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+      <script type="text/javascript">
+           
+		    function formSubmit(){
+			    
+			    //获取用户名   HTMLInputEelement
+				 var user = document.getElementById("user");
+                 //操作dom对象属性值的第一种方式
+				 //获取属性值
+				 alert(user.id+"=="+user.value+"=="+user.type);
+           
+		         //设置属性值
+                 // user.type = "password";
+                  user.value = "jack";
+
+				  //删除属性值
+                   user.value = "";
+			}
+
+
+           function formSubmit2(){
+		     
+			  //获取属性值
+			  var user = document.getElementById("user2");
+
+			  //获取属性值
+			  var val = user.getAttribute("value");
+		      //alert(val);
+
+			  //设置属性值
+			  //user.setAttribute("value","rose");
+
+			  //删除属性值
+			  user.removeAttribute("value");
+		   }
+      </script>
+ </head>
+
+ <body>
+     <form action="#">
+          用户名：<input type="text" name="userName" value="admin"  id="user"/>
+	      密码：<input type="text" name="password" id="password"/>
+		  <input type="button" value="提交" onclick="formSubmit()"/>
+	 </form>
+
+	 <hr color="red">
+	 <form action="#">
+	           <input type="text" name="userName"  value="jack" id="user2"/>
+	           <input type="text" name="password" id="password2"/>
+	 		  <input type="button" value="提交" onclick="formSubmit2()"/>
+	 </form>
+ </body>
+</html>

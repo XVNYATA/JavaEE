@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 继承 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+      <script type="text/javascript">
+          //定义类，js中函数就是类,函数也可以看成是方法，可以被调用
+		  var Person = function(name,age){    
+		      this.name = name;
+			  this.age = age;
+		  }
+
+
+       
+
+         //给Person的所有的实例添加方法
+		 Person.prototype.say = function(){
+		    alert(this.name);
+		    
+		 }
+
+         //创建对象
+		 var p1 = new Person("jack",23);
+		// p1.say();
+
+		 var p2 = new Person("rose",23);
+         //p2.say();
+
+
+
+          //定义学生
+		  var Student = function(name,age){
+		     Person.apply(this,[name,age]);
+		  
+		  }
+
+		  //var s = new Student();
+		  //s.say();   //由于学生没有say方法，因此可以通过继承来得到say方法
+
+		  //全部继承  Student继承Person的所有属性以及方法
+		  Student.prototype = Person.prototype;
+          var s = new Student("小明",12);
+
+		  s.say();
+
+
+      </script>
+ </head>
+
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 绑定单个事件 </title>
+  <meta name="Author" content="chunlong.luo">
+  <meta name="Keywords" content="fkjava">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <!-- 引入jquery -->
+  <script type="text/javascript" src="jquery.js"></script>
+
+      <script type="text/javascript">
+	      
+           window.onload = function(){
+		      //alert("页面加载完成----1----");
+		   }
+
+		   $(function(){
+		     //alert("页面加载完成----2----");
+             $("#but").click(function(){
+			    var name = $("#userName").val();   
+				var pass = $("#pass").val();
+
+				if(!name){
+				    //获取焦点
+					//$("#userName").focus();
+				    alert("请输入用户名!");
+					
+				}else if(!pass){
+				     alert("请输入密码!");
+					//获取焦点
+					//$("#pass").focus();
+				
+				}else{
+				    //提交表单
+                    $("#form").submit();
+				
+				}			    
+			 
+			 })
+
+			 //绑定双击事件
+			 $("#div").dblclick(function(){
+			 
+			    alert("双击");
+			 })
+
+
+			 //通过on  bind绑定单个事件
+              $("p").on("click",function(){
+			  
+
+			     alert("p标签事件绑定成功！");
+			  
+			  })
+
+			  $("span").bind("click",function(){
+			  
+			     alert("span标签事件绑定成功！");
+			  
+			  })
+
+
+		   })
+
+
+            //为回车按钮绑定事件
+			$(document).keydown(function(e){
+			    //e.keyCode == 13 :表示用户按了回车键 
+			   if(e.keyCode == 13){
+                   //触发按钮的点击事件
+				   $("#but").trigger("click");
+			   
+			   }
+			
+			})
+
+
+		   $(document).ready(function(){
+               //alert("页面加载完成----3----");
+           });
+      </script>
+ </head>
+
+ <body>
+
+
+      <form id="form" action="http://www.fkjava.org">
+       用户名: <input type="text" name="userName" id="userName"/>
+	   密码: <input type="password" name="pass" id="pass"/>
+        <input type="button" value="提交" id="but" />
+	 </form>
+
+
+    <hr color="red">
+	<div id="div"> 欢乐颂</div>
+	<hr color="red">
+	<p>通过on绑定单个事件</p>
+	<p>通过on绑定单个事件</p>
+	<hr color="red">
+	<span>通过bind绑定单个事件</span>
+
+ </body>
+</html>
