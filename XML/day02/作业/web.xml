@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+ <!-- 服务（类的功能） -->
+  <servlet>
+  	<servlet-name>helloServlet</servlet-name>
+  	<servlet-class>org.fkjava.servlet.HelloServlet</servlet-class>
+  </servlet>
+  
+  <!-- 映射地址 -->
+  <servlet-mapping>
+  	<servlet-name>helloServlet</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>org.fkjava.servlet.LoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+  	<servlet-name>viewServlet</servlet-name>
+  	<servlet-class>org.fkjava.servlet.ViewServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>viewServlet</servlet-name>
+	<url-pattern>/view</url-pattern>
+  </servlet-mapping>
+
+</web-app>

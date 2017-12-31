@@ -1,0 +1,40 @@
+1.配置文件说明
+<servlet>
+  	<servlet-name>hello</servlet-name>
+  	<servlet-class>org.fkjava.servlet.HelloServlet</servlet-class>
+  </servlet>
+
+  <servlet>元素代表一个服务,<servlet-name>子元素是该服务的名称,
+<servlet-class>子元素是服务真正运行的java类
+
+ ------------------------------------------------------
+
+ <servlet-mapping>
+  	<servlet-name>hello</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+
+ <servlet-mapping>元素代表一个映射信息,
+ <url-pattern>子元素代表请求的路径(url)
+ <servlet-name>子元素处理该请求的服务的名称
+
+ ------------------------------------------------------
+请写一个方法
+public void processRequest(String url){
+
+}
+假设:
+用户输入参数 http://www.org.fkjava/fkjava/login,
+	     http://www.org.fkjava/fkjava/hello
+1.获取最后的url(/login),
+2.解析web.xml,
+3.查询所有的<servlet-mapping>子元素,
+匹配<url-pattern>的内容是否和参数最后的url相等,
+如果没有相等的，控制台打印: "404异常: 找不到请求路径"
+
+4.如果匹配到了,查询出<servlet-mapping>当前<url-pattern>对应的<servlet-name>，
+拿到<servlet-name>的内容,
+5.查询所有的<servlet>子元素,
+匹配<servlet>子元素下面的<servlet-name>，
+获取<servlet>子元素下面的<servlet-class>，
+控制台打印: "找到处理请求的Java类: org.fkjava.servlet.HelloServlet"

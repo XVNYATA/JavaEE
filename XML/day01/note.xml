@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	1.xml的第一行一定是xml的定义，包括版本和字符编码
+	2.note、to、from...都是元素
+	note称为根元素（节点）,一个xml必须有并且只有一个根元素
+	to、from、clazz...都是note的子元素
+	code是clazz的子元素
+	"蔡依林"是to元素的内容，称为Text
+	通常情况下，如果一个元素有子元素的话，代表内容有很多区分，该元素不会有Text
+	3.所有 XML 元素都须有关闭标签
+	4.XML 标签对大小写敏感
+	5.XML 必须正确地嵌套
+	6.XML 的属性值须加引号
+ -->
+<note>
+	<to>蔡依林</to>
+	<from>周杰伦</from>
+	<heading>想你了</heading>
+	<body>你在哪里 ?</body>
+	<clazz id="1">
+		<code>j1604</code>
+	</clazz>
+	<test/>
+	<message>if salary &lt; 1000 then</message>
+</note>
+
+
+
+
+
+

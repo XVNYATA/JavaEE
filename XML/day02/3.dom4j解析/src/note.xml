@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+  <to id="1">马航</to>
+  <from>失联</from>
+  <heading>飞机去哪儿了</heading>
+  <body>你快回来</body>
+  <clazz>
+  	<code>j1604</code>
+  	<name>JAVAEE就业班</name>
+  </clazz>
+</note>

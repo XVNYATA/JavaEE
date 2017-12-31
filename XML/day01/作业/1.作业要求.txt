@@ -1,0 +1,22 @@
+book.xml
+1.解析book.xml内容，打印在控制台
+
+2.写一个方法获取book.xml文件所有信息，封装到对象，返回list集合
+List<Book> findAll();
+
+
+
+student.xml
+写一个方法获取student.xml文件所有信息，封装到对象，返回list集合
+List<Student> findAll();
+
+
+写一个方法根据姓名获取student.xml文件中的同学,不考虑同名情况
+Student findByName(String name);
+
+写一个方法根据性别获取student.xml文件中的同学
+List<Student> findBySex(String sex);
+
+写一个方法获取student.xml文件中某个班级的同学
+List<Student> findByClass(String classNo);
+

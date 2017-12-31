@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 写一个xml文档，描述j1604班的5个学生信息，包括：姓名、年龄、爱好 -->
+<students>
+	<student>
+		<name>班长</name>
+		<sex>男</sex>
+		<age>23</age>
+	</student>
+	<student>
+		<name>班长</name>
+		<sex>男</sex>
+		<age>23</age>
+	</student>
+	<student>
+		<name>班长</name>
+		<sex>男</sex>
+		<age>23</age>
+	</student>
+	<student>
+		<name>班长</name>
+		<sex>男</sex>
+		<age>23</age>
+	</student>
+	<student>
+		<name>班长</name>
+		<sex>男</sex>
+		<age>23</age>
+	</student>
+</students>

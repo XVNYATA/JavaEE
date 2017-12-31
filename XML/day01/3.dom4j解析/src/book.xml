@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book>
+		<id>1</id>
+		<name>疯狂Java讲义(附光盘)</name>
+		<author>李刚 编著</author>
+		<price>74.20</price>
+		<image>java.jpg</image>
+		<remark>疯狂源自梦想,技术成就辉煌 本书来自作者3年的Java培训经历,凝结了作者近3000个小时的授课经验,总结了几百个Java学员学习过程中的典型错误.</remark>
+	</book>
+	<book>
+		<id>2</id>
+		<name>轻量级Java EE企业应用实战</name>
+		<author>李刚 编著</author>
+		<price>59.20</price>
+		<image>ee.jpg</image>
+		<remark>本书主要介绍以Spring+Hibernate为基础的Java EE应用.</remark>
+	</book>
+	<book>
+		<id>3</id>
+		<name>疯狂Android讲义(含CD光盘1张)</name>
+		<author>李刚 编著</author>
+		<price>60.60</price>
+		<image>android.jpg</image>
+		<remark>计算机便携化是未来的发展趋势，而Android作为最受欢迎的手机、平板电脑操作之一，其发展的上升势头是势不可当的。而Android应用选择了Java作为其开发语言，对于Java来说也是一次极好的机会。</remark>
+	</book>
+	<book>
+		<id>4</id>
+		<name>疯狂Ajax讲义(含CD光盘1张)</name>
+		<author>李刚 编著</author>
+		<price>66.60</price>
+		<image>ajax.jpg</image>
+		<remark>异步访问技术,现在所有网站都在用.</remark>
+	</book>
+</books>

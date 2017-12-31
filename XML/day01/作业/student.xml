@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<students>
+	<student class="j1301">
+		<name>周杰伦</name>
+		<sex>男</sex>
+		<age>25</age>
+	</student>
+	<student class="j1301">
+		<name>林志玲</name>
+		<sex>女</sex>
+		<age>25</age>
+	</student>
+	<student class="j1302">
+		<name>廖新峰</name>
+		<sex>男</sex>
+		<age>25</age>
+	</student>
+	<student class="j1302">
+		<name>张军</name>
+		<sex>男</sex>
+		<age>25</age>
+	</student>
+	<student class="j1302">
+		<name>任峰</name>
+		<sex>男</sex>
+		<age>25</age>
+	</student>
+	<student class="j1302">
+		<name>林志雄</name>
+		<sex>男</sex>
+		<age>25</age>
+	</student>
+	<student class="j1302">
+		<name>苏晓峰</name>
+		<sex>男</sex>
+		<age>25</age>
+	</student>
+	<student class="j1302">
+		<name>蔡依林</name>
+		<sex>女</sex>
+		<age>25</age>
+	</student>
+</students>
