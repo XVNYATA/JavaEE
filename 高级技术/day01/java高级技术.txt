@@ -1,0 +1,207 @@
+Java高级技术：
+（1） 反射
+（2） 动态代理
+（3） Annotation 注解
+
+
+通过编写JDBC代码，发现JDBC操作非常繁复。
+1.注册驱动
+2.打开数据库连接
+3.获取Statement
+4.声明SQL语句
+5.预编译并执行SQL语句
+6.遍历查询结果（如果需要的话），对每一记录行进行处理
+7.处理事务
+8.关闭数据库连接
+以上步骤每次除了4和6步骤，其他全部是重复工作。
+如何想办法将这些重复的工作抽象出去，简化JDBC的开发工作呢？这是值得每一个开发人员思考的问题，因为软件开发者是善于分析的思想家以及问题的解决者。
+
+
+
+1. javabean
+
+规则：
+1. 类必须是具体并且是公共的
+2. 必须有无参数的构造方法
+3. 字段必须提供set和get方法（属性）
+4. 建议实现 Serializable（序列化） 接口
+
+Field 字段： private Integer id;
+Method 方法：public void say(){}
+Property 属性：
+
+// Class 类
+public class User(
+	
+	// Field 字段
+	private Integer id;
+
+	// Constructor  构造器
+	public User(){}
+	
+	// Property  属性方法
+	public void setId(Integer id){
+		this.id = id;
+	}
+	public Integer getId() {
+		return id;
+	}
+
+	// Method 方法
+	public void sayHello(){}
+
+}
+
+*************************************************
+
+2. 反射
+
+Class
+Class 类的实例表示正在运行的 Java 应用程序中的类和接口
+任何一个Java类运行时都会有一个对应的Class对象产生。
+
+Class的获取方式
+1. instance(实例).getClass();
+2. User(类型).class;
+3. Class.forName("org.fkjava.bean.User")
+
+
+public static Class<?> forName(String className)
+参数：
+	className - 所需类的完全限定名。 
+返回：
+	具有指定名的类的 Class 对象。
+
+public T newInstance()
+返回：
+	此对象所表示的类的一个新分配的实例。
+	实际是调用类的无参数构造器。
+
+--------------------------------------------------
+Tomcat创建Servlet实例:
+Class c = Class.fromName("org.fkjava.servlet.LoginServlet");
+Object instance = c.newInstance();
+
+<servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>org.fkjava.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+
+Mybatis创建Mapper实例
+userMapper = sqlSession.getMapper(UserMapper.class);
+
+public UserMapper getMapper(Class c){
+	return c.newInstance();
+}
+--------------------------------------------------
+
+public InputStream getResourceAsStream(String name)
+参数：
+	name - 所需资源的名称 
+返回：
+	一个 InputStream 对象；如果找不到带有该名称的资源，则返回 null 
+
+
+----------------------------------------------------------------
+
+Constructor
+Constructor 提供关于类的单个构造方法的信息以及对它的访问权限
+
+如果调用有参数的构造器，只能使用Constructor对象。
+
+Class的方法:
+public Constructor<?>[] getConstructors()
+返回：
+	表示此类公共构造方法的 Constructor 对象数组 
+
+public Constructor<T> getConstructor(Class<?>... parameterTypes)
+参数：
+	parameterTypes - 参数数组 
+返回：
+	与指定的 parameterTypes 相匹配的公共构造方法的 Constructor 对象
+
+
+Constructor的方法:
+public T newInstance(Object... initargs)
+参数：
+	initargs - 将作为变量传递给构造方法调用的对象数组；
+返回：
+	通过调用此对象表示的构造方法来创建的新对象
+
+-----------------------------------------------------------------
+Field
+Field 提供有关类或接口的单个字段的信息，以及对它的动态访问权限。
+
+Class的方法：
+public Field[] getDeclaredFields()
+
+public Field getDeclaredField(String name)
+参数：
+	name - 字段名 
+返回：
+	此类中指定字段的 Field 对象 
+
+
+
+Field的方法：
+public void set(Object obj, Object value)
+参数：
+	obj - 应该修改其字段的对象
+	value - 正被修改的 obj 的字段的新值 
+
+
+public Object get(Object obj)
+参数：
+	obj - 从中提取所表示字段的值的对象 
+返回：
+	对象 obj 中的所表示字段的值；在返回之前，基值包装在一个适当的对象中
+
+public void setAccessible(boolean flag)
+
+public boolean isAccessible()
+
+从setAccessible方法可以发现，反射是破坏封装性的。
+-----------------------------------------------------------------
+Method
+Method 提供关于类或接口上单独某个方法（以及如何访问该方法）的信息
+
+Class的方法：
+
+public Method[] getDeclaredMethods()
+返回：
+	表示此类所有声明方法的 Method 对象的数组 
+
+public Method getDeclaredMethod(String name,
+                                Class<?>... parameterTypes)
+参数：
+	name - 方法名
+	parameterTypes - 参数数组 
+返回：
+	该类与指定名和参数相匹配的方法的 Method 对象 
+
+
+Method的方法：
+public Object invoke(Object obj,
+                     Object... args)
+参数：
+	obj - 从中调用底层方法的对象
+	args - 用于方法调用的参数 
+返回：
+	使用参数 args 在 obj 上指派该对象所表示方法的结果
+
+
+
+JDBC
+
+1. 加载驱动
+2. 获取连接
+3. DML操作（插入数据返回主键id）
+4. query操作
+5. 连接池
+6. ResultSetMetaData（不知道表的结构）
+7. 多表连接
