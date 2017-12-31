@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="user" class="org.fkjava.domain.User">
+        <!-- 注入数组 -->
+        <property name="names">
+        	<array>
+        		<value>jack</value>
+        		<value>rose</value>
+        	</array>
+        </property>
+        <!-- 注入List -->
+        <property name="books">
+        	<list>
+        		<value>疯狂Java讲义</value>
+        		<value>疯狂Android讲义</value>
+        		<value>疯狂iOS讲义</value>
+        		<value>疯狂iOS讲义</value>
+        	</list>
+        </property>
+        <!-- 注入Set,如果存的是引用对象，需要覆盖hashcode和equals方法 -->
+        <property name="sets">
+        	<set>
+        		<value>疯狂Java讲义</value>
+        		<value>疯狂Android讲义</value>
+        		<value>疯狂iOS讲义</value>
+        		<value>疯狂iOS讲义</value>
+        	</set>
+        </property>
+        <!-- 注入Map -->
+        <property name="maps">
+        	<map>
+        		<entry key="1" value="jack"/>
+        		<entry key="2" value="rose"/>
+        		<entry key="3" value="tom"/>
+        		<!-- 如果key相同，覆盖 -->
+        		<entry key="3" value="mary"/>
+        	</map>
+        </property>
+        <!-- 注入properties -->
+        <property name="pros">
+        	<props>
+        		<prop key="driver">com.mysql.jdbc.Driver</prop>
+        		<prop key="user">root</prop>
+        		<prop key="password">123456</prop>
+        	</props>
+        </property>
+    </bean>
+    
+   
+    
+</beans>
+
+
+
+
+
+

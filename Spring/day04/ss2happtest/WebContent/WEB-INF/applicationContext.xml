@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+  
+ 	<!--  重点  通过context简化配置，实际是使用了PropertyOverrideConfigurer后处理器 -->
+	 <context:property-override location="classpath:db.properties"/>
+	 
+	  <!-- 使用了PropertyOverrideConfigurer后处理器，会默认调用该类的set方法注入 -->
+ 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"/>
+  
+  	<!-- 配置Hibernate的SessionFactory -->
+  	<bean id="sessionFactory" 
+ 	class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+ 	p:dataSource-ref="dataSource"
+ 	p:configLocation="classpath:hibernate.cfg.xml"/>
+ 	
+ 	<!-- 抽象bean -->
+ 	<bean id="baseDao" abstract="true" p:sessionFactory-ref="sessionFactory"/>
+ 	
+ 	<!-- 子bean，基础baseDao，也注入sessionFactory -->
+ 	<bean id="userDao" class="org.fkjava.dao.impl.UserDaoImpl"
+	parent="baseDao"/>
+	
+	<!-- 服务层,注入userDao -->
+	<bean id="appService" class="org.fkjava.service.impl.AppServiceImpl"
+	p:userDao-ref="userDao"/>
+	
+	
+</beans>

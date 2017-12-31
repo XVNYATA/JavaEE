@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring的默认配置文件名称为applicationContext.xml，也可以改成其他名称
+     根元素是beans,Spring的所有都是使用bean来完成的
+   使用的schema是spring-beans-4.0.xsd  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	
+	 <!-- set注入 -->
+    <bean id="user" class="org.fkjava.domain.User" scope="prototype">
+        <property name="id" value="1"/>
+        <property name="name" value="jack"/>
+        <property name="sex" value="男"/>
+        <property name="age" value="18"/>
+    </bean>
+    
+   
+    
+</beans>
+
+
+
+
+
+

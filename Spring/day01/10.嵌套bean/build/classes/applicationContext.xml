@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring的默认配置文件名称为applicationContext.xml，也可以改成其他名称
+     根元素是beans,Spring的所有都是使用bean来完成的
+   使用的schema是spring-beans-4.0.xsd  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- 正常注入  -->
+    <bean id="user" class="org.fkjava.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="jack"/>
+        <property name="sex" value="男"/>
+        <property name="age" value="18"/>
+        <!-- 注入狗对象 -->
+        <property name="dog" ref="dog"/>
+    </bean>
+    
+    <bean id="dog" class="org.fkjava.domain.Dog">
+    	<property name="name" value="赛虎"/>
+    	<property name="sex" value="公"/>
+    </bean>
+   
+   
+   <!-- 嵌套注入  -->
+    <bean id="user2" class="org.fkjava.domain.User">
+        <property name="id" value="2"/>
+        <property name="name" value="tom"/>
+        <property name="sex" value="男"/>
+        <property name="age" value="25"/>
+        <property name="dog">
+        	<!-- 嵌套bean不用写id，写了也没用 -->
+        	<bean class="org.fkjava.domain.Dog">
+        		<property name="name" value="赛牛"/>
+    			<property name="sex" value="母"/>
+        	</bean>
+        </property>
+    </bean>
+    
+    
+    <!-- 构造函数的嵌套注入
+    User(Integer id, String name, String sex, Integer age, Dog dog) -->
+     <bean id="user3" class="org.fkjava.domain.User">
+     	<constructor-arg index="0" value="3"/>
+     	<constructor-arg index="1" value="rose"/>
+     	<constructor-arg index="2" value="女"/>
+     	<constructor-arg index="3" value="18"/>
+     	<constructor-arg index="4">
+     		<!-- 嵌套bean不用写id，写了也没用 -->
+        	<bean class="org.fkjava.domain.Dog">
+        		<property name="name" value="赛猪"/>
+    			<property name="sex" value="母"/>
+        	</bean>
+     	</constructor-arg>
+     </bean>
+</beans>
+
+
+
+
+
+

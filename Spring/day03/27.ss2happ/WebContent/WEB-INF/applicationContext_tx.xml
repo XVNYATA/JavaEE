@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- HibernateTransactionManager是Spring为Hibernate提供的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory"/>
+	
+	<!-- 配置事务增强处理Bean,指定事务管理器 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 用于配置详细的事务传播、隔离、是否只读等属性，
+		这些属性会封装到底层事务代码中的TransactionDefinition中 -->
+		<tx:attributes>
+			<!-- 所有以'get'开头的方法是read-only的 
+				事务的隔离性isolation="DEFAULT" 
+				事务的传播行为 propagation="REQUIRED" 
+				REQUIRED  支持当前的事务，如果不存在就创建一个新的。这是最常用的选择。
+				SUPPORTS  支持当前的事务，如果不存在就不使用事务。
+				MANDATORY  支持当前的事务，如果不存在就抛出异常。
+				REQUIRES_NEW  创建一个新的事务，并暂停当前的事务（如果存在）。
+				NOT_SUPPORTED  不使用事务，并暂停当前的事务（如果存在）。
+				NEVER  不使用事务，如果当前存在事务就抛出异常。
+				NESTED  如果当前存在事务就作为嵌入事务执行，否则与REQUIRED类似。
+				事务的超时 timeout="-1" -1为永不超时，8代表8秒超时 -->
+			<tx:method name="get*,login*" read-only="true" 
+			isolation="DEFAULT" propagation="REQUIRED" timeout="-1"/>
+			<!-- 其他方法使用默认的事务设置 -->
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<!-- 配置一个切入点 -->
+		<aop:pointcut id="pointcut" 
+			expression="execution(* org.fkjava.service.*.*(..))"/>
+		<!-- 指定在pointcut切入点应用txAdvice事务增强处理 
+		aop:advisor的作用是在已有的advice前提下，通过该元素指定将advice织入哪些位置-->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+	</aop:config>
+	
+</beans>

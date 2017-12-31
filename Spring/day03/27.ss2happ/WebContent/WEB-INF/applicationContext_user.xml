@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+  
+  <!-- UserDao的bean -->
+  <bean id="userDao" class="org.fkjava.dao.impl.UserDaoImpl"
+  p:hibernateTemplate-ref="hibernateTemplate"/>
+  
+   <!-- BookDao的bean -->
+  <bean id="bookDao" class="org.fkjava.dao.impl.BookDaoImpl"
+  p:hibernateTemplate-ref="hibernateTemplate"/>
+  
+  <!-- appService的bean，依赖注入需要的userDao
+  	注意：struts2-spring-plugin-XXXX.jar会按照byName的自动装配将Service注入给Action
+  	如果需要注入，则Service的bean的id必须和Action的Service的属性名一致
+  	bean： id="appService"   action：private AppService appService;
+   -->
+  <bean id="appService" class="org.fkjava.service.impl.AppServiceImpl"
+  p:userDao-ref="userDao"
+  p:bookDao-ref="bookDao"/>
+  
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring的默认配置文件名称为applicationContext.xml，也可以改成其他名称
+     根元素是beans,Spring的所有都是使用bean来完成的
+   使用的schema是spring-beans-4.0.xsd  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- UserAction userAction = new UserAction(); -->
+    <bean id="userAction" class="org.fkjava.action.UserAction">
+    	<!-- ref属性指引用容器中的bean -->
+    	<property name="user" ref="user"/>
+    </bean>
+    
+	<!-- 
+		所有的java对象都是用bean配置
+		id是该bean的唯一的名称
+		class指类
+		id="user" class="org.fkjava.domain.User"等价于User user = new User();
+		value：基本数据类型+String
+		ref：引用容器中的bean
+		
+		保存bean：ApplicationContext[Map].put("user",new org.fkjava.domain.User);
+		获取bean：User user = (User)ApplicationContext.getBean("user");
+	 -->
+    <bean id="user" class="org.fkjava.domain.User">
+        <!-- property元素调用set方法  user.setId(1); -->
+        <property name="id" value="1"/>
+        <property name="name" value="jack"/>
+        <property name="sex" value="男"/>
+        <property name="age" value="18"/>
+        <property name="currdate" ref="date"/>
+    </bean>
+    
+    <!-- 创建的bean可以是任意的Java对象，包括jar包里面的 -->
+   <bean id="date" class="java.util.Date"/>
+    
+
+</beans>

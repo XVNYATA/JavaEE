@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring的默认配置文件名称为applicationContext.xml，也可以改成其他名称
+     根元素是beans,Spring的所有都是使用bean来完成的
+   使用的schema是spring-beans-4.0.xsd  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	
+	 <!-- set注入 -->
+    <bean id="user" class="org.fkjava.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="jack"/>
+        <property name="sex" value="男"/>
+        <property name="age" value="18"/>
+        <property name="currdate" ref="date"/>
+    </bean>
+    
+    <!-- 创建的bean可以是任意的Java对象，包括jar包里面的 -->
+   <bean id="date" class="java.util.Date"/>
+    
+    <!-- 构造器注入 注意，有几个constructor-arg元素就必须有几个参数的构造器
+    User(Integer id, String name, String sex, Integer age, Date currdate) -->
+   <bean id="user2" class="org.fkjava.domain.User">
+   		<constructor-arg index="0" value="1"/>
+   		<constructor-arg index="1" value="rose"/>
+   		<constructor-arg index="2" value="女"/>
+   		<constructor-arg index="3" value="16"/>
+   		<constructor-arg index="4" ref="date"/>
+   </bean>
+    
+</beans>
+
+
+
+
+
+
