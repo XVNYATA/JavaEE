@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- Hibernate4的配置信息 -->
+<hibernate-configuration>
+	<!-- 配置初始化SessionFactory的配置信息 -->
+	<session-factory>
+		<!-- 配置数据库方言 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<!-- 配置是否显示SQL语句 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 配置是否格式化SQL语句 -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- 配置支持自动创建表: create-drop、create、update、validate -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!-- 配置连接数据库相关信息 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+		<!-- 配置c3p0的相关信息 -->
+		<property name="hibernate.c3p0.max_size">10</property>
+		<property name="hibernate.c3p0.min_size">2</property>
+		
+		<!-- 配置持久化类 -->
+		<mapping class="org.fkjava.hibernate.domain.Teacher"/>
+		<mapping class="org.fkjava.hibernate.domain.Student"/>
+		
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,400 @@
+Hibernate4的性能调优：
+
+1. Hibernate4批量处理：
+   
+   一次性操作大量数据 
+
+   a. 批量添加：
+          如果有10w条数据需要一次性插入到数据库表.
+	  这个时候用Hibernate做添加的话有可能会出现内存溢出。
+
+	  原因：因为hibernate在数据添加的时候，如果事物开启，会先将对象数据
+	  缓存在session的一级缓存中，一级缓存是内存，如果缓存的数据很大就会出现
+	  内存溢出！
+
+      /** 往老师表插入10w数据 */
+      for (int i = 0; i < 100000; i++){
+	   Teacher t = new Teacher();
+	   session.save(t); 	
+	   // t : 持久化状态，持久化状态的对象是放在Session的一级缓存中,因为一级缓存是放在内存中.(10w对象存放在内存中)
+	   // 当一级缓存中的对象达到一定数量，那就把一级缓存中的对象同步到底层的数据库，再清空一级缓存，释放内存
+	   if (i % 10 == 0){
+		// 把一级缓存中的对象同步到底层的数据库
+		session.flush();
+		// 清空一级缓存，释放内存
+		session.clear();
+	  }
+       }
+
+   b. 批量修改:
+      
+	/** 修改10w条数据 */
+	for (int i = 1; i <= 100000; i++){
+	     // t : 持久化状态，持久化状态的对象是放在Session的一级缓存中,因为一级缓存是放在内存中.(10w对象存放在内存中)
+	     Teacher t = (Teacher)session.get(Teacher.class, i);
+	     t.setAge(28);
+	     // 当一级缓存中的对象达到一定数量，那就把一级缓存中的对象同步到底层的数据库，再清空一级缓存，释放内存
+	     if (i % 10 == 0){
+		// 把一级缓存中的对象同步到底层的数据库
+		session.flush();
+		// 清空一级缓存，释放内存
+		session.clear();
+	     }
+		
+	}
+
+    c. 批量删除：
+       /** 删除10w条数据 */
+	for (int i = 1; i <= 100000; i++){
+		// t : 持久化状态，持久化状态的对象是放在Session的一级缓存中,因为一级缓存是放在内存中.(10w对象存放在内存中)
+		Teacher t = (Teacher)session.get(Teacher.class, i);
+		session.delete(t);
+		
+		// 当一级缓存中的对象达到一定数量，那就把一级缓存中的对象同步到底层的数据库，再清空一级缓存，释放内存
+		if (i % 10 == 0){
+		        // 把一级缓存中的对象同步到底层的数据库
+			session.flush();
+			// 清空一级缓存，释放内存
+			session.clear();
+		}
+	}
+     
+    d. DML风格的HQL语句：
+       
+
+       DML : Data Manipulation Language (DML) the statements: INSERT, UPDATE, DELETE。
+       语法：
+         ( UPDATE | DELETE ) FROM? EntityName (WHERE where_conditions)?. 
+
+       操作DML风格HQL的步骤：
+       -- 获取Session
+       -- 写DML风格的hql语句
+       -- Query query = session.createQuery(hql);
+          如果hql语句中有占位符需要设置参数值: query.setParameter(i, "值").
+       -- int res = query.executeUpdate();
+
+
+
+3. 一级缓存(缓存的是对象)： session 对应的一块内存区域 
+    
+    一级缓存与session是同生共死的。
+
+    增加(Create)、读取(Read)、更新(Update)和删除(Delete) ： session就是增删改查
+   
+   -- 跟Session相关(存放在内存中). 作用范围是session,session关闭一级缓存就失效
+   -- 默认是开启的.session一打开默认就开启.
+   -- 一级缓存是持久化操作的保证。
+
+   -- 作用：提高CUD操作的性能. 持久化下修改,实际上是在内存中修改
+        a.直接在内存中修改对象
+	b.修改后不需要维护，事物最终会将数据持久化到数据库,程序无需关心。
+	一级缓存只在session开启和session关闭才存在意义。所以一级缓存的启动与死亡不需要程序员理会。是自动化的。
+   
+
+   操作一级缓存的方法：
+   a. boolean contains(Object object) : 判断Session的一级缓存中是否包含一个对象，包含的话这个对象就是持久化状态。
+   b. void   evict(Object object) : 从Session的一级缓存中逐出一个对象.(该对象就不是持久化状态的对象).
+   c. void   flush() : 将Session的一级缓存中的对象，同步到底层数据库表中.(立即同步)
+   d. void   clear() : 清空Session的一级缓存，所有的持久化状态的对象都清空。(释放内存)
+   e. void   close() : 关闭Session，先调用flush()，再调用clear().
+
+4. 二级缓存(缓存的是对象):
+
+   -- 二级缓存跟SessionFactory相关，因为SessionFactory存活的时间长,与应用同生共死(需要程序员维护的)。
+      应用开启的时候一般需要初始化SessionFactory,应用死掉SessionFactory应该死掉。
+
+   -- SessionFactory的生命周期：应用启动的时候初始化，应用关闭的时候死掉。与应用相关
+   -- 二级缓存默认是关闭的.
+   -- 二级缓存 希望缓存的数据时间比较长，针对于多次请求依然可以使用缓存
+
+   缓存： 第一次查询都会去数据库查询 -- 查出来放到一级缓存中保存--->如果开启了二级缓存
+           ---->将查询出来的对象数据缓存到二级缓存中 
+	  
+	  再次查询 -- 先去一级缓存中查询是否存在对象 ---> 去二级缓存中查询对象 
+	           --- 去数据库查询对象 
+          
+	  缓存最终设计的目的： 提交操作数据的效率
+	            一级缓存是为了提高增删改的性能 直接在内存中增删改 最后集中提交到数据库操作。
+		    二级缓存可以长久缓存大量对象,所以二级缓存是为了提交查询效率。
+          注意点： 一级缓存是跟session同生共死的,每个session都有一个一级缓存。
+	            二级缓存与SessionFactory相关。
+
+
+   -- 作用：提高查询效率.
+
+   1.二级缓存中的对象存放到哪里，这个需要配置.
+   
+      一般会配置内存中存放一些对象，超出了内存中放存的对象个数，就写入磁盘进行缓存.
+	    ehcache.xml (配置二级缓存对象存放的配置文件).
+	         -- 用来指定二级缓存在内存中存储多少个对象 ,超出以后存储到哪个磁盘路径
+		 -- 还需指定二级缓存中对象的存放时间（2min钟消失）
+
+		 二级缓存的数据的存储位置：
+		   a.内存中     
+		   b.磁盘
+		 二级缓存的对象的时效与SessionFactory关联
+   
+   使用二级缓存的步骤：
+   2. 配置开启二级缓存
+      hibernate.cfg.xml文件中配置开启二级缓存.
+
+      <!-- 配置开启二级缓存 -->
+      <property name="hibernate.cache.use_second_level_cache">true</property>
+      <!-- 配置二级缓存的提供商 -->
+      <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		
+   
+   -- 拷贝二级缓存需要的jar包：
+      ehcache-core-2.4.3.jar、hibernate-ehcache-4.3.8.Final.jar
+      slf4j-api-1.7.2.jar、slf4j-jdk14-1.7.2.jar
+
+      SLF4J : Simple Logging Facade for Java java的日志门面的jar包(日志规范).
+      这个日志框架可以打出特殊的日志信息。打出一些缓存统计日志信息。
+
+   -- 拷贝ehcache.xml文件.
+
+   -- 配置哪些持久化类用二级缓存：
+      
+       第一种方式：在hibernate.cfg.xml配置
+        <!-- 配置持久化类用二级缓存 -->
+        <class-cache usage="read-write" class="org.fkjava.hibernate.domain.Teacher" region="fkjavaCache"/>
+
+        第二种方式：在持久化类上
+        @Cache(usage=CacheConcurrencyStrategy.READ_WRITE, region="fkjavaCache").
+      
+   -- 操作二级缓存的方法：
+
+   a. 获取缓存对象：
+      Cache cache =  SessionFactory.getCache();
+
+   b. 判断二级缓存中在是否包含一个对象：
+      boolean 	containsEntity(Class entityClass, Serializable identifier)
+      boolean 	containsEntity(String entityName, Serializable identifier)
+
+   c. 清空二级缓存中所有对象:
+      void evictAllRegions();
+
+   d. 从二级缓存中踢出指定的对象：
+      void  evictEntity(Class entityClass, Serializable identifier)
+      void  evictEntity(String entityName, Serializable identifier)
+
+   e. 从二级缓存中踢出指定类型所有的对象：
+      void 	evictEntityRegion(Class entityClass)
+      void 	evictEntityRegion(String entityName)
+
+   f. 获取二级缓存的统计信息：
+
+      -- 配置生成统计信息(hibernate.cfg.xml)
+         <!-- 配置生成二级缓存的统计信息 -->
+	    <property name="hibernate.generate_statistics">true</property>
+	    <!-- 让Hibernate4用更友好的方式格式化统计信息 -->
+	    <property name="hibernate.cache.use_structured_entries">true</property>
+
+      -- 获取统计信息
+          Statistics statistics = sessionFactory.getStatistics();
+
+	  命中的数量：statistics.getSecondLevelCacheHitCount()
+	  错失的数量：statistics.getSecondLevelCacheMissCount()
+
+      -- 对象在二级缓存中用什么格式保存。
+         Map集合： {1-对象,2-对象}   
+	 -- key ： 主键列的值
+	 -- value : 缓存对象，该对象对需要缓存的对象中的数据做了封装.
+
+5. 查询缓存(缓存的是查询语句)：基本没用什么用处。对性能的影响可以忽略 没什么优势 基本可用可不用
+   -- 默认也是关闭的。
+   -- 它是在二级缓存的基础之上。
+   
+   使用步骤： 
+   -- 配置开启查询缓存(hibernate.cfg.xml)
+       <property name="hibernate.cache.use_query_cache">true</property>
+
+   -- 在创建查询时需要设置是否缓存这条语句.
+      query.setCacheable(true);
+
+
+      查询缓存的缓存数据格式：
+      select b from Book b
+      {"sql语句" : {"org.fkjava.hibernate.domain.Student" : [1,2,3,4,5,6],
+                    "org.fkjava.hibernate.domain.Teacher" : [1,2]}}
+     
+     注意：它要求hql语句要一致，而且hql语句中的占位符赋值也要一致，才能命中！
+
+6. Session线程安全问题:
+
+    如果是Hibernate3.1之前版本，它提供了HibernateUtil工具类可以获取当前线程相关的Session.
+    如果是Hibernate3.1之后版本，它提供了可配置的方式，让我们把Session配置成线程相关的Session.
+    
+    1.把Session配置成线程安全的：
+    a. 在hibernate.cfg.xml中配置
+       -- org.hibernate.context.internal.JTASessionContext : jta (全局事务)
+       -- org.hibernate.context.internal.ThreadLocalSessionContext : thread (jdbc事务)
+        <property name="hibernate.current_session_context_class">jta|thread</property>
+      
+	   ---- 1 --- session
+	   ---- 2 --- session
+    b. 编程部分：
+       -- Session session = session.getCurrentSession();
+       -- 不要调用session.close();
+
+
+2. Hibernate数据过滤:
+
+   -- 当你做查询时，有一个查询条件永远是固定的。
+      使用数据过滤的步骤：
+
+   a. 定义数据过滤.
+      @FilterDef() 可以定义在持久化类的任何地方 
+
+      @FilterDef(name="ageFilter", parameters={@ParamDef(name="minAge", type="int")})
+      -- name : 指定数据过滤的名称
+      -- parameters : 定义数据过滤需要的参数。 
+
+   b. 指定哪些持久类使用该数据过滤.
+      @Filter()
+      @Filter(name="ageFilter", condition="stu_age > :minAge")
+      -- name : 定义数据过滤的名称
+      -- condition : 查询条件 (写sql语句)
+   
+   c. 开启该数据过滤.
+      session.enableFilter("数据过滤的名称").setParameter("minAge", 20);
+      session.enableFilter("ageFilter").setParameter("minAge", 20);
+
+
+二、面向JPA编程：
+      
+      JPA : java persistent API java持久化api
+
+      orm : hibernate , topLink ,JDO. 
+
+      java认为orm框架太多太杂,没有同一的规范 
+      java就为所有的orm框架   制定了统一的规范称为为JPA
+      以后所有的orm框架都应该实现JPA规范,程序员只需要学习JPA,底层的
+      ORM框架可以随意切换。但是因为JPA出现的比Hibernate晚,
+      所以既要学习HIbernate 也要学习JPA
+       
+      程序员应该尽量面向JPA编程。
+
+
+      Hibernate4编程                                    JPA编程
+      Configuration                                     Persistence
+      SessionFactory                                    EntityManagerFactory
+      Session                                           EntityManager
+      Transaction                                       EntityTransaction
+      Query query = session.createQuery(hql);           Query query = entityManager.createQuery(jpql);
+      Criteria criteria = session.createCriteria();     Query query = entityManager.createQuery(CriteriaQuery);
+      SQLQuery sqlquery = session.createSQLQuery(sql);  Query query = entityManager.createNativeQuery(sql);
+      src/hibernate.cfg.xml                             src/META-INF/persistence.xml
+
+
+JPQL : Java Persistence Query Language  java持久化查询语言.
+
+1. JPA的CRUD操作：
+   
+   /**####### 添加  ######### */
+
+   a. em.persist(t); // t : 持久化状态
+
+   b. Teacher t1 = em.merge(t); // t1 : 持久化状态
+
+   /**####### 根据主键id做查询  ######### */
+
+   Teacher t = em.find(Teacher.class, 1); // t 持久化状态
+
+
+   /**####### 修改  ######### */
+   a. 持久化状态下：
+      Teacher t = em.find(Teacher.class, 1); // t 持久化状态
+      t.setXxx();
+
+   b. 脱管状态下：
+      Teacher t = new Teacher();
+      t.setId(1);
+      t.setXxx(xxx);
+      em.merge(t);
+
+   /**####### 删除  ######### */
+   持久化状态下：
+    Teacher t = em.find(Teacher.class, 1); // t 持久化状态
+    em.remove(t);
+
+
+2. 操作一级缓存中的方法：
+   a. boolean contains(Object object) : 判断EntityManager的一级缓存中是否包含一个对象，包含的话这个对象就是持久化状态。
+   b. void  detach(Object object) : 从EntityManager的一级缓存中逐出一个对象.(该对象就不是持久化状态的对象).
+   c. void  flush() : 将EntityManager的一级缓存中的对象，同步到底层数据库表中.(立即同步)
+   d. void  clear() : 清空EntityManager的一级缓存，所有的持久化状态的对象都清空。(释放内存)
+   e. void close() : 关闭EntityManager，先调用flush()，再调用clear().
+
+3. 三套查询：
+
+   第一套查询：JPQL查询
+   查询步骤：
+    -- 获取EntityManager.
+    -- 写jpql语句.
+    -- Query query = entityManager.createQuery(jpql);
+    -- 如果hql语句中有占位符，就需要为占位符赋值. query.setParameter("索引号", "值");
+       如果需要分页查询就需要为limit ?,? 这两个问号赋值
+       第一个问号：query.setFirstResult((pageIndex - 1) * pageSize);
+       第二个问号：query.setMaxResults(pageSize);
+    -- 获取查询查询结果：
+       如果本次查询有多条记录返回：query.getResultList();
+       如果本次查询只有一条记录返回：query.getsingleResult();
+   
+    命名查询调用的方法发生改变：
+    entityManager.createNamedQuery();
+
+
+    
+   第二套查询：sql查询
+   查询步骤：
+    -- 获取EntityManager.
+    -- 写sql语句.
+    -- Query query = entityManager.createNativeQuery(sql);
+    -- 如果hql语句中有占位符，就需要为占位符赋值. query.setParameter("索引号", "值");
+       如果需要分页查询就需要为limit ?,? 这两个问号赋值
+       第一个问号：query.setFirstResult((pageIndex - 1) * pageSize);
+       第二个问号：query.setMaxResults(pageSize);
+    -- 获取查询查询结果：
+       如果本次查询有多条记录返回：query.getResultList();
+       如果本次查询只有一条记录返回：query.getsingleResult();
+   
+   a. Query query = createNativeQuery(String sqlString); // 查询多列
+ 
+   b. Query query = createNativeQuery(String sqlString, Class resultClass); // 实体查询
+
+   c. Query query = createNativeQuery(String sqlString, String resultSetMapping); // 关联查询
+  
+  
+   
+  第三套查询：CriteriaQuery查询
+   查询步骤：
+    -- 获取EntityManager.
+    -- Query query = entityManager.createQuery(CriteriaQuery);
+    -- 如果需要分页查询就需要为limit ?,? 这两个问号赋值
+       第一个问号：query.setFirstResult((pageIndex - 1) * pageSize);
+       第二个问号：query.setMaxResults(pageSize);
+    -- 获取查询查询结果：
+       如果本次查询有多条记录返回：query.getResultList();
+       如果本次查询只有一条记录返回：query.getsingleResult();
+ 
+   a. CriteriaBuilder : 构建查询对象的类.
+      -- 构建CriteriaQuery
+      -- 生成查询条件
+      -- 生成排序
+      -- 生成聚集函数
+
+   b. CriteriaQuery : 查询对象类
+      --  Root from(Class<X> entityClass) : 指定查询哪个持久化类.
+      --  groupBy(Expression<?>... grouping) : 分组
+      --  multiselect(Selection<?>... selections) : 查询多列 
+      --  select(Selection<? extends T> selection) : 查询一列
+      --  where(Predicate... restrictions) :  添加查询条件
+      --  orderBy(Order... o): 排序
+
+   c. Root : 对查询的持久化类中的属性做了封装.
+      -- Path path =  root.get("属性名");
+      -- join() : 关联查询 root.join("teacher", JoinType.INNER);
+      -- fetch() : 抓取连接.
+
+   d. Path : 代表一个属性

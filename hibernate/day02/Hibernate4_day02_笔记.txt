@@ -1,0 +1,194 @@
+知识回顾： 
+     jar包：jpa包,c3p0包,ehcache包,required必须包,数据库驱动包。
+     配置文件：hibernate.cfg.xml文件 
+                可以去hibernate.properties中提取：数据库的连接配置信息,格式化显示sql语句的配置
+		                                   更新数据库的脚本配置,c3p0连接池配置。
+<!-- hibernate的表是自动创建的：
+     根据持久化类（User Book），自动创建持久化类对象的表
+   正是因为hibernate的表示根据持久化类自动创建的
+   所以持久化类才可以与数据库表直接映射。
+   
+   update ： 如果持久化类对应的表不存在就自动创建,如果持久化类对应的表存在就不创建。
+   create ： 每次都会先删除之前对应的持久化类表,再重新创建一次表
+   create-drop ：  每次都会先删除之前对应的持久化类表,再重新创建一次表,用完以后再把表删除掉。
+   validate  : 验证
+-->
+<property name="hibernate.hbm2ddl.auto">update</property>
+
+
+注解的作用:
+
+  将持久化类转换成表的相关信息.(表名、索引、唯一约束、列名的相关信息、关联).
+
+  自动建表是在初始化 SessionFactory的时候
+
+一、基础映射(表级注解)(注解加在持久化类上)
+    @Entity: 将POJO转化成持久化类。
+    @Table: 把持久化类转化成表的相关信息。
+         - name：指定表名。
+         - schema ：指定将数据表存入哪个数据库。
+         - catalog：指定将数据表存入哪个数据库。
+	     - indexes: 用于指定表的引索列.
+         - uniqueConstraints：用于指定唯一约束。
+
+   indexes : @Index(columnList="数据表中的列名", name="索引名")
+   indexes={@Index(), @Index()}
+   indexes={@Index(columnList="name", name="IDX_NAME"),
+            @Index(columnList="address", name="IDX_ADDRESS")} // 创建表的索引
+
+   uniqueConstraints : @UniqueConstraint(columnNames={"列名","列名"}, name="唯一约束名")
+   uniqueConstraints={
+	@UniqueConstraint(columnNames={"name", "age"}, name="UC_NAME_AGE")}) // 多列建联合唯一约束
+  
+   /** ############## Hibernate的注解 ############## */
+   @DynamicInsert：动态插入，根据持久化对象的属性是否有值明确生成insert语句。
+   @DynamicUpdate：动态修改，它会判断持久化对象中属性，哪些属性值发生了改变就会生成对应的update语句。(持久化状态下做修改)
+   @SelectBeforeUpdate：修改之前先查询，查询得到持久化对象再与脱管状态下的对象进行比较,哪些属性值发生了改变就会生成update的语句。(脱管状态下做修改)
+  /** ############## Hibernate的注解 ############## */
+
+二、主键映射
+       @Id
+
+    1. 主键生成策略：
+       @GeneratorValue(strategy=GenerationType.xxx)
+
+        -GenerationType.IDENTITY: 适宜MySQL、SqlServer有自增长列的数据库。
+        -GenerationType.SEQUENCE：适宜Oracle这种没有自增长有sequence的数据库。
+
+        -GenerationType.AUTO：让Hibernate根据数据库方言自动选择主键生成策略。
+
+	-GenerationType.TABLE: 适宜所有的数据库,因为它会单独生成
+		                        一张表来维护主键生成,性能差
+
+    2. 单个属性做主键: 在指定的属性上加@Id
+
+    3. 多个属性做联合主键：
+       -- 在多个属性上加@Id
+       -- 这个持久化类必须实现Serializale接口
+
+    4. 复合属性做联合主键：
+       -- 在复合属性上加：@EmbeddedId
+       -- 复合属性类必须实现Serializale接口
+    
+三、基本的属性映射.
+    1. @Column : 持久化类中属性转化成数据库表中列的相关信息
+        - name：指定列名。
+        - length: 该列支持的长度。
+        - precision：有效的总位数。(BigDecimal)
+        - scale：小数点的位数。(BigDecimal)
+        - unique： 唯一约束。
+        - nullable：非空约束。
+        - insertable：是否允许插入true：允许 false: 不允许。
+        - updatable：是否允许修改true：允许 false: 不允许。
+        - columnDefinition ：指定列的定义。
+
+    2. @Lob： 映射大的二进制数或者文本.
+
+    3. @Temporal：修饰日期类型Date
+       -- TemporalType.DATE : yyyy-MM-dd
+       -- TemporalType.TIME : HH:mm:ss
+       -- TemporalType.TIMESTAMP : yyyy-MM-dd HH:mm:ss
+
+    4. @Transient：指定不是持久化属性
+	transient：关键字修饰不需要序列化的属性,
+	同时用它也能指定不是持久化的属性。
+
+
+四、集合映射
+
+    -- 当持久化中有一个属性是集合(Set、List、Map).
+    -- 集合属性会单独生成一张表.
+    -- 定义集合属性时面向接口，并且集合属性需要程序员自己初始化。
+       private List<String> list = new ArrayList<String>();
+
+    集合属性都需要用到的注解：
+    -- @ElementCollection(fetch="该属性的加载策略",targetClass="集合中元素的类型").
+       fetch=FetchType.EAGER: 立即加载
+       fetch=FetchType.LAZY: 延迟加载
+    -- @CollectionTable(name="表名") : 指定集合生成表的相关信息.
+
+
+    
+    1. List集合(有序集合): @OrderColumn() 指定排序列.
+       -- List<String> : 集合中元素是标量类型 8个基本类型、包装类、String.
+
+       -- List<Address> : 集合中元素是复合类型
+                          复合属性类上需要加注解：@Embeddable
+
+          List集合生成表的主键列：【外键列 + 排序列】
+
+    2. Set集合(无序集合)：Set集合没有排序列
+       -- Set<String> : 集合中元素是标量类型 8个基本类型、包装类、String.
+             Set集合生成表默认是没有主键列的。如果想要生成主键列，需要为Set集合添加非空约束！
+
+       -- Set<Address> : 集合中元素是复合类型
+                          复合属性类上需要加注解：@Embeddable
+	     Set集合生成表默认是没有主键列的。如果想要生成主键列，
+		需要为Set集合的元素类的所有属性添加非空约束！
+
+        Set集合生成表的主键列：【外键列 + Set集合的元素列 .. 】
+
+
+    3. Map集合(有Map的key)： @MapKeyColumn() 指定Map的key生成的列.
+       -- Map<String, String> : 集合中元素是标量类型 8个基本类型、包装类、String.
+
+       -- Map<String, Address> : 集合中元素是复合类型
+                          复合属性类上需要加注解：@Embeddable
+
+	Map集合生成表的主键列：【外键列 + Map的Key】
+
+六、关联映射(重点)
+
+    a. 单向关联(一边配置关联)：只能通过一边进行查询
+       -- 1-1: 一对一
+       -- 1-N: 一对多
+       -- N-1: 多对一
+       -- N-N: 多对多
+
+
+    b. 双向关联(两边配置关联)：两边都可以互相查询
+       1. 1-1 : 一对一 @OneToOne
+
+          一的一端(主表)：@OneToOne 
+	  -- 用关联的持久化类定义属性。
+
+            @OneToOne(fetch=FetchType.LAZY, 
+		      targetEntity=Teacher.class, 
+		      mappedBy="student") // 不维护关联关系(主表)
+
+	  一的一端(从表)：@OneToOne 
+	  -- 用关联的持久化类定义属性。
+
+	     /** 一的一端 */
+	     @OneToOne(fetch=FetchType.LAZY, 
+			 targetEntity=Student.class) // 维护关联关系(从表)
+	     /** 生成外键列 */
+	     @JoinColumn(name="S_ID", unique=true, referencedColumnName="id")
+
+       2. 1-N : 一对多
+          
+	  一的一端(主表)： 
+	  -- 用Set集合定义关联属性, set集合中的元素是关联的持久化类。
+	  @OneToMany
+	  @OneToMany(fetch=FetchType.LAZY, // 延迟加载
+		     targetEntity=Student.class, // 指定关联的持久化
+		     cascade=CascadeType.REMOVE, // 级联删除(级联到关联的持久化类)
+		     orphanRemoval=true, // 删除孤儿记录 针对于一对多 多的一方成为孤儿
+		     mappedBy="teacher") // 指定哪些维护关联关系(外键列由从表维护), 写关联的持久化中哪个属性引用了它自己
+
+
+	  多的一端(从表)： 
+	  -- 用关联的持久化类定义属性。
+	   @ManyToOne
+	   @JoinColumn() 生成外键列
+	   /** 多的一端 */
+	   @ManyToOne(fetch=FetchType.LAZY,  // 延迟加载
+		      cascade=CascadeType.REMOVE, // 级联删除
+		      targetEntity=Teacher.class)// 指定关联的持久化类
+	   /** 生成外键列 */
+	   @JoinColumn(name="T_ID", referencedColumnName="TEA_ID")
+
+	  
+	  保存数据时，要添加主表，再添加从表.
+
+     

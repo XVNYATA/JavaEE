@@ -1,0 +1,299 @@
+一,Hibernate的概念 
+   
+   Hibernate是一种持久层框架(dao):与数据库打交道的！
+   持久层规范：JDBC  还有一种持久层框架：mybatis .
+
+   a.学习Hibernate4的优势？  
+
+       1. 可以让程序员完全以面向对象的方式进行数据库的操作。
+           -- 简化了持久层操作.
+
+       2.程序员不需要关心底层的数据库,hibernate是面向对象的,程序员只需要面向hibernate编程 
+         底层的数据库可以随意切换。因为hibernate可以自动帮助程序员生成sql语句。
+
+       3.hibernatehibernate的表是自动创建的 可以自动实现 对象关系映射。   
+          对象 ： User user  = new User() ;
+	  关系 ： 表
+
+	 mybatis也是一种对象关系映射型的持久层框架,但是mybatis还需要程序员自己定义结果集的sql语句
+	 mybatis是“半自动化框架”
+	 。
+
+	 hibernate是完全面向对象编程的,程序员可以完全不用写sql语句,Hibernate被称为全自动化持久层框架,
+	 实际上,hibernate也可以写sql语句。
+   
+    b.ORM(Object Relation Mapping ) 对象关系映射规范 。
+        ORM规范
+	实现ORM规范的框架有：Hibernate4 ，Mybatis , TopLink , JDO.
+	ORM是一种持久层规范,它不是框架。
+
+	MVC规范：MVC是一前端规范
+            基于MVC规范的框架： struts2 , springMVC.
+        
+    c.java在后来提供一种新的持久层规范技术：JPA(java  Persister API):  
+      其他的持久层框架就应该实现JPA规范。程序员尽可能的面向JPA编程,持久层框架可以切换。
+
+      因为Hibernate4出现的比较早,所以一般我们既要学习Hibernate框架,Hibernate有一些独有的设计。
+      又要学习JPA。
+      
+      实际上在企业中一般还是直接使用Hibernate的。
+  
+二,使用Hibernate框架  
+    
+    下载Hibernate : 
+        技术人员的开发软件尽量去官网下载！
+        hibernate-release-4.3.8.Final。  
+	      documentation 开发指南,api,说明文档。
+	      lib : 
+	          jpa 面向jpa编程需要的jar包。
+		  optional 可选
+		       c3p0 ： 连接池,更流行使用更多的一种连接池 。
+		       ehcache ： 缓存框架。
+		       required ： 必须的依赖包
+     
+      1.导入hibernate框架包。     
+           required下所有的必须依赖包。
+	   jpa下的jar包。
+	   c3p0连接池jar包。
+	   ehcache 缓存框架。可选
+           
+	   数据库驱动
+
+      2.定义hibernate配置文件  
+         Hibernate框架会自动加载配置文件,来得到数据库连接。
+         配置文件需要定义：数据库地址,数据库的用户名 密码,c3p0连接池,数据库更新,显示格式化sql脚本 等等配置。 
+	    可以在hibernate.properties中找到需要的配置数据信息
+
+	<!-- MySQL数据库的配置 -->
+	<!-- 数据库方法:告诉hibernate是什么数据库 -->
+	<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+	<!-- 数据库驱动 -->
+	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+	<!-- 数据库的连接地址 -->
+	<property name="hibernate.connection.url"> jdbc:mysql://127.0.0.1:3306/hibernate</property>
+	<!-- 用户名 -->
+	<property name="hibernate.connection.username">root</property>
+	<!-- 密码 -->
+	<property name="hibernate.connection.password"></property>
+	
+	<!-- ### c3p0连接池  ### -->
+	<property name="hibernate.c3p0.max_size">10</property>
+	<property name="hibernate.c3p0.min_size">2</property>
+	<property name="hibernate.c3p0.timeout"> 5000</property>
+	
+	<!-- 因为hibernate的sql语句是自动生成的 ,所有通过此配置来显示自动生成的sql语句输出 -->
+	<property name="hibernate.show_sql"> true</property>
+	<!-- 格式化输出的sql语句： 看起来更加清楚   -->
+	<property name="hibernate.format_sql">true</property>
+	
+	<!-- hibernate的表是自动创建的：
+	     根据持久化类（User Book），自动创建持久化类对象的表
+	   正是因为hibernate的表示根据持久化类自动创建的
+	   所以持久化类才可以与数据库表直接映射。
+	   
+	   update ： 如果持久化类对应的表不存在就自动创建,如果持久化类对应的表存在就不创建。
+	-->
+	<property name="hibernate.hbm2ddl.auto">update</property>
+	
+	 
+	配置文件的路径： 
+	    hibernate\hibernate-release-4.3.8.Final\project\etc
+                  ehcache.xml 配置缓存的配置文件。
+                  hibernate.cfg.xml hibernate核心配置文件(xml形式)
+                  hibernate.properties hibernate核心配置文件(属性文件形式)
+		  log4j.properties 日志配置文件。
+
+        将配置文件hibernate.cfg.xml文件copy到类路径src下面。
+              
+      3.定义持久化类  
+           两种方式：
+           a.使用注解的方式定义持久化类 
+	   b.可以使用 xxxx.user.hbm.xml文件的形式配置持久化类。
+
+	   将持久化类注册给hibernate框架
+	   在hibernate.cfg.xml文件中配置
+	  <!-- 配置持久化类的映射 -->
+	  <mapping class="org.fkjava.hibernate.bean.User"/>
+
+     4.得到会话 操作数据库
+
+	       /** 1.加载核心配置文件  */ 
+		Configuration configuration = new Configuration()  // 只会加载hibernate.properties文件
+		.configure(); // 可以加载hibernate.cfg.xml文件
+		
+		/** 2.得到一个服务注册对象  */
+		ServiceRegistry serviceRegistry =
+	       new StandardServiceRegistryBuilder().applySettings(configuration.getProperties())
+		.build();
+		;   // oracle 服务
+		
+		/** 3.得到一个连接工厂 :连接工厂一初始化表就开始自动创建 */
+		SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);
+
+
+
+		/** 4.得到一个会话   */
+		Session session = sf.openSession();
+		/** 5.得到事物对象  */
+		Transaction tx = session.beginTransaction();
+
+三，Hibernate的几个重要的对象 
+    
+     Configuration ： 配置 对应hibernate框架的核心配置文件 ：hibernate.cfg.xml 或者 hibernate.properties
+     serviceRegistry : 服务注册对象 
+     SessionFactory ： 连接工厂,是应用级别的,一个应用对应一个连接工厂,
+                       连接工厂是线程安全的。连接工厂还有一个二级缓存。 
+		       
+		       -- 连接工厂一初始化就会自动创建表。
+
+     Session：会话,每次操作都应该对应一个会话,会话使用完一般需要关闭,会话是一般是线程不安全的。
+               会话有一个一级缓存。
+     Transaction ： 事物是一次会话产生的。
+
+四,持久化对象的状态 
+     
+    
+    瞬态(transient)  : 持久化对象从来没有与session关联过 。
+                       例如： User user  = new User();
+
+    持久态(persistent) : 正在与session关联的持久化对象就是持久态 
+                          session.save(user);  
+			  --- 持久态 对象下,只要修改了对象,数据库的数据会一并被修改。
+			  --- 持久态 对象 一定拥有主键id值。
+
+    托管态(Detached) : 曾经与session关联过 但是现在与session没有关联的状态。  
+                       只要对象存在id,并且当前与session没有关联,就是托管状态
+                              
+			      session.save(user);   
+			      session.close();
+五 , Hibernate的增删改查 
+   
+    Hibernate                数据库
+     
+    类                        表 
+    对象                      一行数据
+    成员变量                 表列
+    成员变量的类型           列类型。
+
+    hibernate的主键自增策略： 
+        @Id // 申明主键
+	@GeneratedValue(strategy=GenerationType.AUTO)  // 让hibernate根据数据库确定自增策略 推荐使用这种方式
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //  支持类似mysql数据库,可以自动实现主键自增 auto_increment
+	@GeneratedValue(strategy=GenerationType.SEQUENCE) //  支持类似oralce数据库,可以通过创建序列来实现主键自增
+	@GeneratedValue(strategy=GenerationType.TABLE)   //   给数据库单独创建一张表来模拟序列 实现主键自增
+   
+    1.添加数据 
+         -- save() ;
+	 -- persist(); 
+	 -- saveOrUpdate();
+	 -- merge();
+       a.save
+		User user = new User();  // 瞬态
+		user.setName("李刚");
+		user.setAge(35);
+		Integer id  = (Integer) session.save(user); // 持久化状态
+		System.out.println(id); // 返回一个序列化的主键。
+
+       b.persist  
+               
+	       	/** ************** persist *************** */
+		User user = new User();  // 瞬态
+		user.setName("孙悟空");
+		user.setAge(500);
+		session.persist(user);   // 没有返回值 主键存在持久化对象中
+		System.out.println("user:"+user); // 也是持久化状态
+		user.setName("唐僧");
+
+       c.saveOrUpdate 
+                
+		/** *************** saveOrUpdate******************** 
+		User user = new User();  // 瞬态
+		user.setName("猪八戒");
+		user.setAge(1500);
+		session.saveOrUpdate(user); // 持久化状态  没有id值就添加
+		System.out.println("user:"+user);
+		user.setName("猪八戒3号"); 
+		
+		User user = new User();  // 瞬态
+		user.setName("天蓬元帅111");
+		user.setAge(1200);
+		user.setId(10);  //  托管状态  有id值就修改 
+		session.saveOrUpdate(user);
+		System.out.println("user:"+user); // 持久化状态
+		user.setName("天棚元素");
+		
+		*/
+
+      d。merge  
+	   
+		/** *************merge**************** 
+		User user = new User();
+		user.setName("蜘蛛精1");
+		user.setAge(200);
+		// 返回一个持久化对象  但是 user依然是瞬态
+		User u = (User) session.merge(user);
+		System.out.println("user :" +user); // 瞬态
+		System.out.println("u :" +u);  // 持久化对象
+		user.setName("============");  // 瞬态set对象不会产生修改数据库操作
+		u.setName("uuuuuuuuuu"); // 持久化状态下set会产生修改数据库操作。
+		
+		*/
+		
+		/** *************merge**************** */
+		User user = new User();
+		user.setName("蜘蛛精2222222221");
+		user.setAge(2200);
+		user.setId(13);  // 托管
+		// 返回一个持久化对象  但是 user依然是瞬态
+		User u = (User) session.merge(user);
+		System.out.println("user :" +user); // 瞬态
+		System.out.println("u :" +u);  // 持久化对象
+		u.setName("--------------");
+
+		用meger的好处是对象操作以后依然是瞬态。
+
+     2.查询操作  
+       
+	a.get 
+	   
+	   	User user  = (User) session.get(User.class, 9);  // 持久态
+		System.out.println("----------------------------");
+		System.out.println(user.getName());
+		user.setName("猪八戒修改了");  // 修改
+
+		get方式一旦触发查询代码session.get(User.class, 9)就会立即生成sql语句立即查询数据
+       b.load		
+		
+		User user = (User) session.load(User.class, 9); // 持久态  代理对象user
+		System.out.println("----------------------------");
+		System.out.println(user.getName()); // 此时才开始查询数据
+		user.setName("猪八戒又被修改了");
+
+		load方法即使触发了查询代码 session.load(User.class, 9)也不会立即去查询数据，只是返回
+		一个对象的代理,等真正需要代理对象的数据的时候才会去数据库查询。
+		这种方式被称为延迟加载。
+
+		一直延迟到你真正需要这个对象的数据的时候才会去数据库查询该对象数据。
+		获取延迟加载的对象数据之前 会话不能关闭 否则会出现：
+         	   could not initialize proxy - no Session
+
+         3.修改操作 
+	    a.持久态下修改 
+	        先查询出持久态对象 再通过对象的set方法直接修改
+		这种方式最好！！！ 
+		以下三种方式会出现修改后数据的丢失！！
+	    b.saveOrUpdate(); 
+	    c.meger(); 
+	    d.update(); 
+
+	4.删除  
+	    持久态下删除
+	    脱管态下删除
+
+	    	/** 持久态下删除   */
+//		User user = (User) session.get(User.class,10);
+//		session.delete(user);
+		
+		User user = new User();
+		user.setId(13);
+		session.delete(user);

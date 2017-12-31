@@ -1,0 +1,239 @@
+Hibernate4的三套查询：
+
+
+一、HQL查询:  Hibernate Query Language(hibernate的查询语句)  必须掌握的！！！
+    
+    概念：面向对象的sql语句。
+
+    需要写hql语句.
+    sql语句(面向)：表    行     列   select * from stu_info 
+    hql语句(面向)：类   对象   属性  select s from Student s
+
+    查询步骤：
+    -- 获取Session.
+    -- 写hql语句.
+    -- Query query = session.createQuery(hql);
+    -- 
+	   
+	   a.如果hql语句中有占位符，就需要为占位符赋值. query.setParameter("索引号", "值");
+      
+	   b.如果需要分页查询就需要为limit ?,? 这两个问号赋值
+		   第一个问号：query.setFirstResult((pageIndex - 1) * pageSize);
+		   第二个问号：query.setMaxResults(pageSize);
+    -- 获取查询查询结果：
+       如果本次查询有多条记录返回：query.list();
+       如果本次查询只有一条记录返回：query.uniqueResult();
+
+   1. from子句:
+      语法：from|FROM  持久化类 [as? 对象名|别名]?
+             from Student       
+	     from Student as s
+	     from Student s
+
+	 查询表中所有的数据List<Student>.
+   2. select子句：
+      语法：
+      -- select 对象名|对象名.属性名 from 持久化类 as 对象名
+      -- select 属性名 from 持久化类
+
+      select s from Student s             -->  List<Student>
+      select s.name from Student s        --> List<String>
+      select s.name, s.age from Student s --> List<Object[]>
+      select name, age from Student       --> List<Object[]>
+      select s, s.name from Student s     --> List<Object[]>
+
+   3. select new 子句: (可以改变List集合中存放的是什么)
+      语法：
+      -- select new map(s.name as key, s.age as key) from Student s  : List<Map>  [{},{}]
+         map : {key=value,key=value}  json = {key : value , key : value}
+	 [{key=value,key=value},{key=value,key=value}] --->   [{key : value , key : value},{key : value , key : value}]
+     
+      -- select new list(s.name, s.age) from Student s               : List<List> [[],[]]
+      -- select new 数据传输类(name, age) from Student               : List<传输类>
+      
+   4. 关联(持久化类)与连接(数据库表)
+      -- 隐式关联(不需要写join语句)
+         查询时，关联的属性是一个持久化类. @ManyToOne、@OneToOne
+
+      -- 显示关联(需要写join语句)
+         查询时，关联的属性是一个Set集合. @OneToMany、@ManyToMany
+         inner join
+
+	 找什么就查什么,如果关联的条件是一个持久化类直接点到,如果是一个集合使用inner join做内连接。
+
+      -- 抓取连接(查询延迟的属性)
+         查询时，关联的属性配置了延迟加载的，但本次查询要查询出来. 立即加载
+	 join fetch 关联的属性 这个属性就会立即加载出来
+
+   5. order by : 排序
+
+   6. group by : 分组
+
+   7. having   : 分组过滤
+
+   8. 聚集函数(统计函数): count()、sum()、max()、min()、avg()
+
+   9. where子句部分(查询过滤部分)
+      -- Hibernate的where子句部分能支持的运算符，表达式、函数特别多，用法与sql语句是一样的.
+      a. 常用的表达式、运算符、函数:
+         =、<、<=、>、>=、!=、and、or、distinct、between...and 、like、concat()、
+		 is null, is not null, is empty, is not empty、second(...),
+		 minute(...), hour(...), day(...), month(...)。
+        
+      b. 支持EJB-QL 3.0的函数: 
+          trim(), lower(), upper(), length(), abs(), sqrt(), bit_length(), mod()
+
+      c. 支持操作集合属性的函数：
+          size()|size,   |   针对存放可以排序的集合 如整形集合 ： minelement(), maxelement(), minindex(), maxindex().
+
+   10. 子查询
+       -- Hibernate的子查询与SQL语句的中子查询一样，子查询部分放在in、not in里面.
+   
+   11. 多态查询
+      --  当你的持久化类存在继承关系时，你查询父类时，
+	      它会把父类所有的对象查询出来，而且也会把所有子类对象查询出来。
+         from java.lang.Object
+
+   12. 命名查询
+
+       -- 把所有hql语句写在一个单独的配置文件中.
+
+       一般在实际的项目中用得比较多，它会把比较复杂的hql语句写在一个单独的配置文件中，
+       方便以后对hql语句进行优化，也方便统一管理.
+     
+       第一种方式： (用xxx.hbm.xml)
+       a. 提供一个配置文件. (xxx.hbm.xml). 放置hql语句
+       b. 在xxx.hbm.xml文件中定义hql查询语句.
+          <query name="给这条查询语句起个名字">写hql语句</query>
+
+       c. 需要在hibernate.cfg.xml文件中配置xxx.hbm.xml.
+
+       d. Query query = session.getNamedQuery("<query name的属性名/>");
+
+
+       第二种方式: (在持久化类上加注解).
+       a. 在持久化类上加注解：
+          @NamedQuery(name="给这条查询语句起个名字", query="写hql语句");
+
+       b. Query query = session.getNamedQuery("<query name的属性名/>");
+
+
+二、Criteria查询: 完全面向对象的，不需要写任可查询语句.   标准查询
+
+    -->持久类映射成表--->不需要写sql语句 --> 面向对象的sql语句 HQL(必须掌握的)
+    --> Criteria查询：纯面向对象的，不需要写任可查询语句.  ---> 支持用原生的sql语句做查询
+    
+    查询步骤：
+
+    -- 获取Session.
+    -- Criteria criteria = session.createCriteria(持久化类);
+    -- 如果需要分页查询就需要为limit ?,? 这两个问号赋值
+       第一个问号：criteria.setFirstResult((pageIndex - 1) * pageSize);
+       第二个问号：criteria.setMaxResults(pageSize);
+
+    -- 获取查询查询结果：
+       如果本次查询有多条记录返回：criteria.list();
+       如果本次查询只有一条记录返回：criteria.uniqueResult();
+    
+    Criteria类中的方法：
+
+    1. add(Criterion criterion) : 添加查询条件.
+           Criterion : 代表一个查询条件.
+         
+           Restrictions工具类，专门负责生成查询条件对象，它把where部分都改成了静态方法。
+	   -- sqlRestriction(String sql) : 生成查询条件的万能方法.
+
+	   Property工具类，专门负责生成查询条件对象.
+
+	     Propery.forName("属性名").xxx()
+
+    2. addOrder(Order order) : 添加排序.
+       -- Order.asc("属性名") | Order.desc("属性名")
+       -- Property.forName("age").asc()|Property.forName("age").desc()
+
+    3. setProjection(Projection projection): 查询哪些列.
+          Projection : 代表一列
+	  ProjectionList : 代表多列
+
+	  Projections : 专门创建Projection | ProjectionList
+
+    4. createAlias(String associationPath, String alias) : 创建关联查询
+         用它创建出来的关联查询，添加查询条件时，如果不加别名，它是为目标持久类添加查询条件.
+
+    5. createCriteria(String associationPath) : 创建关联查询
+         用它创建出来的关联查询，添加查询条件时，它是为关联的持久化类添加查询条件.
+
+
+    6. setFetchMode(String associationPath, FetchMode mode): 抓取连接(join fetch)
+       FetchMode: 抓取模式
+       -- FetchMode.JOIN     FetchMode.EAGER 立即查询
+       -- FetchMode.SELECT   FetchMode.LAZY  延迟查询
+
+    7. 离线查询 DetachedCriteria.
+       -- DetachedCriteria ：用它就可以定义一条查询语句. select * from stu_info.
+       -- 用得时候需要与Session关联起来.
+
+        离线查询的主要作用就是为了做子查询. in 、not in(离线查询对象)
+
+
+三、SQL查询：Native Sql Query原生的sql查询.    可以自己写sql语句
+    -- 要求写sql语句.
+    -- SQLQuery 是 Query的子类 --->  SQLQuery
+
+    查询步骤：
+    -- 获取Session.
+    -- 写sql语句.
+    -- SQLQuery sqlquery = session.createSQLQuery(sql);
+    -- 如果hql语句中有占位符，就需要为占位符赋值. sqlquery.setParameter("索引号", "值");
+       如果需要分页查询就需要为limit ?,? 这两个问号赋值
+       第一个问号：sqlquery.setFirstResult((pageIndex - 1) * pageSize);
+       第二个问号：sqlquery.setMaxResults(pageSize);
+    -- 获取查询查询结果：
+       如果本次查询有多条记录返回：sqlquery.list();
+       如果本次查询只有一条记录返回：sqlquery.uniqueResult(); 
+    
+    SQLQuery中方法：
+
+    1. addEntity(Class entityType) : 实体查询
+
+    2. addScalar(String columnAlias) : 标量查询
+
+    3. addJoin(String tableAlias, String path) : 关联查询
+
+    4. 命名查询:
+       第一种方式： (用xxx.hbm.xml)
+       a. 提供一个配置文件. (xxx.hbm.xml).
+       b. 在xxx.hbm.xml文件中定义sql查询语句.
+          <sql-query name="给这条查询语句起个名字">写sql语句</sql-query>
+	   <!-- 定义SQL查询语句 -->
+	   <sql-query name="sql_1">
+		SELECT s.*,t.* FROM stu_info AS s, tea_info AS t WHERE s.t_id = t.tea_id
+		<!-- addEntity: 实体查询 -->
+		<return alias="s" class="org.fkjava.hibernate.domain.Student"></return>
+		<return alias="t" entity-name="org.fkjava.hibernate.domain.Teacher"></return>
+		<!-- addJoin : 关联查询 -->
+		<return-join alias="t" property="s.teacher"></return-join>
+		<!-- addScalar : 标量查询 -->
+		<return-scalar column="s.stu_name"/>
+	  </sql-query>
+
+       c. 需要在hibernate.cfg.xml文件中配置xxx.hbm.xml.
+
+       d. Query query = session.getNamedQuery("<sql-query name的属性名/>");
+
+
+       第二种方式: (在持久化类上加注解).
+       a. 在持久化类上加注解：
+          @NamedNativeQuery(name="给这条查询语句起个名字", query="写sql语句");
+
+	  /** SQL命名查询 */
+	 @NamedNativeQuery(name="sql_2", resultSetMapping="rs", query="SELECT s.*,t.* FROM stu_info AS s, tea_info AS t WHERE s.t_id = t.tea_id")
+	 @SqlResultSetMapping(name="rs", entities={@EntityResult(entityClass=Student.class), // 实体查询
+						    @EntityResult(entityClass=Teacher.class)},
+					  columns={@ColumnResult(name="s.stu_name")}) // 标量要询
+
+        b. Query query = session.getNamedQuery("名称");       
+
+
+
+
