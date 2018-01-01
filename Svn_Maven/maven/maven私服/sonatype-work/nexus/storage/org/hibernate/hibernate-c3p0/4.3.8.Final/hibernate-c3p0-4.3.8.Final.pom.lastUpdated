@@ -1,5 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Wed Mar 16 14:36:02 CST 2016
-@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456926976176
-http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.hibernate\:hibernate-c3p0\:pom\:4.3.8.Final from/to public (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: connect timed out
-https\://repo.maven.apache.org/maven2/.lastUpdated=1458110162461

@@ -1,8 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Wed Jul 20 14:34:08 CST 2016
-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1452346948906
-http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact commons-lang\:commons-lang\:jar\:2.1 from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: connect timed out
-http\://192.168.10.222\:8081/nexus/content/groups/public/.lastUpdated=1468996448423
-https\://repo.maven.apache.org/maven2/.lastUpdated=1468910721539
-http\://localhost\:8081/nexus/content/groups/public/.error=
-@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1468927681634

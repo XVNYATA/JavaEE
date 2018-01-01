@@ -1,6 +1,0 @@
-#Nexus discovery status
-#Sun Sep 04 13:35:12 CST 2016
-lastDiscoveryStrategy=prefix-file
-lastDiscoveryStatus=ERROR
-lastDiscoveryTimestamp=1472967312829
-lastDiscoveryMessage=nexus.codehaus.org

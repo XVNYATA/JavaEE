@@ -1,8 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Wed Jul 27 09:45:00 CST 2016
-@default-pubic-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1452480256197
-@default-pubic-http\://192.168.10.222\:8081/nexus/content/groups/public/.lastUpdated=1469583900648
-http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven\:maven-settings\:jar\:sources\:3.3.3 from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect
-http\://localhost\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven\:maven-settings\:jar\:sources\:3.3.3 from/to pubic (http\://localhost\:8081/nexus/content/groups/public/)\: Connection refused\: connect
-http\://192.168.10.222\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven\:maven-settings\:jar\:sources\:3.3.3 from/to pubic (http\://192.168.10.222\:8081/nexus/content/groups/public/)\: Connection refused\: connect
-@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1457056171574

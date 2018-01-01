@@ -1,9 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Wed Sep 07 10:12:08 CST 2016
-@default-pubic-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1452480272638
-http\://repo.maven.apache.org/maven2/.lastUpdated=1473214328730
-@default-pubic-http\://192.168.10.222\:8081/nexus/content/groups/public/.lastUpdated=1469583917171
-http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact commons-cli\:commons-cli\:jar\:sources\:1.2 from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect
-http\://localhost\:8081/nexus/content/groups/public/.error=Could not transfer artifact commons-cli\:commons-cli\:jar\:sources\:1.2 from/to pubic (http\://localhost\:8081/nexus/content/groups/public/)\: Connection refused\: connect
-@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1457056188060
-http\://192.168.10.222\:8081/nexus/content/groups/public/.error=Could not transfer artifact commons-cli\:commons-cli\:jar\:sources\:1.2 from/to pubic (http\://192.168.10.222\:8081/nexus/content/groups/public/)\: Connection refused\: connect

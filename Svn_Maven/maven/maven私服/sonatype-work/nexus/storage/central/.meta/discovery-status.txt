@@ -1,6 +1,0 @@
-#Nexus discovery status
-#Sun Sep 04 10:49:27 CST 2016
-lastDiscoveryStrategy=prefix-file
-lastDiscoveryStatus=UNSUCCESSFUL
-lastDiscoveryTimestamp=1472957367796
-lastDiscoveryMessage=Remote strategy prefix-file on M2Repository(id\=central) detected invalid input, results discarded\: Prefix file size exceeds maximum allowed size (100000), refusing to load it.

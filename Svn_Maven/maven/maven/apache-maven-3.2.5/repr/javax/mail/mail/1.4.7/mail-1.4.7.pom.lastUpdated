@@ -1,6 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Sun Sep 04 14:17:22 CST 2016
-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1472969842711
-@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456927056290
-http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact javax.mail\:mail\:pom\:1.4.7 from/to public (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: connect timed out
-https\://repo.maven.apache.org/maven2/.lastUpdated=1458110209174

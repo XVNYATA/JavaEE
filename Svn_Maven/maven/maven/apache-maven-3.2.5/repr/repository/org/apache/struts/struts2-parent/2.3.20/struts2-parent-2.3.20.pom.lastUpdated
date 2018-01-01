@@ -1,4 +1,0 @@
-#NOTE: This is an internal implementation file, its format can be changed without prior notice.
-#Wed Nov 16 14:20:15 CST 2016
-default-http\://repo1.maven.org/maven2/.lastUpdated=1479277215762
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.apache.struts\:struts2-parent\:pom\:2.3.20 from/to central (http\://repo1.maven.org/maven2)\: C\:\\Users\\Administrator\\.m2\\repository\\org\\apache\\struts\\struts2-parent\\2.3.20\\struts2-parent-2.3.20.pom.ahc4c4cf7a719e34577 (\u7CFB\u7EDF\u627E\u4E0D\u5230\u6307\u5B9A\u7684\u6587\u4EF6\u3002)

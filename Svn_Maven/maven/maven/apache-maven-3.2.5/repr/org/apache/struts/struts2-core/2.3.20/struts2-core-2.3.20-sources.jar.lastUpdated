@@ -1,4 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Thu Mar 10 09:45:26 CST 2016
-http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.struts\:struts2-core\:jar\:sources\:2.3.20 from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect
-@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1457574326953
