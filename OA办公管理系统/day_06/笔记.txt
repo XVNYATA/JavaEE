@@ -1,0 +1,71 @@
+1、操作管理分页查询
+
+
+2、删除模块
+
+
+3. 修改操作
+
+
+4、添加操作
+    		/** 1.查询当前父节点下最大的编号  */
+		StringBuilder hql = new StringBuilder();
+		hql.append("select max(").append("tb.").append(codeCoulum).append(")");
+		hql.append(" from ").append(tableClass.getSimpleName()).append(" tb ");
+		hql.append(" where length(tb.").append(codeCoulum).append(") = ? ");
+		hql.append(" and tb.").append(codeCoulum).append(" like ? ");
+		
+		List<Object> params = new ArrayList<>();
+		params.add(StringUtils.isEmpty(parentCode)?AdminContants.CODE_LEN:parentCode.length()+AdminContants.CODE_LEN);
+		params.add(StringUtils.isEmpty(parentCode)?"%":parentCode+"%");
+		
+		String resultMaxCode = this.findUniqueEntity(hql.toString(), params.toArray());
+		
+		System.out.println("====当前儿子节点中最大编号是=====："+resultMaxCode);
+		
+		String newParentCode = StringUtils.isEmpty(parentCode)?"":parentCode;
+		/** 父节点编号长度  */
+		int parentCodeLen = newParentCode.length();
+		/** null  >= 4*/
+		if(StringUtils.isEmpty(resultMaxCode)){
+			
+			/** 前面补0 + 1*/
+			String preSufixx = ""; 
+			for(int i = 0 ; i < AdminContants.CODE_LEN - 1 ; i++){
+				preSufixx+="0";
+			}
+			
+			return newParentCode+preSufixx+"1";
+					
+		}else{
+			/** 将属于儿子节点的4位儿子节点截取出来  0022 9999 */
+			String newSonCode = resultMaxCode.substring(parentCodeLen);
+			/** 将儿子节点编号转换成整形   */
+			int sonCodeInt = Integer.valueOf(newSonCode);
+			/** 获取下一个儿子节点的编号  10000*/
+			sonCodeInt = sonCodeInt+1;
+			
+			if((sonCodeInt+"").length()>AdminContants.CODE_LEN){
+				throw new OAException("编码越界异常");
+			}else{
+				/** 23 */
+				/** 前缀补0  获取补多少个0  */
+				int preSuffixLen = AdminContants.CODE_LEN - (sonCodeInt+"").length();
+				String preSuffix = "";
+				for(int i = 0 ; i < preSuffixLen ; i++){
+					preSuffix+="0";
+				}
+				
+				return newParentCode+preSuffix+sonCodeInt;
+			}
+			
+			
+		}
+
+
+
+
+ 5、角色绑定操作
+
+
+

@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Mar 02 16:21:18 CST 2016
+http\://192.168.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact jstl\:jstl\:pom\:1.2 from/to public (http\://192.168.122\:8081/nexus/content/groups/public/)\: connect timed out
+@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456906829028
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact jstl\:jstl\:pom\:1.2 from/to public (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect
+@default-public-http\://192.168.122\:8081/nexus/content/groups/public/.lastUpdated=1456906878197

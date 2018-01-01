@@ -1,0 +1,161 @@
+1、项目技术选型
+    前端技术：js+css+jsp+jquery(js框架)+jqueryEasyUi(基于jquery的前端框架)
+   
+    后台技术：struts2(接入层框架)+spring（中间层框架）+hibernate(持久层框架)+DM5加密
+    数据库：mysql
+
+    项目管理工具：maven
+
+
+   后台框架常用的组合形式：
+   a、Struts2 + spring +　hibernate
+   b、SpringMvc + spring +　hibernate
+   b、SpringMvc + spring +　Mybatis
+   d、Struts2 + spring +　Mybatis
+
+
+二. 搭建OA项目：
+
+   Maven创建Web项目 并进行安装运行
+   
+
+   a. 修改项目文件目录结构
+      src/main/java
+         /main/resources
+         /main/webapp  (WebContent)
+         /test/java
+         /test/resources
+
+
+   b.进入到项目的部署路径中在C:\code\maven\oa\.settings
+      
+	   改 org.eclipse.wst.common.project.facet.core.xml
+
+	    <installed facet="jst.web" version="3.0"/>
+
+		还需要删除 web.xml , index.jsp
+
+		注意要： update project 才可以解决错误
+
+
+   c. 在pom.xml文件中进行配置
+
+      --. 配置jar依赖.
+         jsp-api、servlet-api、jstl、Spring4、Hibernate4、Struts2、
+		 struts2-spring-plugin、log4j、mysql驱动、mail.
+
+      -- 配置Maven的插件.(编译插件 与 tomcat7插件).
+
+3、项目分层
+    权限模块
+    org.fkjava.oa.identity
+        action
+	service
+	dao
+	bean
+    假期模块
+     org.fkjava.oa.leave
+        action
+	service
+	dao
+	bean
+    工具类
+    org.fkjava.oa.util
+
+4、准备配置文件
+   web.xml:Struts2的核心拦截器、指定Spring配置文件存放地址、Spring的监听器、session有效时间
+   struts.xml（struts2核心配置文件）  
+   hibernate.cfg.xml（hibernate核心配置文件）  
+   log4j.properties(记录日志信息)  
+   c3p0.properties(配置数据库相关信息)
+   applicationContext.xml(spring核心配置文件)
+
+    
+
+ d. 整合Spring4 + Struts2
+       
+       需要提供一个 3.0 web.xml 
+         <!-- 指定spring配置文件存放位置 -->
+	  <context-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>/WEB-INF/applicationContext*.xml</param-value>
+	  </context-param>
+	  
+	  <!-- 配置spring监听器 -->
+	  <listener>
+	     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	  </listener>
+
+	   <!-- 配置struts2的核心拦截器 -->
+	    <filter>
+		   <filter-name>oa</filter-name>
+		   <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	    </filter>
+	    <filter-mapping>
+	       <filter-name>oa</filter-name>
+	       <url-pattern>/*</url-pattern>
+	    </filter-mapping>
+  
+
+      -- 在web.xml配置 ContextLoaderListener、StrutsPrepareAndExecuteFilter
+      -- src/main/resources/struts.xml
+      -- src/main/webapp/WEB-INF/applicationContext.xml
+
+   e. 整合Spring4 + Hibernate
+
+      -- 创建数据库：oa_db (oa.sql往表中插入数据的文件).
+      -- src/main/resources/hibernate.cfg.xml
+      -- src/main/resources/db.properties  
+      -- src/main/webapp/WEB-INF/applicationContext.xml (配置整合Hibernate)
+         数据源、SessionFactory、TransactionManager、声明式事务配置、事务切面.
+
+
+	 
+
+	OA项目有哪些模块呢： 
+
+	权限模块 
+	  org.fkjava.oa. (oa管理系统)
+	  org.fkjava.oa.identity.action
+	  org.fkjava.oa.identity.service
+	  org.fkjava.oa.identity.domain
+	  org.fkjava.oa.identity.dao
+
+	  假期模块
+	  org.fkjava.oa.leave.action
+	  org.fkjava.oa.leave.service
+	  org.fkjava.oa.leave.domain
+	  org.fkjava.oa.leave.dao
+
+
+
+
+hibernate.cfg.xml文件配置：
+<session-factory>
+		<!-- 配置Hibernat的数据库方言，注意mysql5之后是MySQL5InnoDBDialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		
+		<!-- 开启二级缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		
+		<!-- 设置二级缓存的实现 -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<!-- sql语句显示在控制台 -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- 获取线程安全的session -->
+		<property name="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</property>
+		
+		<!-- 
+			create：每次都会重新创建表
+			update：如果有表，就不管；如果没表，就创建 ，如果有更新，会更新
+			create-drop：每次都会重新创建表，之后删除，测试
+		-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+	</session-factory>
+
+
+
+	struts2   动态代码   mybatis

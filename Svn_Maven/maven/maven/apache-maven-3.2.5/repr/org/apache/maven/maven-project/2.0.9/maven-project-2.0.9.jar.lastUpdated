@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Mar 02 16:20:25 CST 2016
+@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456906825963
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven\:maven-project\:jar\:2.0.9 from/to public (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect

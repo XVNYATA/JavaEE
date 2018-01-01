@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: org.sonatype.nexus.plugins.rrb,org.sonatype.nexus.plug
+ ins.rrb.parsers,org.sonatype.nexus.plugins.rrb.security,org.sonatype.
+ nexus.plugins.rrb.ui
+Require-Bundle: org.sonatype.nexus.plugin-api;resolution:=optional,org
+ .sonatype.nexus.plugins.nexus-restlet1x-plugin;bundle-version=2.10.0.
+ 02,org.sonatype.nexus.plugins.nexus-ui-extjs3-plugin;bundle-version=2
+ .10.0.02
+Bundle-ClassPath: nexus-rrb-plugin-2.10.0-02.jar
+Bundle-Version: 2.10.0.02
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.sonatype.nexus.plugins.nexus-rrb-plugin
+

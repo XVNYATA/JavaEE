@@ -1,0 +1,232 @@
+EurekaLog 6.0.22
+
+Application:
+---------------------------------------------------------
+  1.1 Start Date      : Fri, 15 Jul 2016 11:26:39 +0800
+  1.2 Name/Description: plsqldev.exe - (PL/SQL Developer)
+  1.3 Version Number  : 8.0.3.1510
+  1.5 Compilation Date: Fri, 2 Apr 2010 19:40:54 +0800
+  1.6 Up Time         : 4 hours, 52 minutes, 27 seconds
+
+Exception:
+-------------------------------------------------------
+  2.1 Date          : Fri, 15 Jul 2016 16:19:07 +0800
+  2.2 Address       : 00416024
+  2.3 Module Name   : plsqldev.exe - (PL/SQL Developer)
+  2.4 Module Version: 8.0.3.1510
+  2.5 Type          : EOSError
+  2.6 Message       : System Error.  Code:_1722.
+                      RPC 服务器不可用。.
+  2.7 ID            : D7D4
+  2.8 Count         : 1
+  2.9 Status        : New
+  2.10 Note         : 
+
+Active Controls:
+---------------------------------------------------
+  4.1 Form Class   : TColumnEditorForm.UnicodeClass
+  4.2 Form Text    : 大数据编辑器 - r.r2 (只读)
+  4.3 Control Class: TRichEdit
+  4.4 Control Text : 
+
+Computer:
+-----------------------------------------------------------------------------------
+  5.2 Total Memory  : 4040 Mb
+  5.3 Free Memory   : 2370 Mb
+  5.4 Total Disk    : 133.76 Gb
+  5.5 Free Disk     : 97.46 Gb
+  5.6 System Up Time: 5 hours, 3 minutes, 23 seconds
+  5.7 Processor     : Intel(R) Core(TM) i3-2350M CPU @ 2.30GHz
+  5.8 Display Mode  : 1366 x 768, 32 bit
+  5.9 Display DPI   : 96
+  5.10 Video Card   : Intel(R) HD Graphics 3000 (driver 9.17.10.4229 - RAM 1795 MB)
+  5.11 Printer      : 
+
+Operating System:
+----------------------------------------------
+  6.1 Type    : Microsoft Windows 6.2 (64 bit)
+  6.2 Build # : 9200
+  6.3 Update  : 
+  6.4 Language: Chinese (Simplified)
+  6.5 Charset : 134
+
+
+Custom Information:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  8.1 PL/SQL Developer: Version 8.0.3.1510
+                        01.1073492840 - Unlimited user license
+                        Windows (64-bit) 6.2 Build 9200
+                        Language:_简体中文  (英宇世纪)
+  8.2 Parameters      : F:\java就业班\Oracle\PLSQL Developer 8.0.3.1510\plsqldev.exe
+  8.3 Preferences     : Session mode:_Multi
+                        OCI Library:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------                        Use OCI7:_False
+  8.4 Preference Files: F:\java就业班\Oracle\PLSQL Developer 8.0.3.1510\Preferences\Default\Default.ini
+                        C:\Users\Admin\AppData\Roaming\PLSQL Developer\Preferences\Admin\default.ini
+  8.5 Plug-Ins        : 
+  8.6 Aliases         : EXTPROC_CONNECTION_DATA
+                        LISTENER_ORCL
+                        ORCL
+  8.7 Homes           : OraDb10g_home1  (D:\oracle\product\10.2.0\db_1)
+  8.8 DLLs            : D:\oracle\product\10.2.0\db_1\bin\oci.dll
+  8.9 TNS File        : D:\oracle\product\10.2.0\db_1\Network\Admin\tnsnames.ora
+  8.10 Using          : Home:_OraDb10g_home1
+                        DLL:_D:\oracle\product\10.2.0\db_1\bin\oci.dll
+                        OCI:_Version 10.2
+                        Oracle Database 10g Enterprise Edition Release 10.2.0.3.0
+  8.11 Character Sets : Character size:_2 byte(s)
+                        CharSetID:_852
+                        NCharSetID:_2000
+                        Unicode Support:_True
+                        NLS_LANG:_SIMPLIFIED CHINESE_CHINA.ZHS16GBK
+                        NLS_CHARACTERSET:_ZHS16GBK
+                        NLS_NCHAR_CHARACTERSET:_AL16UTF16
+  8.12 Windows        : *SQL 窗口 - -- 从多个结果集中提取数据 SELECT * FROM scott.dept; SELECT * FROM scott.emp; -- 集合运算：从多个结果集中提取数据 -- union运算 ...
+
+Call Stack Information:
+------------------------------------------------------------------------------------------------
+|Address |Module        |Unit              |Class            |Procedure/Method       |Line     |
+------------------------------------------------------------------------------------------------
+|Running Thread: ID=2916; Priority=0; Class=; [Main]                                           |
+|----------------------------------------------------------------------------------------------|
+|76EBDC70|USER32.dll    |                  |                 |CallWindowProcA        |         |
+|770D9EF0|ntdll.dll     |                  |                 |RtlLeaveCriticalSection|         |
+|00B0A2FE|plsqldev.exe  |DataEditorUnit.pas|TColumnEditorForm|PrintBtnClick          |1512[12] |
+|005428A8|plsqldev.exe  |TntForms.pas      |                 |GetMessageForNT        |783[10]  |
+|76EA3560|USER32.dll    |                  |                 |CallNextHookEx         |         |
+|76EC8ABA|USER32.dll    |                  |                 |KillTimer              |         |
+|76EC6F2B|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|76EC6F20|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|004D2C44|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8116[23] |
+|004D2B48|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8093[0]  |
+|004D2C7E|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8135[1]  |
+|004D2C74|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8134[0]  |
+|004CEE9F|plsqldev.exe  |Forms.pas         |TCustomForm      |ShowModal              |5822[29] |
+|00B05F8F|plsqldev.exe  |DataEditorUnit.pas|                 |ShowColumnEditor       |529[79]  |
+|00B05B80|plsqldev.exe  |DataEditorUnit.pas|                 |ShowColumnEditor       |450[0]   |
+|00B5A194|plsqldev.exe  |ChildForm.pas     |TChildForm       |MainGridButtonClick    |10208[18]|
+|00B5A018|plsqldev.exe  |ChildForm.pas     |TChildForm       |MainGridButtonClick    |10190[0] |
+|00ACB66C|plsqldev.exe  |SQLUnit.pas       |TSQLForm         |TemplateGridButtonClick|3975[1]  |
+|005F9459|plsqldev.exe  |TsGrid.pas        |TtsCustomGrid    |DoButtonClick          |48269[1] |
+|005ED9A3|plsqldev.exe  |TsGrid.pas        |TtsBaseGrid      |ButtonClick            |43921[1] |
+|005F6F75|plsqldev.exe  |TsGrid.pas        |TtsBaseGrid      |MouseUp                |47607[54]|
+|77106C0A|ntdll.dll     |                  |                 |ZwCallbackReturn       |         |
+|76EBCD70|USER32.dll    |                  |                 |GetCapture             |         |
+|76EA3560|USER32.dll    |                  |                 |CallNextHookEx         |         |
+|76EC6F2B|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|76EC6F20|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|004D2C44|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8116[23] |
+|004D2B48|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8093[0]  |
+|004D2C7E|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8135[1]  |
+|004D2C74|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8134[0]  |
+|004D2F73|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8234[20] |
+|004D2EC0|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8214[0]  |
+|00C26D61|plsqldev.exe  |PlSqlDev.dpr      |                 |                       |140[8]   |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+|----------------------------------------------------------------------------------------------|
+|                                                                                              |
+|Running Thread: ID=5212; Priority=-1; Class=TWebUpdate                                        |
+|----------------------------------------------------------------------------------------------|
+|74F4FC7D|KERNELBASE.dll|                  |                 |SuspendThread          |         |
+|768DEF60|KERNEL32.DLL  |                  |                 |SuspendThread          |         |
+|0079F170|plsqldev.exe  |WebUpdateUnit.pas |TWebUpdate       |Execute                |204[9]   |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+|----------------------------------------------------------------------------------------------|
+|Calling Thread: ID=2916; Priority=0; Class=; [Main]                                           |
+|----------------------------------------------------------------------------------------------|
+|0079F2BD|plsqldev.exe  |WebUpdateUnit.pas |                 |ThreadedDownload       |240[21]  |
+|0079F21C|plsqldev.exe  |WebUpdateUnit.pas |                 |ThreadedDownload       |219[0]   |
+|00A1A98F|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |CheckUpdatesItemClick  |31010[8] |
+|00A1A8BC|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |CheckUpdatesItemClick  |31002[0] |
+|00A1AC8B|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |AutoCheckUpdates       |31064[6] |
+|00A1ABF4|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |AutoCheckUpdates       |31058[0] |
+|00A1AD0A|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |DelayedUpdateTimerTimer|31080[9] |
+|76EC6F2B|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|76EC6F20|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|004D2C44|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8116[23] |
+|004D2B48|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8093[0]  |
+|004D2C7E|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8135[1]  |
+|004D2C74|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8134[0]  |
+|004D2F73|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8234[20] |
+|004D2EC0|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8214[0]  |
+|00C26D61|plsqldev.exe  |PlSqlDev.dpr      |                 |                       |140[8]   |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+|----------------------------------------------------------------------------------------------|
+|                                                                                              |
+|Running Thread: ID=4880; Priority=-1; Class=TWebUpdate                                        |
+|----------------------------------------------------------------------------------------------|
+|74F4FC7D|KERNELBASE.dll|                  |                 |SuspendThread          |         |
+|768DEF60|KERNEL32.DLL  |                  |                 |SuspendThread          |         |
+|0079F170|plsqldev.exe  |WebUpdateUnit.pas |TWebUpdate       |Execute                |204[9]   |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+|----------------------------------------------------------------------------------------------|
+|Calling Thread: ID=2916; Priority=0; Class=; [Main]                                           |
+|----------------------------------------------------------------------------------------------|
+|0079F2BD|plsqldev.exe  |WebUpdateUnit.pas |                 |ThreadedDownload       |240[21]  |
+|0079F21C|plsqldev.exe  |WebUpdateUnit.pas |                 |ThreadedDownload       |219[0]   |
+|00A1AA95|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |CheckNewsItemClick     |31023[8] |
+|00A1A9C4|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |CheckNewsItemClick     |31015[0] |
+|00A1ABE7|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |AutoCheckNews          |31052[6] |
+|00A1ABB4|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |AutoCheckNews          |31046[0] |
+|00A1ACF0|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |DelayedUpdateTimerTimer|31075[4] |
+|76EC6F2B|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|76EC6F20|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|004D2C44|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8116[23] |
+|004D2B48|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8093[0]  |
+|004D2C7E|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8135[1]  |
+|004D2C74|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8134[0]  |
+|004D2F73|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8234[20] |
+|004D2EC0|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8214[0]  |
+|00C26D61|plsqldev.exe  |PlSqlDev.dpr      |                 |                       |140[8]   |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+|----------------------------------------------------------------------------------------------|
+|                                                                                              |
+|Running Thread: ID=2964; Priority=0; Class=TSQLThread                                         |
+|----------------------------------------------------------------------------------------------|
+|74F4FC7D|KERNELBASE.dll|                  |                 |SuspendThread          |         |
+|768DEF60|KERNEL32.DLL  |                  |                 |SuspendThread          |         |
+|00B46E40|plsqldev.exe  |ChildForm.pas     |TSQLThread       |Execute                |2178[104]|
+|77106E0A|ntdll.dll     |                  |                 |ZwQueryVirtualMemory   |         |
+|74F3DA79|KERNELBASE.dll|                  |                 |GetLengthSid           |         |
+|768D7A90|KERNEL32.DLL  |                  |                 |VirtualQuery           |         |
+|768D1B90|KERNEL32.DLL  |                  |                 |TlsGetValue            |         |
+|77106C9A|ntdll.dll     |                  |                 |ZwSetEvent             |         |
+|74F3C71A|KERNELBASE.dll|                  |                 |SetEvent               |         |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+|----------------------------------------------------------------------------------------------|
+|Calling Thread: ID=2916; Priority=0; Class=; [Main]                                           |
+|----------------------------------------------------------------------------------------------|
+|00AC1070|plsqldev.exe  |SQLUnit.pas       |TSQLForm         |StartQueryTab          |1178[35] |
+|00AC0ED8|plsqldev.exe  |SQLUnit.pas       |TSQLForm         |StartQueryTab          |1143[0]  |
+|00AC26E1|plsqldev.exe  |SQLUnit.pas       |TSQLForm         |FileCompile            |1551[72] |
+|009DEECC|plsqldev.exe  |MainUnit.pas      |TPLSQLDevForm    |SessionExecute         |13792[4] |
+|005428A8|plsqldev.exe  |TntForms.pas      |                 |GetMessageForNT        |783[10]  |
+|77106C0A|ntdll.dll     |                  |                 |ZwCallbackReturn       |         |
+|76EA3560|USER32.dll    |                  |                 |CallNextHookEx         |         |
+|76EC6F2B|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|76EC6F20|USER32.dll    |                  |                 |DispatchMessageA       |         |
+|004D2C44|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8116[23] |
+|004D2B48|plsqldev.exe  |Forms.pas         |TApplication     |ProcessMessage         |8093[0]  |
+|004D2C7E|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8135[1]  |
+|004D2C74|plsqldev.exe  |Forms.pas         |TApplication     |HandleMessage          |8134[0]  |
+|004D2F73|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8234[20] |
+|004D2EC0|plsqldev.exe  |Forms.pas         |TApplication     |Run                    |8214[0]  |
+|00C26D61|plsqldev.exe  |PlSqlDev.dpr      |                 |                       |140[8]   |
+|768D38F2|KERNEL32.DLL  |                  |                 |BaseThreadInitThunk    |         |
+------------------------------------------------------------------------------------------------
+
+Modules Information:
+--------------------
+
+Processes Information:
+----------------------
+
+Assembler Information:
+----------------------
+
+Registers:
+----------
+
+
+
+

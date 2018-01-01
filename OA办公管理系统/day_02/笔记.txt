@@ -1,0 +1,33 @@
+1、实现用户异步登录功能
+   a、判断用户是否选择记住用户，如果记住用户则将用户信息存放在cookie中
+   b、用户登录成功时，需要将用户的信息存放在session以及cookie中
+
+
+
+
+2、用户退出功能，将用户信息从session中请求以及cookie中清除
+
+
+
+
+
+3、首页集成dTree树形插件以及选项卡插件
+
+
+
+
+
+4、用户管理实现多条件分页查询
+
+数据的存储
+request  HttpServletRequest，存放在request中的数据，只要请求断开数据就会丢失
+session  HttpSession         存放在session中的数据，只要关闭浏览器或者session失效，session中的数据也会丢失
+application  ServletContext  存放在application中的数据，只有在应用关闭后才会失效
+
+
+cookie：将数据存放在客户端，可以减轻服务器的压力
+
+
+
+
+   

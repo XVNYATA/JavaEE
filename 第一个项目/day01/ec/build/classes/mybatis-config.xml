@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- MyBatis的核心配置文件 -->
+<configuration>
+
+	<!-- 加载数据库信息的属性文件 -->
+	<properties resource="jdbc.properties" />
+
+	<!-- 全局的属性配置 -->
+	<settings>
+		<!-- 开启缓存 -->
+		<setting name="cacheEnabled" value="true" />
+		<!-- 开启延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 配置按需要进行延迟加载 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+
+	<!-- 实体Bean配置：配置MyBatis能用的类型 -->
+	<typeAliases>
+		<!-- 指定该包下所有的类作为MyBatis能转换类型(默认的：类名为它的类型别名) -->
+		<package name="org.fkjava.j1303.ec.entity.model" />
+	</typeAliases>
+
+	<!-- 配置环境：事务与数据源 -->
+	<environments default="ec">
+		<!-- 配置一个环境 -->
+		<environment id="ec">
+			<!-- 配置事务管理器 -->
+			<transactionManager type="JDBC" />
+			<!-- 配置数据源 -->
+			<dataSource type="POOLED">
+				<!-- 数据库驱动 -->
+				<property name="driver" value="${jdbc.driver}" />
+				<!-- 连接数据库的URL -->
+				<property name="url" value="${jdbc.url}" />
+				<!-- 用户名 -->
+				<property name="username" value="${jdbc.user}" />
+				<!-- 密码 -->
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 操作数据库的接口类 -->
+	<mappers>
+		<!-- 扫描该包下所有的接口类，作为MyBatis操作数据库表的基础类 -->
+		<package name="org.fkjava.j1303.ec.entity.mapper" />
+	</mappers>
+
+</configuration>

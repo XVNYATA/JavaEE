@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Sun Sep 04 14:03:54 CST 2016
+http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1472969034432
+@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456906825971
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven.shared\:maven-shared-incremental\:jar\:1.1 from/to public (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect

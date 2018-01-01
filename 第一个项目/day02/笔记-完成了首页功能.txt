@@ -1,0 +1,179 @@
+什么是Tomcat
+    Servlet是JavaEE规范的一部分，规范有很多的接口。
+    Tomcat实现了Servlet的服务端接口。所有的Servlet程序都需要放到Tomcat里面才能运行。
+
+    首先需要在eclipse里面配置Server Runtime，然后在WEB项目里面选择此Runtime。
+    Servers标签里面，创建一个Server，并且把项目添加到Server里面。
+
+
+
+
+路径问题
+    在HTTP规范里面，如果是 / 开头，永远都表示从服务器的根目录查找资源。
+    要找到应用里面的资源，必须在 / 开头，并且后面跟着 contextPath 。
+
+    http://127.0.0.1:8080/shop/index
+
+    /fk_ec/index.action  -> /fk_ec 就是 contextPath
+    但是我们实际的 ContextPath 并不是这个！而且不能写死！
+    所以在输出这种路径的时候，通常都是 <c:url value="/index"/> ，此时会自动在 /index 之前，加上contextPath。
+    /shop/index
+
+
+    如果路径没有 / 开头，表示相对于当前目录下。
+    js/jquery-ui.js 
+        假设当前路径 /shop/index
+        那么就是找到 /shop/js/jquery-ui.js 文件
+
+        假设当前路径是 /shop/user/orderList
+        那么就找到 /shop/user/js/jquery-ui.js
+
+        需要改成 <c:url value="/js/jquery-ui.js"/>
+        在c:url 里面，如果 / 开头，始终表示在应用的根目录。
+
+
+
+商品列表显示
+    1.在IndexServlet里面，增加一个商品的查询。
+        查询商品，目前如果只是所有数据查询出来的时候，不需要条件。
+        后面如果需要条件，则需要修改查询的代码。
+
+        List<Article> articleList = service.getArticleList(  );
+        request.setAttribute(...);
+
+    2.在 ShopService 增加对应的查询
+
+    3.修改 index.jsp 显示数据
+        在Article里面，增加了一个 getDiscountPrice 方法，用来计算折扣价。
+        jsp页面使用EL表达式可以直接调用此方法
+
+         ${ article.discountPrice }
+
+
+        为了显示一定位数的浮点，需要使用 fmt 标签
+        <fmt:formatNumber value="${ article.discountPrice }" pattern="#,####.##"/>
+        <fmt:formatNumber value="${ article.discountPrice }" pattern="#,####.00"/>
+
+
+
+
+    分页显示
+        select * from article limit 0, 8  //第一页
+        select * from article limit 8, 8  //第二页
+        select * from article limit 16, 8 //第三页
+
+
+        一般要传递页码过去
+        第一页，那么传递的是1，以此类推。
+
+        假设现在是第一页
+
+            (1 - 1) * 8 = 0
+
+        第二页
+            (2 - 1) * 8 = 8
+
+        ...
+            ( 3 - 1 ) * 8 = 16
+
+        页码减去1，乘以每页的记录数，得到开始的行数。
+
+
+        注意，如果是Oracle，需要加1，因为Oracle的行号从1开始的。MySQL从0开始。
+        rownum
+
+        select * from (select *, rownum from article) where rownum >= 0 and rownum <= 8
+        select * from (select *, rownum from article) where rownum >= 9 and rownum <= 16
+
+    分页以后，还需要知道一共有多少条记录。利用总记录数，可以计算出总页数。
+    有了总页数，可以避免翻到没有数据的空白页。
+
+        select count(*) from article
+
+
+    利用count，一定的计算就可以得到总页数
+        int totalPages;
+
+        if( count % 8 == 0 )
+        {
+            totalPages = count / 8;
+        }
+        else
+        {
+            totalPages = count / 8 + 1;
+        }
+
+
+        int totalPages = count % 8 == 0 ? count / 8 : count / 8 + 1;
+
+    所有分页的逻辑，都应该封装到一个Page对象里面。在实际的工作中，甚至连数据，也封装到Page里面。
+    在这个项目，数据不封装，只是封装分页条件。
+
+    class Page
+    {
+        //当前页码
+        private int pageNumber;
+        //查询的总记录数
+        private int count;
+        //每页显示的记录数
+        private int pageSize;
+
+        //计算开始的行号
+        public int getStartRowNumber()
+        {
+            return (pageNumber - 1) * pageSize;
+        }
+
+        public int getTotalPages()
+        {
+            int totalPages = count % 8 == 0 ? count / 8 : count / 8 + 1;
+            return totalPages;
+        }
+    }
+
+
+    vo : Value Object
+        专门负责传递一些数据的。
+        主要用于Servlet和Serice、DAO之间的数据传递。
+
+
+    Page -> IndexServlet -> ShopService -> ArticleMapper -> ArticleMapper.xml
+
+
+    EL表达式的内置对象
+        param  : 用来获取所有请求参数的
+        pageScope
+        sessionScope
+        ...
+
+
+
+搜索功能
+    关键字搜索
+        IndexServlet -> ShopService -> ArticleMapper -> ArticleMapper.xml
+        
+    类型下拉列表的BUG
+        在ShopService里面，getAllTypes方法只是在typeCode的后面加上  % 去like。
+        如果本身选择的就是二级类型，那么继续like无法得到其他的二级类型。
+
+        所以，如果typeCode不为空的时候，判断长度是否大于4，如果大于4，则截取前面4位。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

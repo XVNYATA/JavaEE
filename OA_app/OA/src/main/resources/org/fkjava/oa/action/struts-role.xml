@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name = "role" namespace="/role" extends="oa">
+		<!-- 角色分页查询 -->
+		<action name = "selectRole" class="org.fkjava.oa.identity.action.RoleAction" method="selectRolePage">
+			<result>/WEB-INF/jsp/role/role.jsp</result>
+		</action>
+		
+		<!-- 角色添加页面 -->
+		<action name="showAddRole" >
+			<result>/WEB-INF/jsp/role/addRole.jsp</result>
+		</action>
+		
+		<!--  -->
+		<action name="addRole" class="org.fkjava.oa.identity.action.RoleAction" method="addRole">
+			<!-- 引入防表单重复提交拦截器 -->
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="OAStack"></interceptor-ref>
+			<result>/WEB-INF/jsp/role/addRole.jsp</result>
+			<!-- 当表单重复提交时token拦截器会反悔invalid.token -->
+			<result name="invalid.token">/WEB-INF/jsp/role/addRole.jsp</result>
+			<result name="input">/WEB-INF/jsp/role/addRole.jsp</result>
+		</action>
+		
+		<!-- 角色修改页面 -->
+		<action name="showUpdateRole" class="org.fkjava.oa.identity.action.RoleAction" method="showUpdateRole">
+			<result>/WEB-INF/jsp/role/updateRole.jsp</result>
+		</action>
+		
+		<!-- 角色保存 -->
+		<action name ="updateRole" class="org.fkjava.oa.identity.action.RoleAction" method="updateRole">
+			<!-- 引入防表单重复提交拦截器 -->
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="OAStack"></interceptor-ref>
+			<result>/WEB-INF/jsp/role/updateRole.jsp</result>
+			<!-- 当表单重复提交时会返回invalid.token -->
+			<result name ="token">/WEB-INF/jsp/role/updateRole.jsp</result>
+			<result name = "input">/WEB-INF/jsp/role/updateRole.jsp</result>
+		</action>
+		
+		<!-- 删除角色用户 -->
+		<action name="deleteRoleByIds" class="org.fkjava.oa.identity.action.RoleAction" method="deleteRoleByIds">
+			<result type="chain">selectRole</result>
+		</action>
+		
+		<!-- 获取当前角色已经绑定的用户 -->
+		<action name="selectRoleUser" class="org.fkjava.oa.identity.action.RoleAction" method="selectRoleUser">
+			<result>/WEB-INF/jsp/role/roleUser.jsp</result>
+		</action>
+		
+		<!-- 解除绑定角色用户 -->
+		<action name="unbindUser" class="org.fkjava.oa.identity.action.RoleAction" method="unbindUser">
+			<result type="chain">selectRoleUser</result>
+		</action>
+		
+		<!-- 获取未绑定角色的用户 -->
+		<action name="showUnbindUser" class="org.fkjava.oa.identity.action.RoleAction" method="showUnbindUserByPage">
+			<result>/WEB-INF/jsp/role/bindUser.jsp</result>
+		</action>
+		
+		<!-- 绑定角色 -->
+		<action name="bindUser" class="org.fkjava.oa.identity.action.RoleAction" method="bindUser">
+			<result type="chain">showUnbindUser</result>
+		</action>
+	</package>
+</struts>

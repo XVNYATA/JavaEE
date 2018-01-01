@@ -1,0 +1,248 @@
+WebService
+    WEB服务，主要解决：跨系统、跨平台的服务集成问题。
+
+    比如微信，里面有公众号，很多人把公众号的信息放到自己的私有服务器上面。
+    此时微信是无法访问私有服务器的，微信只能访问腾讯的服务器。
+    微信公众号又需要得到私有服务器上面的信息，提供给客户端（微信）显示。
+
+    此时，微信客户端发送请求给微信的服务器，用来获取公众号的某个信息。但是这个信息在私有服务器上面。
+    微信服务器，就会发送请求给私有服务器，获取实际的信息。
+    最后微信服务器把获取到的实际信息，返回给微信客户端。
+
+    服务器和服务器之间，就是使用WebService来进行集成的。
+
+    比较坑的事情：微信的WebService规范是自己定义的，没有得到国际认可。
+
+    大部分的公司，在做WebService的时候，都会遵守国际规范，以免增加额外的学习成本。
+    比如一个公司是专门做人事管理的，另外一个公司是做自动化办公的，此时人事管理，可以认为也是自动化办公里面的一部分。
+    此时用户，已经使用了多年的人事管理，要增加自动化办公。
+        是否需要重新开发一套人事管理，嵌入到自动化办公呢？不需要，因为已经有了！
+        是否需要把原有的人事管理的数据迁移到自动化办公里面？很多时候也不能迁移，因为可能涉及到的数据非常多，还有一些使用习惯的问题。
+
+    增加员工，是人事管理里面新增的。在自动化办公里面，员工需要使用一些自动化的流程，比如请假。此时是否也需要在自动化办公里面把员工又加上一次呢？
+        对于用户来讲，绝对不希望干这种事情！
+        他们希望两个系统，能够集成到一起，只要在人事里面新增、修改了数据，自动化办公系统应该能够很快获取到最新的数据。
+
+
+    那么问题来了：这两个系统不是同一个公司开发的，可能使用的编程语言也不同！
+
+    此时只需要使用标准的WebService进行两个系统的集成、对接即可。
+
+
+使用WebService集成的好处：
+    1.跨平台、跨编程语言。
+    2.因为规范是标准的，所有的编程语言、系统平台都能够完美支持。因此可以集成很多的业务系统。
+    3.扩展性非常好，并且对网络的要求非常低。
+
+
+WebService翻译成中文叫做“WEB服务”，这里面提到“服务”。
+服务发展了很多年，在十几年前的时候，就已经产生了SOA的思想（面向服务架构）。
+
+
+SOA : 面向服务架构
+    主要目的，就是把系统中所有的功能，都暴露成标准的WEB服务，可以实现大量的系统之间的集成。
+    现在大部分的企业中，使用的IT系统，都不再是单一的、同一个公司开发的。
+
+    可能产生的极端情况是这样的：
+
+        假设有A、B、C、D四个应用，A应用依赖B应用的一部分功能，B依赖C的一部分功能、C同时依赖A和D两个应用的一部分功能，D可能同时依赖B、C一部分的功能。
+        这种极端情况下，只是简单的WebService的规范，已经无法满足、解决这些问题。比如其中一个应用挂了，可能会导致整个系统崩溃！
+
+    移动公司早期的时候，也是创建了很多的应用，并且这些应用还没有使用WebService这种规范，而是直接通过数据库共享来实现的！
+    当时为了解决这种问题，我们除了引入WebService技术，还引入了SOA的思想。
+
+    基于SOA的思想，也开发了很多的框架、平台，这些框架、平台称之为“ESB”（企业服务总线）。
+
+    总线：所有的共享，都是通过总线来共享的，系统之间没有直接的依赖关系。
+
+
+    A
+        A1、A2...A1000 等功能
+
+        B应用只是要了其中的B50～B55等几个功能。
+
+    B
+        B1、B2...B500  等功能
+        B需要C的C71～C85等功能
+
+    C
+        C1、C2...C500  等功能
+
+        需要A的A100～A200等功能
+        需要D的D400～D420等功能
+
+    D
+        D1、D2...D500  等功能
+
+        需要B的B30~B35等几个功能
+
+
+    服务总线做了两件事情：
+        A、B、C、D四个应用都需要提供一个功能给别人使用。
+        这四个应用不直接暴露功能给别人使用，而是通过总线统一来暴露。
+
+        暴露出来给别人使用的功能，都称之为“服务”。其实就是一个个方法。
+
+
+        服务总线里面提供了 A1～A1000、B1～B500、C1～C500、D1～D500等所有的功能。
+        如果某个应用需要使用到其中的一些功能（服务）的时候，直接从服务总线里面来查询得到。
+
+        服务总线本身没有提供这些功能的实现，而是要访问到具体的应用里面去执行相应操作的。只是一个中转站。
+        如果使用某个服务出现了问题，并不会影响整个系统的运行。没有影响到的功能，还能够继续使用。
+
+
+        1.接入很多的应用系统，暴露服务接口
+        2.给别人依赖使用（服务接口）
+
+
+    在面向服务架构的时候，一般都是把一个个的功能，开发成一个个的小服务。
+    这些小服务可能只是做了一个简单的操作，但是对于系统来讲，也是一个标准的服务。
+    需要用这些服务的时候，直接接入到ESB去得到就可以了。
+
+    ESB因为要把这些接口暴露出来，就先要知道有哪些小服务可以被使用（连接到应用服务器上面）。
+
+
+    简单认为：ESB全是接口，小服务的应用服务器就是实现类。
+
+
+
+WebService也是一系列的规范，本身没有代码的。于是有很多的框架，实现了这些规范，其中目前使用最多的是CXF。
+CXF = 标准的WEB服务框架 + ESB总线
+
+
+如何利用已有的资料、示例，来了解到框架能够提供哪些功能！
+
+
+JavaEE
+    是一个庞大的业务体系规范，里面包含了 Servlet、JSP、JMS、JNDI、EJB、JPA、JTA等。
+    JAX-WS 也是JavaEE的一部分，Java XML API for WebService，使用了标准化的API来进行【异构系统】的集成。
+
+
+Transports
+    基于各种传输协议/方式，来进行远程的方法调用。
+
+
+Bindings
+    实现数据的自动化绑定功能，避免人工进行数据类型转换。
+
+
+
+跨平台
+    不同的操作系统，有 Linux、Mac OSX、FreeBSD、Unix、Android、Windows、浏览器 。
+
+跨编程语言
+    C/C++、C#、PHP、Perl、JavaScript、Python、RUBY、Groovy、VB、Dephi……等100多种编程语言。
+
+运行平台很多、编程语音更多，WebService都能够兼容集成。
+
+
+需要jar的时候，可以用maven！
+
+
+使用CXF开发最简单的一个WEB服务
+    1.写一个接口，使用 @WebService 注解。这个主键此时不需要参数。
+    2.写一个实现类，实现上面的接口，同样使用 @WebService 主键，但是此时需要两个基本参数。
+        @WebService(endpointInterface = "demo.hw.server.HelloWorld",
+            serviceName = "HelloWorld")
+
+        endpointInterface : 写上接口的类全名
+        serviceName       : 随意给一个名称，但是一般会是接口的类名，其实是WSDL里面service的name。
+            一般portType里面的name，默认是接口名。
+
+
+        在类里面，需要实现接口的抽象方法。
+
+    3.暴露（发布）服务
+        Endpoint.publish(address, implementor);
+
+    此时就可以直接通过 WEB客户端（浏览器） 来访问到我们的WEB服务！
+
+    运行最简单实例，必须有下面的两个依赖
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>3.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>3.1.7</version>
+        </dependency>
+
+
+    使用CXF的基本步骤
+        1.添加依赖进来，如果没有tomcat之类的WEB服务器，还需要jetty作为嵌入式的WEB服务器
+        2.写服务器接口、服务器的实现类，并且在把服务接口发布（暴露）出来
+        3.通过HTTP协议连接到服务器，并且访问暴露的服务
+
+
+
+    注意点
+        服务器和客户端，可以运行在不同的机器上面，但是接口必须能够兼容。
+        兼容的话包括：包名、类名、方法名全部要相同，或者兼容（服务器比较多，客户端比较少）。
+
+
+jetty
+    和Tomcat一样，是WEB容器
+    如果没有加上 jetty ，CXF无法完成Servlet相关的配置。
+    因为此时，没有专门的WEB服务器，需要一个嵌入式的WEB服务器。
+
+接下来的学习任务
+    1.直接利用已有的Tomcat/Jetty作为HTTP服务器
+
+        CXFServlet类是作为CXF发布（暴露）服务的入口。
+
+
+        1.在web.xml里面增加CXFServlet的配置
+
+            <servlet>
+                <servlet-name>fkjava</servlet-name>
+                <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+            </servlet>
+
+
+            <servlet-mapping>
+                <servlet-name>fkjava</servlet-name>
+                <url-pettern>/hw/*</url-pattern>
+            </servlet-mapping>
+
+        2.增加一个cxf-servelt.xml文件，这是一个Spring配置文件
+
+            直接复制官方例子“java_first_jaxws”里面的cxf-servlet.xml，改名
+            文件默认都必须放到 WEB-INF 目录下。
+
+        3.一定要有Spring的核心依赖，因为最少需要 org.springframework.context.ApplicationListener 类
+
+
+    2.在WEB项目里面和Spirng进行集成
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.3.2.RELEASE</version>
+		</dependency>
+
+
+    3.自定义对象、Map等复杂对象的绑定
+
+    4.和Struts 2集成一起使用
+
+    5.增加权限的拦截器
+
+    6.学习WSDL，通过WSDL生成客户端
+
+
+
+
+
+
+
+
+
+

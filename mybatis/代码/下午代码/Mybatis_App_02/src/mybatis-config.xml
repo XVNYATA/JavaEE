@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+  <!-- 配置类型别名 -->
+  <typeAliases>
+    
+      <!--  <typeAlias type="org.fkjava.bean.User" alias="User"/> -->
+       <!-- 以包扫描的形式配置类型别名 -->
+       <package name="org.fkjava.bean"/>
+  </typeAliases>
+  
+  
+  <environments default="shopApp">
+   
+    <environment id="shopApp">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/bookapp"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+ <mappers>
+    <!-- <mapper resource="org/fkjava/mapper/UserMapper.xml"/> -->
+    <!-- 以包扫描的形式配置数据库访问接口所在位置 -->
+    <package name="org.fkjava.mapper"/>
+  </mappers>
+</configuration>

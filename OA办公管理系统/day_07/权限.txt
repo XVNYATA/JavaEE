@@ -1,0 +1,42 @@
+1.权限表结构
+   `oa_id_user`  系统中的用户
+   `oa_id_role`  系统的角色：不同的角色拥有不同的功能
+   `oa_id_user_role` ：  
+        把用户的主键id 和 角色表的主键id作为联合主键
+		1.根据一个用户的id可以查到他所有的角色
+		2.根据一个角色可以查询属于该角色下的所有用户
+   `oa_id_module`：定义系统所有的模块 和 操作
+   `oa_id_popedom`：定义系统中所有的角色拥有的所有操作和模块
+       角色 - 操作 - 模块
+	   1.
+
+权限开发
+    
+   1.模块权限 
+	    系统的左侧模块菜单权限：
+		 a.用户一登陆系统，就去查询用户所有的角色
+		 b.再根据角色到权限表中查询该用户所有的模块 
+		    权限 - 角色 - 操作 - 模块
+
+    2.操作权限(可以控制用户在系统上所有的功能操作权限)
+		 a.用户一登陆就立即查询该用户所有的角色
+		   再根据用户所有的角色查询用户拥有的所有操作(权限)
+
+		 b.再将用户拥有的所有操作code,换算成请求url
+		    linkedHasnMap
+		   {/admin/identity/selectUser.jspx=[/admin/identity/selectUser.jspx, /admin/identity/addUser.jspx, /admin/identity/updateUser.jspx, /admin/identity/deleteUser.jspx, /admin/identity/checkUser.jspx], 
+		     /admin/identity/selectRole.jspx=[/admin/identity/selectRole.jspx, /admin/identity/addRole.jspx, /admin/identity/updateRole.jspx, /admin/identity/deleteRole.jspx, /admin/identity/selectRoleUser.jspx, /admin/identity/selectRoleModule.jspx, /admin/identity/bindUser.jspx, /admin/identity/unbindUser.jspx, /admin/identity/selectBindModule.jspx, /admin/identity/bindMoudle.jspx],
+			 /admin/identity/mgrModule.jspx=[/admin/identity/mgrModule.jspx, /admin/identity/selectModule.jspx, /admin/identity/addModule.jspx, /admin/identity/updateModule.jspx, /admin/identity/deleteModule.jspx], /admin/identity/mgrPush.jspx=[/admin/identity/mgrPush.jspx, /admin/identity/pushFlow.jspx],
+			 /admin/leave/mgrLeaveType.jspx=[/admin/leave/selectLeaveType.jspx, /admin/leave/addLeaveType.jspx, /admin/leave/updateLeaveType.jspx, /admin/leave/deleteLeaveType.jspx, /admin/leave/mgrLeaveType.jspx], /admin/leave/mgrLeaveItem.jspx=[/admin/leave/mgrLeaveItem.jspx, /admin/leave/selectLeaveItem.jspx, /admin/leave/checkLeaveItem.jspx], /admin/leave/selectUserLeave.jspx=[/admin/leave/selectUserLeave.jspx, /admin/leave/addUserLeave.jspx, /admin/leave/updateUserLeave.jspx, /admin/leave/deleteUserLeave.jspx], /admin/leave/selectAuditLeave.jspx=[/admin/leave/selectAuditLeave.jspx, /admin/leave/auditLeaveSheet.jspx]}
+		
+		 c.再将用户所有的操作权限(请求url的数组)放置到用户session中
+
+		 d.开发权限拦截器
+		   1.用户操作一发起就会被权限拦截器拦截
+		   2.截取用户的操作请求url = /admin/selectUser
+           3.获取权限session - 判断 用户请求的url是否在权限session中
+		     如果在放行，如果不在,就拦截提示没有权限。
+
+	     
+
+    

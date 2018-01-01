@@ -1,0 +1,78 @@
+1、日志框架:Log4j
+   目前公司开发时，记录日志信息90%采用Log4j,java中给我们提供了一个类java.util.logging.Logger用来记录日志信息
+   Log4j站在java.util.logging.Logger的基础上，对java.util.logging.Logger做了封装，最终打成jar包，最终成为日志框架
+
+   Log4j使用步骤：
+   1、导jar包
+   2. 设置log4j.properties文件,放在src(classpath)下
+   3. private Logger logger = Logger.getLogger(包名.类名);
+   4. logger.debug/info/error(message);
+
+
+2、Mybatis(持久层框架)：前身叫做iBatis，对JDBC做了封装，可以大大简化开发；
+   后台框架：在项目开发过程中，将项目中重复的并且共用的代码抽取出去，打成jar包，做成所谓的’代码库‘，
+   这个代码库就是我们所说的框架；
+
+   持久层框架除了Mybatis之外，还有一个非常流行的框架，Hibernate;
+   Mybatis与Hibernate的区别 Mybatis:半自动化的持久层框架，可以帮我们进行数据的自动封装，但是sql语句还需要我们自己写
+   而Hibernate是全自动，可以不需要自己写sql语句，也不需要自己封装数据;
+   不管是Mybatis还是Hibernate，他们的底层还是需要自己获取Statement,写sql语句；
+
+
+   
+3、Mybatis入门：
+   课堂练习：
+   通过mybatis实现如下功能：根据用户id获取用户信息
+   
+   select * from tb_user where id = ?
+     
+
+   1、导jar包
+      导入mybatis的jar
+      解压mybatis-3.2.0-bundle.zip
+      导入lib里面所有jar和mybatis-3.2.0.jar
+      数据库驱动
+
+   2. 根配置文件mysql-config.xml,数据库连接信息
+   (原来的步骤,在方法中获取Connection,Statment,写sql,使用mybatis后不用了)
+  
+   3. 配置和每个对象关联的映射文件UserMapper.xml
+    (原来的步骤,先获取DataSource)
+  
+   4. SqlSessionFactory理解成数据源（DataSource）
+   (原来的步骤,先获取Connection)
+   
+   5. SqlSession可以理解成Connection的封装
+   
+   6. User user = sqlSession.selectOne("getUserById", 1); 
+  
+   7、在UserMapper.xml进行如下配置
+    <!-- 根据用户id获取用户信息   parameterType:参数数据类型    resultType：返回数据的类型    包名+类型-->
+    <select id="getUserById" parameterType="int" resultType="org.fkjava.bean.User">
+       select * from tb_user where id = #{id}
+    </select>
+
+   
+
+
+4、Mybatis实际运用
+    1. (原来的步骤,先开发ConnectionFacoty)连接工厂
+    2、核心配置文件mysql-config.xml,数据库连接信息
+    4. 配置和每个对象关联的映射文件UserDao.xml,BookDao.xml同时应该有一个与其同名的接口
+    5. 做查询时通过SqlSession中的方法getMapper("接口名.class")获取该接口的实例
+    6. 调用该接口中的方法进行数据的增删改查
+
+    细节：userMapper调用的方法名应该与UserMapper.xml中的sql语句的id一致
+    User user = userMapper.getUserById(1);
+
+    <select id="getUserById" resultMap="userMapping">
+       select * from tb_user where id= #{id}
+    </select> 
+
+
+po
+domain
+
+dao
+mapper
+

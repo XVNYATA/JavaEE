@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Export-Package: org.sonatype.nexus.rutauth,org.sonatype.nexus.rutauth.
+ internal,org.sonatype.nexus.rutauth.internal.capability
+Require-Bundle: org.sonatype.nexus.plugin-api;resolution:=optional,org
+ .sonatype.nexus.plugins.nexus-capabilities-plugin;bundle-version=2.10
+ .0.02
+Bundle-ClassPath: nexus-rutauth-plugin-2.10.0-02.jar
+Bundle-Version: 2.10.0.02
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.sonatype.nexus.plugins.nexus-rutauth-plugin
+

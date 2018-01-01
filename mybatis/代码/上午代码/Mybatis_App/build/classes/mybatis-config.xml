@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+  <environments default="shopApp">
+    <environment id="shopApp">
+      <!-- 采用JDBC的事务管理器 -->
+      <transactionManager type="JDBC"/>
+      <!-- 配置数据库连接池 -->
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/bookapp"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <!-- 声明实体bean对应的映射文件存放位置 -->
+  <mappers>
+    <mapper resource="org/fkjava/dao/UserDao.xml"/>
+  </mappers> 
+</configuration>

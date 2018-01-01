@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 配置Struts2常量 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="jspx,action,do,,"/>
+    <!-- 指定国际化资源文件前缀 -->
+    <constant name="struts.custom.i18n.resources" value="OA_message"></constant>
+
+    <package name="oa" namespace="/" extends="struts-default">
+        
+        <!-- 声明拦截器  -->
+        <interceptors>
+           <interceptor name="loginInterceptor" class="org.fkjava.oa.util.filter.LoginInteceptor"></interceptor>
+           
+           <interceptor-stack name="OAStack">
+              <interceptor-ref name="loginInterceptor"></interceptor-ref>
+              <interceptor-ref name="defaultStack"></interceptor-ref>
+           </interceptor-stack>
+        </interceptors>
+        
+        
+        <!-- 声明项目默认拦截器栈 -->
+        <default-interceptor-ref name="OAStack"></default-interceptor-ref>
+        
+        <!-- 配置全局result -->
+        <global-results>
+           <result name="login">/WEB-INF/jsp/login.jsp</result>
+        </global-results>
+        <!-- 获取部门信息  -->
+        <action name="getDept"  class="org.fkjava.oa.identity.action.DeptAction"></action>
+        
+        <!-- 生成验证码 -->
+        <action name="verify" class="org.fkjava.oa.util.VerifyServlet">
+           <interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+    
+        <!-- 配置全局action   http://192.168.10.222:8888/OA_App/main.action   ==>/WEB-INF/jsp/main.jsp-->
+        <action name="*">
+           <result>/WEB-INF/jsp/{1}.jsp</result>
+        </action>
+  
+      
+    </package>
+       
+       <include file="org/fkjava/oa/action/struts-user.xml"></include>
+       <include file="org/fkjava/oa/action/struts-dept.xml"></include>
+       <include file="org/fkjava/oa/action/struts-role.xml"></include>
+       <include file="org/fkjava/oa/action/struts-module.xml"></include>
+</struts>

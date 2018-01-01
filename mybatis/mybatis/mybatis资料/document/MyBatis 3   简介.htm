@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0041)http://www.mybatis.org/core/zh/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>
+    MyBatis 3 | 简介</title>
+    <link rel="stylesheet" href="http://www.mybatis.org/core/zh/css/apache-maven-fluido.min.css">
+    <link rel="stylesheet" href="http://www.mybatis.org/core/zh/css/site.css">
+    <link rel="stylesheet" href="http://www.mybatis.org/core/zh/css/print.css" media="print">
+        <style>body{padding-top: 20px;}</style>
+    
+      
+    <script type="text/javascript" src="./MyBatis 3   简介_files/apache-maven-fluido.min.js"></script>
+
+    
+      <meta name="author" content="The MyBatis Team">
+    <meta name="Date-Revision-yyyymmdd" content="20120419">
+    <meta http-equiv="Content-Language" content="zh">
+    
+        </head>
+  <body>
+      
+        
+    
+        <div class="container-fluid">
+                <div id="banner">
+        <div class="pull-left">                                <a href="./MyBatis 3   简介_files/MyBatis 3   简介.htm" id="bannerLeft" title="MyBatis logo">
+                                                                                                <img src="./MyBatis 3   简介_files/logo.png" alt="MyBatis logo">
+                </a>
+      </div>
+        <div class="pull-right">  </div>
+        <div class="clear"><hr></div>
+      </div>
+      
+      <div id="breadcrumbs">
+        <ul class="breadcrumb">
+                
+                    
+                  <li id="publishDate">最近更新: 19 四月 2012</li>
+                  <li class="divider">|</li> <li id="projectVersion">版本: 3.1.1</li>
+                      
+                
+                    
+      
+                  </ul>
+      </div>
+
+            <div id="leftColumn" class="sidebar">
+        <div class="well">
+                
+                    
+                                   <h5>Core</h5>
+                  <ul>
+                  <li class="none">
+            <strong>Introduction</strong>
+          </li>
+                  <li class="none">
+                          <a href="http://www.mybatis.org/core/zh/getting-started.html" title="入门">入门</a>
+            </li>
+                                                                                                                                                                                                                    <li class="collapsed">
+                          <a href="http://www.mybatis.org/core/zh/configuration.html" title="XML 映射配置文件">XML 映射配置文件</a>
+                  </li>
+                                                                                                                                                              <li class="collapsed">
+                          <a href="http://www.mybatis.org/core/zh/sqlmap-xml.html" title="Mapper XML 文件">Mapper XML 文件</a>
+                  </li>
+                  <li class="none">
+                          <a href="http://www.mybatis.org/core/zh/dynamic-sql.html" title="动态 SQL">动态 SQL</a>
+            </li>
+                                                                                      <li class="collapsed">
+                          <a href="http://www.mybatis.org/core/zh/java-api.html" title="Java API">Java API</a>
+                  </li>
+                                                                                      <li class="collapsed">
+                          <a href="http://www.mybatis.org/core/zh/statement-builders.html" title="Statement Builders">Statement Builders</a>
+                  </li>
+                  <li class="none">
+                          <a href="http://www.mybatis.org/core/zh/logging.html" title="Logging">Logging</a>
+            </li>
+          </ul>
+                       <h5>项目文档</h5>
+                  <ul>
+                                                                                                                                                                                                                                                        <li class="collapsed">
+                          <a href="http://www.mybatis.org/core/zh/project-info.html" title="项目信息">项目信息</a>
+                  </li>
+          </ul>
+                      
+                    
+                
+            
+          <div id="poweredBy">
+                            <a href="http://maven.apache.org/" title="构建依靠 Maven" class="poweredBy">
+        <img class="poweredBy" alt="构建依靠 Maven" src="./MyBatis 3   简介_files/maven-feather.png">
+      </a>
+                </div>
+        </div>
+      </div>
+      
+      <div id="bodyColumn" class="content">
+        <div id="contentBox">
+                              
+          <!-- Copyright 2010-2012 The MyBatis Team
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. --><!-- version: $Id: index.xml 4844 2012-03-11 19:15:01Z simone.tripodi $ -->
+
+  
+    <div class="section"><h2>简介<a name="a"></a></h2>
+      <div class="section"><h3>什么是 MyBatis?<a name="a_MyBatis"></a></h3>
+        <p>
+        MyBatis 是支持普通 SQL 查询,存储过程和高级映射的优秀持久层框架。MyBatis 消除
+了几乎所有的 JDBC 代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML
+或注解用于配置和原始映射,将接口和 Java 的 POJOs(Plan Old Java Objects,普通的 Java
+对象)映射成数据库中的记录。
+        </p>
+      </div>
+
+      <div class="section"><h3>Help make this documentation better…<a name="Help_make_this_documentation_better"></a></h3>
+        <p>
+ 如果你发现了本文档的遗漏之处,
+或者丢失 MyBatis 特性的说明时,
+那么最好的方法就
+是了解一下这个遗漏之处然后把它记录下来。
+        </p>
+        <p>
+          Sources of this manual are available in xdoc format at
+          <a class="externalLink" href="http://mybatis.googlecode.com/svn/trunk/src/site/">project's SVN </a>
+          .
+          Check them out, update them and send your patch to the
+          <a class="externalLink" href="http://code.google.com/p/mybatis/issues/entry">tracker</a>
+          .
+        </p>
+        <p>
+你也是本文档的最佳作者,其他用户也会来阅读它的。
+        </p>
+      </div>
+      
+      <div class="section"><h3>关于翻译<a name="a"></a></h3>
+      <p>
+MyBatis 3 的用户指南翻译由南磊完成,若对翻译质量有任何意见和建议,请联系
+nanlei1987@gmail.com,愿和大家共同提高,共同进步。
+      </p>
+      </div>
+    </div>
+  
+
+
+                  </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+            <div class="container-fluid">
+              <div class="row span16">Copyright ©                    2010-2012
+                        <a href="http://www.mybatis.org/">MyBatis.org</a>.
+            All Rights Reserved.      
+                    
+      </div>
+
+        
+        
+                </div>
+    </footer>
+  
+
+</body></html>

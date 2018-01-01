@@ -1,0 +1,7 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Sun Sep 04 14:03:39 CST 2016
+http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1472969019515
+@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456906828016
+http\://192.168.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.tomcat\:tomcat-jsp-api\:pom\:7.0.47 from/to public (http\://192.168.122\:8081/nexus/content/groups/public/)\: connect timed out
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.tomcat\:tomcat-jsp-api\:pom\:7.0.47 from/to public (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect
+@default-public-http\://192.168.122\:8081/nexus/content/groups/public/.lastUpdated=1456906868192

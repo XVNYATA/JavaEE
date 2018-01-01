@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>购物商城-登录页面</title>
+		<link href="images/fkjava.ico" rel="shortcut icon" type="image/x-icon"/>
+		<!-- main.css是网站前台主要的CSS -->
+		<link rel=stylesheet type=text/css href="css/main.css"/>
+		<!-- login.css作用于登录的CSS -->
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<!-- header部分 -->
+		<script type="text/javascript" src="js/header.js"></script>
+		<script type="text/javascript">
+			if (parent.window.location != window.location){
+				parent.window.location = window.location;
+			}
+			window.onload = function(){
+				document.loginform.loginName.focus();
+				document.onkeydown = function(){
+					// firefox没有window.event对象
+					var event = arguments[0] ? arguments[0] : window.event;
+					if (event.keyCode === 13){
+						onLogin();
+					}
+				};
+			};
+			var onLogin = function(){
+				//验证用户名和密码是否输入
+				var loginname = document.getElementById("loginName").value;
+				if(loginname == null || loginname == "" || loginname.length == 0){
+					alert("请输入用户名!");
+					document.getElementById("loginName").focus;
+					return false;
+				}
+				var password = document.getElementById("password").value;
+				if(password == null || password == "" || password.length == 0){
+					alert("请输入密码!");
+					document.getElementById("password").focus;
+					return false;
+				}
+				document.getElementById("loginform").submit();
+			};
+		</script>
+	</head>
+
+<body>
+	<!--header begin-->
+	<div id="shortcut">
+		<script type="text/javascript">header("");</script>
+	﻿	<div class="nav">
+			<div class="w960 center">
+				<ul>
+					<li><a title="首页" href="index.action">首页</a></li>
+					
+						<li><a title="护肤" href="/fk_ec/index.action?typecode=0001">护肤</a></li>
+					
+						<li><a title="彩妆" href="/fk_ec/index.action?typecode=0002">彩妆</a></li>
+					
+						<li><a title="香氛" href="/fk_ec/index.action?typecode=0003">香氛</a></li>
+					
+						<li><a title="身体护理" href="/fk_ec/index.action?typecode=0004">身体护理</a></li>
+					
+						<li><a title="礼盒套装" href="/fk_ec/index.action?typecode=0005">礼盒套装</a></li>
+					
+						<li><a title="母婴专区" href="/fk_ec/index.action?typecode=0006">母婴专区</a></li>
+					
+						<li><a title="男士专区" href="/fk_ec/index.action?typecode=0007">男士专区</a></li>
+					
+						<li><a title="粉底" href="/fk_ec/index.action?typecode=0008">粉底</a></li>
+					
+						<li><a title="粉饼" href="/fk_ec/index.action?typecode=0009">粉饼</a></li>
+					
+						<li><a title="睫毛膏" href="/fk_ec/index.action?typecode=0010">睫毛膏</a></li>
+					
+						<li><a title="唇彩" href="/fk_ec/index.action?typecode=0011">唇彩</a></li>
+					
+						<li><a title="腮红" href="/fk_ec/index.action?typecode=0012">腮红</a></li>
+					
+						<li><a title="食品保健" href="/fk_ec/index.action?typecode=0013">食品保健</a></li>
+					
+						<li><a title="瘦身类" href="/fk_ec/index.action?typecode=0014">瘦身类</a></li>
+					
+						<li><a title="美容类" href="/fk_ec/index.action?typecode=0015">美容类</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--header end-->
+	
+	<form name="loginform" method="post" action="login.action" id="loginform">
+		<br />
+		<input type="hidden" name="step" value="1"/>
+		<div class="login_main" style="background: url(images/login_bg.jpg) no-repeat center 0;">
+			<div class="login_panel">
+				<!--登录框开始-->
+				<div class="right_panel">
+					<div class="login_frame_border">
+						<div class="login_frame">
+							<div class="login_title">
+								<i></i>还不是商城用户？&nbsp;&nbsp;<a href="register.action">立即注册</a>
+							</div>
+							<div class="login_frist clearfix" id="user_div_name">
+								<label>登录名</label> 
+								<span class="login_input"> 
+									<input name="loginName" type="text" maxlength="40" id="loginName" class="tip"/>
+								</span> 
+								<span class="hint" id="login_loginname_error" style="display: none"></span> 
+								<span class="hint" id="usernameMessage" style="display: black">请输入邮箱地址</span>
+							</div>
+							<p class="clearfix" id="password_div">
+								<label>密&nbsp;&nbsp;码</label> 
+								<span class="login_input">
+									<input name="password" type="password" maxlength="20" id="password"/>
+								</span> 
+								<span class="hint" id="login_password_error" style="display: none"></span> 
+								<span class="hint" id="passwordMessage" style="display: black">请输入6-16位密码</span>
+							</p>
+
+							<div class="login_btn" id="submit_signin_div">
+								<input id="btnSignCheck" type="button" value="登 录"
+									onclick="onLogin();" style="width: 94px; height: 27px; float: left; 
+									background: url(images/login_btn.png) no-repeat -237px -46px;"/>
+									&nbsp;&nbsp;
+							</div>
+
+							<div class="co_login">
+								<span>疯狂源自梦想,技术成就辉煌</span><a class="icon_sina"
+									id="open_sina_sign" href="" title="新浪微博">疯狂软件</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!--登录框结束-->
+</body>
+</html>

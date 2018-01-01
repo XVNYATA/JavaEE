@@ -1,0 +1,179 @@
+package org.fkjava.oa.identity.service.impl;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.fkjava.oa.identity.bean.Dept;
+import org.fkjava.oa.identity.bean.User;
+import org.fkjava.oa.identity.dao.DeptDaoI;
+import org.fkjava.oa.identity.dao.JobDaoI;
+import org.fkjava.oa.identity.dao.UserDaoI;
+import org.fkjava.oa.identity.exception.OAException;
+import org.fkjava.oa.identity.service.IdentityServiceI;
+import org.fkjava.oa.util.OAContant;
+import org.fkjava.oa.util.webTag.PageModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+@Service
+public class IdentityService implements IdentityServiceI{
+
+    @Autowired
+    private DeptDaoI deptDao;
+    
+    @Autowired
+    private JobDaoI jobDao;
+    
+    @Autowired
+    private UserDaoI userDao;
+    
+    private Logger logger = Logger.getLogger(IdentityService.class);
+	//根据用户账号获取用户信息
+	@Override
+	public User getUserById(String userId) {
+		// TODO Auto-generated method stub
+		try {
+			return userDao.get(User.class, userId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("用户信息获取失败！",e);
+		}
+	}
+	
+	
+	//用户分页查询
+	@Override
+	public List<User> selectUserByPage(User user, PageModel pageModel) {
+		// TODO Auto-generated method stub
+		try {
+			List<User> users = userDao.selectUserByPage(user,pageModel);
+			//由于创建者以及审核者都是懒加载，通过获取创建者以及审核者再次发送sql语句获取相关信息
+			//因为创建人  审核人是懒加载
+			for(User u : users){
+				if(u!=null&&u.getChecker()!=null) u.getChecker().getName();
+				if(u!=null&&u.getCreater()!=null) u.getCreater().getName();
+			}
+			return users;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("用户分页查询异常："+e.getMessage(),e);
+		}
+		
+	}
+	
+
+	
+	//获取部门信息
+	@Override
+	public String findAllDepts() {
+		// TODO Auto-generated method stub
+		try {
+			
+		
+			List<Map<Integer,String>> depts = deptDao.findAllDepts();
+			System.out.println(depts.toString()+"=="+JSONArray.fromObject(depts).toString());
+			//将集合转成json格式字符窜
+			return JSONArray.fromObject(depts).toString();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("部门信息加载失败："+e.getMessage(),e);
+		}
+	}
+	
+	 //删除用户信息
+	@Override
+	public void deleteUserByIds(String[] ids) {
+		// TODO Auto-generated method stub
+		try {
+			userDao.deleteUserByIds(ids);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("用户信息删除失败："+e.getMessage(),e);
+		}
+	}
+	
+	//审核用户
+	@Override
+	public void checkUserByIds(String[] ids, Short status) {
+		// TODO Auto-generated method stub
+		try {
+			for(String id : ids){
+				//根据用户的id获取用户信息    对象的状态：瞬时状态(与session未关联过)   持久化状态（与session有关联）   脱管状态(之前与session关联过)
+
+				User user = userDao.get(User.class, id);
+				user.setStatus(status);
+				user.setCheckDate(new Date());
+				user.setChecker(OAContant.getCurrentUser());
+				user.setModifier(OAContant.getCurrentUser());
+				user.setModifyDate(new Date());	
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("用户信息审核失败："+e.getMessage(),e);
+		}
+		
+		
+	}
+
+	//异步加载部门以及职位信息
+	@Override
+	public String ajaxLoadDeptAndJob() {
+		// TODO Auto-generated method stub
+		try {
+			
+			JSONObject obj = new JSONObject();
+			
+			List<Map<Integer,String>> depts = deptDao.findAllDepts();
+			
+			List<Map<Integer,String>> jobs = jobDao.findAllJobs();
+			obj.put("depts", depts);
+			obj.put("jobs", jobs);
+
+			//将集合转成json格式字符窜
+			return obj.toString();//   {depts:[{},{}],jobs:[{},{}]}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("部门以及职位信息加载失败："+e.getMessage(),e);
+		}
+	}
+
+	//异步校验用户名是否存在
+	@Override
+	public String ajaxValidUser(String userId) {
+		// TODO Auto-generated method stub
+	try {
+			
+		   User user = userDao.get(User.class, userId);
+            if(user!=null){
+            	return "exist";
+            }else{
+            	return "notExist";
+            }
+            
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			throw new OAException("用户信息校验失败："+e.getMessage(),e);
+		}
+	}
+
+}

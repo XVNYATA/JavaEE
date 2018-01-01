@@ -1,0 +1,135 @@
+1、添加用户信息    通过jqueryEasyUi   
+   a、添加成功时给出提示信息，并实现防止表单重复提交
+   引入token拦截器
+   b、异步校验用户名是否存在
+
+   $("#divDialog").dialog({
+		title : "修改用户", // 标题
+		cls : "easyui-dialog", // class
+		width : 480, // 宽度
+		height : 255, // 高度
+		maximizable : true, // 最大化
+		minimizable : false, // 最小化
+		collapsible : true, // 可伸缩
+		modal : true, // 模态窗口
+		onClose : function(){ // 关闭窗口
+			window.location = "${ctx}/admin/identity/selectUser.jspx?pageModel.pageIndex=${pageModel.pageIndex}&user.name=${user.name}&user.phone=${user.phone}&user.dept.id=${user.dept.id}";
+		}
+	});
+
+
+2、修改用户信息
+    $("#updateUser").click(function(){
+	/** 获取选择中的checkbox */
+	var boxs = $("input[id^='box_']:checked");
+	if (boxs.length == 0){
+		alert("请选择要修改的用户！");
+	}else if (boxs.length == 1){
+		$("#divDialog").dialog({
+			title : "修改用户", // 标题
+			cls : "easyui-dialog", // class
+			width : 480, // 宽度
+			height : 255, // 高度
+			maximizable : true, // 最大化
+			minimizable : false, // 最小化
+			collapsible : true, // 可伸缩
+			modal : true, // 模态窗口
+			onClose : function(){ // 关闭窗口
+				window.location = "${ctx}/admin/identity/selectUser.jspx?pageModel.pageIndex=${pageModel.pageIndex}&user.name=${user.name}&user.phone=${user.phone}&user.dept.id=${user.dept.id}";
+			}
+		});
+		$("#iframe").attr("src", "${ctx}/admin/identity/showUpdateUser.jspx?user.userId=" + boxs.val()).show();
+	}else{
+		alert("修改用户时，只能选择一个！");
+	}
+});
+
+//瞬时   持久化   脱管  
+
+User u = session.get(User.class,user.getUserId());
+u.setAnswer(user.getAnswer());
+u.setDept(user.getDept());
+u.setEmail(user.getEmail());
+u.setJob(user.getJob());
+u.setModifier(AdminConstant.getSessionUser());
+u.setModifyDate(new Date());
+u.setName(user.getName());
+u.setPhone(user.getPhone());
+u.setQqNum(user.getQqNum());
+u.setQuestion(user.getQuestion());
+u.setSex(user.getSex());
+u.setTel(user.getTel());
+
+
+3、国际化提示信息
+
+
+
+
+4、角色实现查询功能
+
+
+
+
+5、添加角色
+
+
+
+
+6、修改角色
+
+
+
+7、删除角色
+
+
+
+8、Spring4整合Hibernate4事务控制：
+
+   1. 事务切面切业务层(因为业务层方法是对多个Dao进行操作).
+      单张表不存在事务.
+   
+   2. Spring4整合Hibernate4事务分两种：
+      read-only="true"  : 没有开启事务，只能做查询。
+      read-only="false" : 开启了事务，添加、修改、删除、[查询].
+
+   3. 业务层方法加了try{}catch(){}对事务有影响。
+      
+      -- 加了try{}catch(){}没有引发异常，事务就失效！(注意)
+
+      -- 加了try{}catch(){throw new 异常类}必须要引发异常.(事物又生效)
+         try{
+
+		 }catch(Exception ex){
+			 throw new RuntimeException(ex);
+		 } 
+	 默认情况下业务层方法出现了RuntimeException或它的子类异常，事务就回滚！
+
+	 try{
+
+	 }catch(Exception ex){
+	     throw new Exception(ex);
+	 }
+	 如果业务层方法引发异常不是RuntimeException或它的子类异常，事务就失效！
+	 如果想事务有效，就需要在配置事务属性时，进行指定。
+	 rollback-for : 业务层方法出现什么时候就回滚.(RuntimeException)
+	 no-rollback-for : 业务层方法出现什么时候不回滚. (直接提交).
+
+
+
+    4. Spring4配置事务的两种方式：
+
+       1. AOP切面方式。(对业务层方法约定的太死)
+
+       2. 用annotation注解事务.(更灵活)
+          
+	  第一步：在applicationContext.xml文件中
+	  <!-- 开启annotation注解事务 -->
+          <tx:annotation-driven transaction-manager="transactionManager"/>
+
+	  第二步：在业务层实现类上加事务注解.
+	      事务注解加在类上，该类中所有的方法都用这种事务策略
+	      @Transactional(readOnly=false, rollbackFor={RuntimeException.class})
+
+
+

@@ -1,0 +1,63 @@
+创建项目
+    1.WEB项目
+        mvn archetype:generate \
+            -DgroupId=com.mycompany.app \
+            -DartifactId=my-app \
+            -DarchetypeArtifactId=maven-archetype-webapp \
+            -DinteractiveMode=false
+    2.普通项目
+        mvn archetype:generate \
+            -DgroupId=com.mycompany.app \
+            -DartifactId=my-app \
+            -DinteractiveMode=false
+
+编译运行
+    1.编译
+        mvn compile
+    2.打包
+        mvn package
+    3.测试
+        mvn test   自动执行所有的测试用例
+
+    4.安装到本地库
+        mvn install
+
+    5.运行WEB项目
+        需要加入一个嵌入式的WEB服务器，包括Tomcat、Jetty等都有相应的插件，不过Jetty速度比较快。
+          <build>
+            <plugins>
+                <plugin>
+                      <groupId>org.eclipse.jetty</groupId>
+                      <artifactId>jetty-maven-plugin</artifactId>
+                      <version>9.2.6.v20141205</version>
+                </plugin>
+            </plugins>
+          </build>
+        然后执行： mvn jetty:run 即可运行
+
+    6.运行普通项目的main方法
+        mvn exec:java -Dexec.mainClass="com.vineetmanohar.module.Main"
+        mvn exec:java -Dexec.mainClass="com.vineetmanohar.module.Main" -Dexec.args="arg0 arg1 arg2"
+
+    7.清除编译好的内容
+        mvn clean  这会删除target目录
+    8.转换为eclipse项目
+        mvn eclipse:eclipse
+    9.查看maven有哪些项目类型分类
+        mvn archetype:generate -DarchetypeCatalog=intrenal
+    10.下载资源
+        # 下载jar文件
+        mvn dependency:resolve
+        # 下载源代码（如果有的话，会自动下载）
+        mvn dependency:sources
+        # 下载javadoc文档（如果有的话）
+        mvn dependency:resolve -Dclassifier=javadoc
+    11.显示依赖树
+        mvn dependency:tree
+
+
+
+
+
+
+

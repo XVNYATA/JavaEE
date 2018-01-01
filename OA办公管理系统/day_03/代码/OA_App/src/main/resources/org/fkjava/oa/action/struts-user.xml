@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="user" namespace="/user" extends="oa">
+        
+        <!-- 用户异步登录 -->
+        <action name="userLogin" class="org.fkjava.oa.identity.action.UserAction" method="userLogin">
+            <interceptor-ref name="defaultStack"></interceptor-ref>     
+        </action>
+        
+        
+        <!-- 用户退出 -->
+        <action name="logout" class="org.fkjava.oa.identity.action.UserAction" method="logout">
+            <result>/WEB-INF/jsp/login.jsp</result>
+        </action>
+        
+        <!-- 用户分页查询 -->
+        <action name="selectUserByPage" class="org.fkjava.oa.identity.action.UserAction" method="selectUserByPage">
+            <result>/WEB-INF/jsp/user/user.jsp</result>
+        </action>
+        
+        <!-- 删除用户信息 -->
+        <action name="deleteUserByIds" class="org.fkjava.oa.identity.action.UserAction" method="deleteUserByIds">
+           <result type="chain">selectUserByPage</result>
+        </action>
+        
+        <!-- 审核用户信息 -->
+        <action name="checkUserByIds" class="org.fkjava.oa.identity.action.UserAction" method="checkUserByIds">
+             <result type="chain">selectUserByPage</result>
+        </action>
+        
+        <!-- 展示添加用户页面 -->
+        <action name="showAddUser">
+               <result>/WEB-INF/jsp/user/addUser.jsp</result>
+        </action>
+        
+        <!-- 异步加载部门以及职位信息 -->
+        <action name="ajaxLoadDeptAndJob" class="org.fkjava.oa.identity.action.UserAction" method="ajaxLoadDeptAndJob"></action>
+        
+        <!-- 异步验证用户信息是否存在 -->
+        <action name="ajaxValidUser" class="org.fkjava.oa.identity.action.UserAction" method="ajaxValidUser"></action>
+    </package>
+        
+</struts>

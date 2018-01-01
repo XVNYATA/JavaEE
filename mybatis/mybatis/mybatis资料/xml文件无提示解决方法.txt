@@ -1,0 +1,8 @@
+windows - preferences
+
+ËÑË÷¿òÊäÈë xml catalog
+add
+
+ Location: mybatis-3-mapper.dtd
+   Key Type:Public ID
+key:-//mybatis.org//DTD Mapper 3.0//EN

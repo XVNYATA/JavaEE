@@ -1,0 +1,238 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>购物商城--我的订单</title>
+	<link href="images/fkjava.ico" rel="shortcut icon" type="image/x-icon" />
+	<!-- main.css是网站前台主要的CSS -->
+	<link rel=stylesheet type=text/css href="css/main.css" />
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<!-- header部分 -->
+	<script type="text/javascript" src="js/header.js"></script>
+	<script type="text/javascript">
+		function showDetails(id){
+			$("#detail_" + id).toggle();
+		}
+	</script>
+</head>
+<body>
+
+	
+
+<!--header begin-->
+<div id="shortcut">
+	<script type="text/javascript">
+		var contextPath = "/ec";
+		header("张小棠");
+	</script>
+	﻿
+	<div class="nav">
+		<div class="w960 center">
+			<ul>
+				<li><a title="首页" href="/ec">首页</a></li>
+				<!-- 一级类型 -->
+				
+					<li><a title="首页" href="index?typeCode=0001">手机</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0002">对讲机</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0003">手机配件</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0004">数码相机</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0005">单反相机</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0006">摄相机</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0007">单电/微单相机</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0008">镜头</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0009">滤镜</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0010">单反配件</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0011">读卡器</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0012">存储卡</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0013">移动电源</a></li>
+				
+					<li><a title="首页" href="index?typeCode=0014">数码包</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</div>
+<!--header end-->
+
+	<!-- middle part -->
+	<div style="positon: relative; width: 960px;margin: 0px auto;">
+		<div>
+	        <p style="text-align:left;">
+	        	<span id="shoppingcart_dd" style="font-size:13px;line-height:28px;">
+	        	当前位置&nbsp;&gt;&gt;&nbsp;我的订单
+	        	 </span>
+	        </p>
+	     	 <h1 style="font-weight:bold;font-size:12px;">
+	     	 <font color="red">张小棠</font>
+	     	 ：您好；您当前共有[3]个订单：(点击订单可显示该订单下的购物明细)
+	     	 </h1>
+	        <div style="width:100%;" align="center">
+	        	<!-- 
+	        	border-collapse:collapse; 表示边框合并在一起。
+	        	border-collapse:separate;表示边框之间的间距，间距的大小用border-spacing:px;定义大小。
+	        	"border-collapse:separate;border-spacing:0px;" 等效于 "border-collapse:collapse"
+	        	 -->
+		        <table width="100%" style="border-collapse:separate;border-spacing:0px;">
+		        	<thead>
+		        		<tr style="background-color:#dff0d8">
+		        			<th>订单号</th>
+		        			<th>下单时间</th>
+		        			<th>发货时间</th>
+		        			<th>状态</th>
+		        			<th>总金额</th>
+		        		</tr>
+		        	</thead>
+		        	<tbody>
+			        	
+			        		<tr onmouseover="this.style.backgroundColor='#FFFFB0';" 
+			        			onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        			style="cursor:pointer;"
+			        			onclick="showDetails('201405041442414')">
+			        			<td>201405041442414</td>
+			        			<td>2014-05-04 14:42:42</td>
+			        			<td></td>
+			        			<td>
+			        				新订单
+									
+			        			</td>
+			        			<td>2,449.5</td>
+			        		</tr>
+			        		<tr id="detail_201405041442414" style="display:none;">
+			        			<td colspan="5">
+			        				<table style="width:100%;border-collapse:collapse;">
+			        					<tr style="background-color:#CCCCCC;border-bottom-style: solid;">
+			        						<th>名称</th>
+			        						<th>价格</th>
+			        						<th>数量</th>
+			        					</tr>
+			        					
+			        				</table>
+			        			</td>
+			        		</tr>
+			        	
+			        		<tr onmouseover="this.style.backgroundColor='#FFFFB0';" 
+			        			onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        			style="cursor:pointer;"
+			        			onclick="showDetails('2014050414540581')">
+			        			<td>2014050414540581</td>
+			        			<td>2014-05-04 14:54:05</td>
+			        			<td></td>
+			        			<td>
+			        				新订单
+									
+			        			</td>
+			        			<td>2,772.6</td>
+			        		</tr>
+			        		<tr id="detail_2014050414540581" style="display:none;">
+			        			<td colspan="5">
+			        				<table style="width:100%;border-collapse:collapse;">
+			        					<tr style="background-color:#CCCCCC;border-bottom-style: solid;">
+			        						<th>名称</th>
+			        						<th>价格</th>
+			        						<th>数量</th>
+			        					</tr>
+			        					
+				        					<tr onmouseover="this.style.backgroundColor='#dff0d8';" 
+			        							onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        							style="border-bottom-style: solid;">
+				        						<td>
+				        						<img width="60px" height="60px" src="images/article/20130401_1_0001_1.jpg"/>
+				        						苹果（APPLE）iPhone 5 16G版 3G手机（白色）WCDMA/GSM 全新设计，更薄、更轻、更快、更好的iPhone，以及卓越音效的EarPods耳机</td>
+				        						<td>4,899.0
+				        						(疯狂价：489.9)</td>
+				        						<td>4</td>
+				        					</tr>
+			        					
+				        					<tr onmouseover="this.style.backgroundColor='#dff0d8';" 
+			        							onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        							style="border-bottom-style: solid;">
+				        						<td>
+				        						<img width="60px" height="60px" src="images/article/20130401_2_0001_1.jpg"/>
+				        						摩托罗拉商用对讲机SMP268 清仓，底价出清，最后一批疯狂抢</td>
+				        						<td>269.0
+				        						(疯狂价：269.0)</td>
+				        						<td>2</td>
+				        					</tr>
+			        					
+				        					<tr onmouseover="this.style.backgroundColor='#dff0d8';" 
+			        							onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        							style="border-bottom-style: solid;">
+				        						<td>
+				        						<img width="60px" height="60px" src="images/article/20130401_3_0002_1.jpg"/>
+				        						捷波朗 EASYGO+ 易行 蓝牙耳机 黑色 蓝牙3.0,支持音乐,智能语音提示,同时待机两部手机</td>
+				        						<td>275.0
+				        						(疯狂价：275.0)</td>
+				        						<td>1</td>
+				        					</tr>
+			        					
+			        				</table>
+			        			</td>
+			        		</tr>
+			        	
+			        		<tr onmouseover="this.style.backgroundColor='#FFFFB0';" 
+			        			onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        			style="cursor:pointer;"
+			        			onclick="showDetails('2014050415213864')">
+			        			<td>2014050415213864</td>
+			        			<td>2014-05-04 15:21:39</td>
+			        			<td></td>
+			        			<td>
+			        				新订单
+									
+			        			</td>
+			        			<td>489.9</td>
+			        		</tr>
+			        		<tr id="detail_2014050415213864" style="display:none;">
+			        			<td colspan="5">
+			        				<table style="width:100%;border-collapse:collapse;">
+			        					<tr style="background-color:#CCCCCC;border-bottom-style: solid;">
+			        						<th>名称</th>
+			        						<th>价格</th>
+			        						<th>数量</th>
+			        					</tr>
+			        					
+				        					<tr onmouseover="this.style.backgroundColor='#dff0d8';" 
+			        							onmouseout="this.style.backgroundColor='#FFFFFF';"
+			        							style="border-bottom-style: solid;">
+				        						<td>
+				        						<img width="60px" height="60px" src="images/article/20130401_1_0001_1.jpg"/>
+				        						苹果（APPLE）iPhone 5 16G版 3G手机（白色）WCDMA/GSM 全新设计，更薄、更轻、更快、更好的iPhone，以及卓越音效的EarPods耳机</td>
+				        						<td>4,899.0
+				        						(疯狂价：489.9)</td>
+				        						<td>1</td>
+				        					</tr>
+			        					
+			        				</table>
+			        			</td>
+			        		</tr>
+			        	
+		        	</tbody>
+		        </table>
+	        </div>
+      	</div>
+	</div>
+	<!---- middle end----->
+	
+	<!--bottom part-->
+	<div style="width: 1060px;margin: 0px auto;">
+  		<img src="images/step.jpg"/>
+  	</div>
+</body>
+</html>

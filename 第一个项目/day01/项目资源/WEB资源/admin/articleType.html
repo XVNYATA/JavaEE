@@ -1,0 +1,603 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>管理员界面--商品类型</title>
+<link rel="stylesheet" href="../css/commons.css" type="text/css">
+<style type="text/css">
+*{margin:0;padding:0;}
+#banner-td{margin:0px 0px 0px 0px;background: url(../images/header.gif) repeat-x top right;font-size:14px;}
+#left-menu-td{background-color:#C0DFFD;font-size:14px;text-align:center;}
+#content-td{margin:0px 0px 0px 0px;background-color:#fff;}
+</style>
+</head>
+<body ryt12475="1">
+	<table style="padding:0px;" width="100%">
+		<tbody><tr>
+			<td id="banner-td">
+			<!-- 横幅开始 -->
+			
+
+<div>
+	<div style="float: left; margin: 0px 0px 0px 10px;">
+		<h1 style="margin: 2px;">
+			<img alt="疯狂java" src="../images/logo.gif">
+		</h1>
+	</div>
+	<div style="float: right; text-align: center; margin: 30px 30px 0px 0px; algin: center;">
+		<span style="color: white">管理员：您好；欢迎登录购物商城管理系统！</span>
+	</div>
+</div>
+			<!-- 横幅结束 -->
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="100%">
+					<tbody><tr>
+						<td id="left-menu-td" valign="top" width="15%">
+						<!-- 左侧菜单开始 -->
+						
+
+<div class="admin_memu">
+	<ul id="nav">
+		<li><a href="javascript:void(0);" style="text-align: center;" onclick="c" class="parent" id="1"><strong><font color="blue">商城后台管理</font></strong></a>
+			<ul id="opt_1" class="child_area">
+				<li class="last"><a href="http://localhost:8080/ec/admin/user?method=list">用户管理</a></li>
+				<li class="last"><a href="http://localhost:8080/ec/admin/articleType?method=list">商品类型管理</a></li>
+				<li class="last"><a href="http://localhost:8080/ec/admin/article?method=list">商品管理</a></li>
+				<li class="last"><a href="http://localhost:8080/ec/admin/order?method=list">订单管理</a></li>
+				<li class="last"><a href="http://localhost:8080/ec/logout.action">安全退出</a></li>
+			</ul></li>
+	</ul>
+</div>
+						<!-- 左侧菜单结束 -->
+						</td>
+						<td valign="top">
+						<!-- 内容开始 -->
+						<form action="/ec/admin/articleType?method=list" method="POST">
+							 一级类型：
+							<select name="searchCode">
+								<option selected="selected" value="">-- 请选择 --</option>
+								
+									<option value="0001">手机</option>
+								
+									<option value="0002">对讲机</option>
+								
+									<option value="0003">手机配件</option>
+								
+									<option value="0004">数码相机</option>
+								
+									<option value="0005">单反相机</option>
+								
+									<option value="0006">摄相机</option>
+								
+									<option value="0007">单电/微单相机</option>
+								
+									<option value="0008">镜头</option>
+								
+									<option value="0009">滤镜</option>
+								
+									<option value="0010">单反配件</option>
+								
+									<option value="0011">读卡器</option>
+								
+									<option value="0012">存储卡</option>
+								
+									<option value="0013">移动电源</option>
+								
+							</select>
+						    <input value="查询" type="submit"> &nbsp;
+						    <a href="http://localhost:8080/ec/admin/articleType?method=beforAdd">添加</a>
+						</form>
+						<table width="100%">
+							<thead>
+								<tr>
+									<th>类型编号</th>
+									<th>类型名称</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+									<tr>
+										<td>0001</td>
+										<td>手机</td>
+										<td>手机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0001" onclick="return confirm('确定要删除 手机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010001</td>
+										<td>----苹果</td>
+										<td>苹果</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010001" onclick="return confirm('确定要删除 ----苹果 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010002</td>
+										<td>----华为</td>
+										<td>华为</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010002" onclick="return confirm('确定要删除 ----华为 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010003</td>
+										<td>----诺基亚</td>
+										<td>诺基亚</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010003" onclick="return confirm('确定要删除 ----诺基亚 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010004</td>
+										<td>----联想</td>
+										<td>联想</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010004">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010004" onclick="return confirm('确定要删除 ----联想 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010005</td>
+										<td>----魅族</td>
+										<td>魅族</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010005">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010005" onclick="return confirm('确定要删除 ----魅族 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010006</td>
+										<td>----索尼</td>
+										<td>索尼</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010006">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010006" onclick="return confirm('确定要删除 ----索尼 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010007</td>
+										<td>----三星</td>
+										<td>三星</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010007">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010007" onclick="return confirm('确定要删除 ----三星 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010008</td>
+										<td>----HTC</td>
+										<td>HTC</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010008">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010008" onclick="return confirm('确定要删除 ----HTC 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00010009</td>
+										<td>----摩托罗拉</td>
+										<td>摩托罗拉</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00010009">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00010009" onclick="return confirm('确定要删除 ----摩托罗拉 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0002</td>
+										<td>对讲机</td>
+										<td>对讲机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0002" onclick="return confirm('确定要删除 对讲机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00020001</td>
+										<td>----手台</td>
+										<td>手台</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00020001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00020001" onclick="return confirm('确定要删除 ----手台 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00020002</td>
+										<td>----车台</td>
+										<td>车台</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00020002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00020002" onclick="return confirm('确定要删除 ----车台 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0003</td>
+										<td>手机配件</td>
+										<td>手机配件</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0003" onclick="return confirm('确定要删除 手机配件 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030001</td>
+										<td>----手机电池</td>
+										<td>手机电池</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030001" onclick="return confirm('确定要删除 ----手机电池 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030002</td>
+										<td>----蓝牙耳机</td>
+										<td>蓝牙耳机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030002" onclick="return confirm('确定要删除 ----蓝牙耳机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030003</td>
+										<td>----充电器/数据线</td>
+										<td>充电器/数据线</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030003" onclick="return confirm('确定要删除 ----充电器/数据线 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030004</td>
+										<td>----手机耳机</td>
+										<td>手机耳机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030004">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030004" onclick="return confirm('确定要删除 ----手机耳机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030005</td>
+										<td>----手机贴膜</td>
+										<td>手机贴膜</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030005">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030005" onclick="return confirm('确定要删除 ----手机贴膜 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030006</td>
+										<td>----手机保护套</td>
+										<td>手机保护套</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030006">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030006" onclick="return confirm('确定要删除 ----手机保护套 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00030007</td>
+										<td>----iPhone配件</td>
+										<td>iPhone配件</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00030007">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00030007" onclick="return confirm('确定要删除 ----iPhone配件 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0004</td>
+										<td>数码相机</td>
+										<td>数码相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0004">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0004" onclick="return confirm('确定要删除 数码相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00040001</td>
+										<td>----准专业机</td>
+										<td>准专业机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00040001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00040001" onclick="return confirm('确定要删除 ----准专业机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00040002</td>
+										<td>----防水相机</td>
+										<td>防水相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00040002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00040002" onclick="return confirm('确定要删除 ----防水相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00040003</td>
+										<td>----中长焦相机</td>
+										<td>中长焦相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00040003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00040003" onclick="return confirm('确定要删除 ----中长焦相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00040004</td>
+										<td>----自拍相机</td>
+										<td>自拍相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00040004">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00040004" onclick="return confirm('确定要删除 ----自拍相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00040005</td>
+										<td>----胶片相机</td>
+										<td>胶片相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00040005">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00040005" onclick="return confirm('确定要删除 ----胶片相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0005</td>
+										<td>单反相机</td>
+										<td>单反相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0005">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0005" onclick="return confirm('确定要删除 单反相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00050001</td>
+										<td>----入门级</td>
+										<td>入门级</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00050001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00050001" onclick="return confirm('确定要删除 ----入门级 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00050002</td>
+										<td>----中高级</td>
+										<td>中高级</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00050002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00050002" onclick="return confirm('确定要删除 ----中高级 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00050003</td>
+										<td>----专业级</td>
+										<td>专业级</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00050003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00050003" onclick="return confirm('确定要删除 ----专业级 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00050004</td>
+										<td>----大师级</td>
+										<td>大师级</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00050004">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00050004" onclick="return confirm('确定要删除 ----大师级 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0006</td>
+										<td>摄相机</td>
+										<td>摄相机</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0006">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0006" onclick="return confirm('确定要删除 摄相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00060001</td>
+										<td>----家用</td>
+										<td>家用</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00060001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00060001" onclick="return confirm('确定要删除 ----家用 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00060002</td>
+										<td>----准专业</td>
+										<td>准专业</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00060002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00060002" onclick="return confirm('确定要删除 ----准专业 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00060003</td>
+										<td>----专业级摄像机</td>
+										<td>专业级</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00060003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00060003" onclick="return confirm('确定要删除 ----专业级摄像机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0007</td>
+										<td>单电/微单相机</td>
+										<td>单电/微单</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0007">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0007" onclick="return confirm('确定要删除 单电/微单相机 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00070001</td>
+										<td>----机身</td>
+										<td>机身</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00070001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00070001" onclick="return confirm('确定要删除 ----机身 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00070002</td>
+										<td>----定焦套装</td>
+										<td>定焦套装</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00070002">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00070002" onclick="return confirm('确定要删除 ----定焦套装 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00070003</td>
+										<td>----变焦套装</td>
+										<td>变焦套装</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00070003">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00070003" onclick="return confirm('确定要删除 ----变焦套装 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00070004</td>
+										<td>----双镜头套装</td>
+										<td>双镜头套装</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00070004">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00070004" onclick="return confirm('确定要删除 ----双镜头套装 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0008</td>
+										<td>镜头</td>
+										<td>镜头</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0008">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0008" onclick="return confirm('确定要删除 镜头 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00080001</td>
+										<td>测试的类型二级</td>
+										<td>测试的类型二级测试的类型二级</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00080001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00080001" onclick="return confirm('确定要删除 测试的类型二级 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0009</td>
+										<td>滤镜</td>
+										<td>滤镜</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0009">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0009" onclick="return confirm('确定要删除 滤镜 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0010</td>
+										<td>单反配件</td>
+										<td>单反配件</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0010">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0010" onclick="return confirm('确定要删除 单反配件 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0011</td>
+										<td>读卡器</td>
+										<td>读卡器</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0011">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0011" onclick="return confirm('确定要删除 读卡器 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0012</td>
+										<td>存储卡</td>
+										<td>存储卡</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0012">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0012" onclick="return confirm('确定要删除 存储卡 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>0013</td>
+										<td>移动电源</td>
+										<td>移动电源</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=0013">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=0013" onclick="return confirm('确定要删除 移动电源 吗？');">删除</a>
+										</td>
+								</tr>
+								
+									<tr>
+										<td>00130001</td>
+										<td>数码包</td>
+										<td>数码包</td>
+										<td>
+											<a href="http://localhost:8080/ec/admin/articleType?method=detail&amp;code=00130001">修改</a> &nbsp;
+											<a href="http://localhost:8080/ec/admin/articleType?method=delete&amp;code=00130001" onclick="return confirm('确定要删除 数码包 吗？');">删除</a>
+										</td>
+								</tr>
+								
+							</tbody>
+						</table>
+						<!-- 内容结束 -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+
+</body></html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.example.BlogMapper">
+  
+    <!-- 根据用户id获取用户信息   parameterType:参数数据类型    resultType：返回数据的类型    包名+类型-->
+    <select id="getUserById" parameterType="int" resultType="org.fkjava.bean.User">
+       select * from tb_user where id = #{id}
+    </select>
+    
+    <!-- 获取所有的用户信息 -->
+    <select id="findAllUser" resultType="org.fkjava.bean.User">
+       select * from tb_user
+    </select>
+    
+    <!-- 删除用户信息 -->
+    <delete id="deleteUserById" parameterType="int">
+       delete from tb_user where id = #{aaa}
+    </delete>
+    
+    <!-- 更新用户信息 -->
+    <update id="updateUserById">
+    
+       update tb_user set loginname = 'rose' where id = #{id}
+    
+    </update>
+    
+</mapper>

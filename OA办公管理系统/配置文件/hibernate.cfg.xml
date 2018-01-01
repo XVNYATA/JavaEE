@@ -1,0 +1,52 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<!-- 数据源 -->
+	<session-factory>
+		<!-- 配置Hibernat的数据库方言，注意mysql5之后是MySQL5InnoDBDialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		
+		<!-- 连接数据库的参数 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!--  jdbc:mysql:///j1510 直接连本机-->
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/j1601</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		
+		<!-- 配置DataSource -->
+		<!-- 最大连接数 -->
+		<property name="hibernate.c3p0.max_size">200</property>
+		<!-- 最小连接数 -->
+		<property name="hibernate.c3p0.min_size">2</property>
+		<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+		<property name="hibernate.c3p0.timeout">5000</property>
+		<!-- 最大的PreparedStatement的数量 -->
+		<property name="hibernate.c3p0.max_statements">100</property>
+		<!-- 每隔3000秒检查连接池里的空闲连接 ，单位是秒-->
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+		<property name="hibernate.c3p0.acquire_increment">2</property>
+		<!-- 每次是否验证连接是否可用 -->
+		<property name="hibernate.c3p0.validate">false</property>
+		
+		<!-- sql语句显示在控制台 -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- 
+			create：每次都会重新创建表
+			update：如果有表，就不管；如果没表，就创建 ，如果有更新，会更新
+			create-drop：每次都会重新创建表，之后删除，测试
+		-->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<!-- 告诉Hibernate自定义的映射文件
+			如果是xml文件：rosource
+			如果是类文件：class
+		 -->
+		<mapping class="org.fkjava.pojo.User"/>
+		
+	</session-factory>
+</hibernate-configuration>

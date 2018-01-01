@@ -1,0 +1,11 @@
+1. 在eclipse中选择xxx-webapp原型来创建.
+
+2. web项目结构：
+   src/main/java        存放java代码
+      /main/resources   存放配置文件 比如struts.xml
+      /main/webapp (WebContent)
+
+      /test/java        存放java代码（做测试）
+      /test/resources   存放配置文件 比如struts.xml（测试）
+   
+   配置项目依赖的jar包：http://search.maven.org/

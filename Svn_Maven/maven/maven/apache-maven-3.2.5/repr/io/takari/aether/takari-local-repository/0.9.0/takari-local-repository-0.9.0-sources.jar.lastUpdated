@@ -1,0 +1,9 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Sep 07 10:11:50 CST 2016
+@default-pubic-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1452480252070
+http\://repo.maven.apache.org/maven2/.lastUpdated=1473214310557
+@default-pubic-http\://192.168.10.222\:8081/nexus/content/groups/public/.lastUpdated=1469583896545
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact io.takari.aether\:takari-local-repository\:jar\:sources\:0.9.0 from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Connection refused\: connect
+http\://localhost\:8081/nexus/content/groups/public/.error=Could not transfer artifact io.takari.aether\:takari-local-repository\:jar\:sources\:0.9.0 from/to pubic (http\://localhost\:8081/nexus/content/groups/public/)\: Connection refused\: connect
+@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1457056167409
+http\://192.168.10.222\:8081/nexus/content/groups/public/.error=Could not transfer artifact io.takari.aether\:takari-local-repository\:jar\:sources\:0.9.0 from/to pubic (http\://192.168.10.222\:8081/nexus/content/groups/public/)\: Connection refused\: connect

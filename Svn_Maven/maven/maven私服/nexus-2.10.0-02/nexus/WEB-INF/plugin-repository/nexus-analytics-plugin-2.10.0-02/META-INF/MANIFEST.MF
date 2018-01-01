@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Export-Package: com.sonatype.analytics.client,com.sonatype.analytics.c
+ lient.internal,com.sonatype.nexus.analytics,com.sonatype.nexus.analyt
+ ics.internal,com.sonatype.nexus.analytics.rest
+Require-Bundle: org.sonatype.nexus.plugin-api;resolution:=optional,org
+ .sonatype.nexus.plugins.nexus-crypto-plugin;bundle-version=2.10.0.02,
+ org.sonatype.nexus.plugins.nexus-siesta-plugin;bundle-version=2.10.0.
+ 02,org.sonatype.nexus.plugins.nexus-wonderland-plugin;bundle-version=
+ 2.10.0.02,org.sonatype.nexus.plugins.nexus-groovy-plugin;bundle-versi
+ on=2.10.0.02,org.sonatype.nexus.plugins.nexus-capabilities-plugin;bun
+ dle-version=2.10.0.02,org.sonatype.nexus.plugins.nexus-ui-extjs3-plug
+ in;bundle-version=2.10.0.02,org.sonatype.nexus.plugins.nexus-kazuki-p
+ lugin;bundle-version=2.10.0.02
+Bundle-ClassPath: nexus-analytics-plugin-2.10.0-02.jar,dependencies/an
+ alytics-client-1.0.0.jar
+Bundle-Version: 2.10.0.02
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.sonatype.nexus.plugins.nexus-analytics-plugin
+

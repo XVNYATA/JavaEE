@@ -1,0 +1,15 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Sep 19 23:24:02 CST 2016
+http\://s3.amazonaws.com/maven.springframework.org/osgi/.lastUpdated=1474298641024
+https\://springframework.svn.sourceforge.net/svnroot/springframework/repos/repo-ext/.lastUpdated=1474298640142
+http\://repo1.maven.org/eclipse/.error=
+http\://repo.maven.apache.org/maven2/.lastUpdated=1474298642465
+http\://repo1.maven.org/eclipse/.lastUpdated=1474298625920
+http\://s3.amazonaws.com/maven.springframework.org/osgi/.error=
+http\://m2.safehaus.org/.error=Could not transfer artifact org.springframework\:spring-core\:pom\:2.5.1 from/to safehaus-repository (http\://m2.safehaus.org)\: connect timed out
+http\://people.apache.org/repo/m2-incubating-repository/.lastUpdated=1474298625472
+https\://springframework.svn.sourceforge.net/svnroot/springframework/repos/repo-ext/.error=
+http\://s3.amazonaws.com/maven.springframework.org/milestone/.error=
+http\://people.apache.org/repo/m2-incubating-repository/.error=
+@default-http\://m2.safehaus.org/.lastUpdated=1474298636337
+http\://s3.amazonaws.com/maven.springframework.org/milestone/.lastUpdated=1474298641757

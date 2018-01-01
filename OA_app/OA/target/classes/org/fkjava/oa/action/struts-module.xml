@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name = "module" namespace="/module" extends="oa">
+		<!-- 模块管理main页面 -->
+		<action name="mgrModule" >
+			<result>/WEB-INF/jsp/module/moduleMain.jsp</result>
+		</action>
+		
+		<!-- 加载左边管理模块页面 -->
+		<action name="moduleLeft">
+			<result>/WEB-INF/jsp/module/moduleLeft.jsp</result>
+		</action>
+		
+		<!-- 异步加载管理模块信息 -->
+		<action name="ajaxLoadModule" class="org.fkjava.oa.identity.action.ModuleAction" method="ajaxLoadModule">
+		</action>
+		
+		<!-- 管理模块左边查询节点 -->
+		<action name="selectModuleByParentCode" class="org.fkjava.oa.identity.action.ModuleAction" method="selectModuleByParentCode">
+			<result>/WEB-INF/jsp/module/module.jsp</result>
+		</action>
+		
+		<!-- 跳转至更新模块页面 -->
+		<action name="showUpdateModule" class="org.fkjava.oa.identity.action.ModuleAction" method="showUpdateModule">
+			<result>/WEB-INF/jsp/module/updateModule.jsp</result>
+		</action>
+	</package>
+</struts>

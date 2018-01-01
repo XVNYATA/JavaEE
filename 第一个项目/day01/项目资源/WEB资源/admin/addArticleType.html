@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>管理员界面--添加商品类型</title>
+<link rel="stylesheet" href="/ec/css/commons.css" type="text/css" />
+<style type="text/css">
+*{margin:0;padding:0;}
+#banner-td{margin:0px 0px 0px 0px;background: url(/ec/images/header.gif) repeat-x top right;font-size:14px;}
+#left-menu-td{background-color:#C0DFFD;font-size:14px;text-align:center;}
+#content-td{margin:0px 0px 0px 0px;background-color:#fff;}
+</style>
+</head>
+<body style="font-size:13px;">
+	<table width="100%" style="padding:0px;">
+		<tr>
+			<td id="banner-td">
+			<!-- 横幅开始 -->
+			
+
+<div>
+	<div style="float: left; margin: 0px 0px 0px 10px;">
+		<h1 style="margin: 2px;">
+			<img alt="疯狂java" src="/ec/images/logo.gif">
+		</h1>
+	</div>
+	<div
+		style="float: right; text-align: center; margin: 30px 30px 0px 0px; algin: center;">
+		<span style="color: white">管理员：您好；欢迎登录购物商城管理系统！</span>
+	</div>
+</div>
+			<!-- 横幅结束 -->
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="100%">
+					<tr>
+						<td id="left-menu-td" width="15%" valign="top">
+						<!-- 左侧菜单开始 -->
+						
+
+<div class="admin_memu">
+	<ul id="nav">
+		<li><a href="javascript:void(0);" style="text-align: center;"
+			onclick="c" class="parent" id="1"><strong><font
+					color="blue">商城后台管理</font></strong></a>
+			<ul id="opt_1" class="child_area">
+				<li class="last"><a href="/ec/admin/user?method=list">用户管理</a></li>
+				<li class="last"><a href="/ec/admin/articleType?method=list">商品类型管理</a></li>
+				<li class="last"><a
+					href="/ec/admin/article?method=list">商品管理</a></li>
+				<li class="last"><a
+					href="/ec/admin/order?method=list">订单管理</a></li>
+				<li class="last"><a href="/ec/logout.action">安全退出</a></li>
+			</ul></li>
+	</ul>
+</div>
+						<!-- 左侧菜单结束 -->
+						</td>
+						<td valign="top" align="center">
+						<!-- 内容开始 -->
+						<fieldset style="width:550px;"><legend>添加商品类型</legend>
+						<form action="/ec/admin/articleType?method=add" method="post">
+							<table width="100%" border="0">
+								<tr>
+									<td style="width: 80px;">上级类型</td>
+									<td>
+										<select name="parentCode" style="width: 140px;">
+											<option value="">-- 请选择 --</option>
+											
+												<option value="0001" >手机</option>
+											
+												<option value="0002" >对讲机</option>
+											
+												<option value="0003" >手机配件</option>
+											
+												<option value="0004" >数码相机</option>
+											
+												<option value="0005" >单反相机</option>
+											
+												<option value="0006" >摄相机</option>
+											
+												<option value="0007" >单电/微单相机</option>
+											
+												<option value="0008" >镜头</option>
+											
+												<option value="0009" >滤镜</option>
+											
+												<option value="0010" >单反配件</option>
+											
+												<option value="0011" >读卡器</option>
+											
+												<option value="0012" >存储卡</option>
+											
+												<option value="0013" >移动电源</option>
+											
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>类型名称</td>
+									<td>
+										<input type="text" name="name" size="40"/>
+									</td>
+								</tr>
+								<tr>
+									<td>类型描述</td>
+									<td>
+										<textarea rows="5" cols="38" name="remark"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center">
+										<input type="submit" value="保存"/>
+										<input type="button" value="返回" onclick="javascript:document.location.href='/ec/admin/articleType?method=list'"/>
+									</td>
+								</tr>
+							</table>
+						</form>
+						</fieldset>
+						<span style="color:red;"></span>
+						<!-- 内容结束 -->
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:c="http://www.springframework.org/schema/c"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+      				  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      				  http://www.springframework.org/schema/tx
+      				  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+      				  http://www.springframework.org/schema/aop
+      				  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+      				  http://www.springframework.org/schema/context
+      				  http://www.springframework.org/schema/context/spring-context-4.0.xsd
+      				  http://www.springframework.org/schema/util
+      				  http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    
+ 	<!-- 配置模板dao -->
+ 	<bean id = "tempDao"  abstract="true" lazy-init="true" p:sessionFactory-ref="sessionFactory"/>
+ 	
+ 	<bean id = "deptDao" class="org.fkjava.oa.identity.dao.impl.DeptDao" parent="tempDao"></bean>
+ 	<bean id = "JobDao" class="org.fkjava.oa.identity.dao.impl.JobDao" parent="tempDao"></bean>
+ 	<bean id = "ModuleDao" class="org.fkjava.oa.identity.dao.impl.ModuleDao" parent="tempDao"></bean>
+ 	<bean id = "PopedomDao" class="org.fkjava.oa.identity.dao.impl.PopedomDao" parent="tempDao"></bean>
+ 	<bean id = "RoleDao" class="org.fkjava.oa.identity.dao.impl.RoleDao" parent="tempDao"></bean>
+ 	<bean id = "UserDao" class="org.fkjava.oa.identity.dao.impl.UserDao" parent="tempDao"></bean>
+    
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+	<tlib-version>1.0</tlib-version>
+	<short-name>fktaglib</short-name>
+	<!-- 在JSP页面使用的uri -->
+	<uri>http://www.fkjava.org/j1303/fktaglib</uri>
+	<tag>
+		<!-- 标签名称 -->
+		<name>pager</name>
+		<!-- 标签的处理类 -->
+		<tag-class>org.fkjava.j1303.ec.common.PagerTagHandler</tag-class>
+		<!-- 表示该标签没有标签体，只有标签声明 -->
+		<body-content>empty</body-content>
+		<!-- 声明标签有哪些属性 -->
+		<attribute>
+			<!-- 属性的名称 -->
+			<name>formId</name>
+			<!-- 是否必须 -->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<!-- 属性值的数据类型 -->
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<!-- 属性的名称 -->
+			<name>maxRows</name>
+			<!-- 是否必须 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<!-- 属性值的数据类型 -->
+			<type>java.lang.Integer</type>
+		</attribute>
+	</tag>
+</taglib>

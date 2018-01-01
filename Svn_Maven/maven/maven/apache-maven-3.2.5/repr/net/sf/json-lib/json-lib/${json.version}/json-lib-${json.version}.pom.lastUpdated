@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Sun Mar 06 10:26:17 CST 2016
+@default-pubic-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1452479831425
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact net.sf.json-lib\:json-lib\:pom\:${json.version} from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: Illegal character in path at index 81\: http\://192.168.10.122\:8081/nexus/content/groups/public/net/sf/json-lib/json-lib/${json.version}/json-lib-${json.version}.pom
+http\://localhost\:8081/nexus/content/groups/public/.error=Could not transfer artifact net.sf.json-lib\:json-lib\:pom\:${json.version} from/to pubic (http\://localhost\:8081/nexus/content/groups/public/)\: Illegal character in path at index 76\: http\://localhost\:8081/nexus/content/groups/public/net/sf/json-lib/json-lib/${json.version}/json-lib-${json.version}.pom
+@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1457231177845

@@ -1,0 +1,102 @@
+当商品的明细显示出来以后，可以修改购买数量，然后加入到购物车里面。
+
+此时需要一个购物车对象（ShopCar），一个人只能对应一个购物车对象，不同的人使用不同的购物车对象。
+浏览器和服务器之间，如何来识别是否同一个人？
+    session !
+
+如果浏览器没有关闭，访问服务器始终使用相同的session。
+如果把购物车放到session里面，可以确保购物车每个人之间隔离的。
+为了保证一个人只有一个购物车，需要做一些处理：
+
+public static ShopCar getShopCar(HttpServletRequest request)
+{
+    HttpSession session = request.getSession();
+    ShopCar car = (ShopCar) session.getAttribute("shopCar");
+    if( car == null )
+    {
+        car = new ShopCar();
+        //新创建的购物车，需要放入session
+        session.setAttribute( "shopCar", car );
+    }
+
+    return car;
+}
+
+
+
+
+---------------------------------------------------------
+把商品加入到购物车
+
+    1.根据商品的id查询商品对象（Article）
+        Article a = articleService.getArticleById( id );
+    2.获取请求里面包含的购买数量
+        String num = request.getParameter( "number" );
+        Integer number = Integer.parseInt( num );
+    3.创建一个OrderItem对象，因为OrderItem里面，正好需要  商品、购买数量。重复利用OrderItem即可。
+        OrderItem item = new OrderItem();
+        item.setArticle( a );
+        item.setNumber( number );
+
+    4.把OrderItem对象添加到购物车。为了方便使用，添加的时候同时把商品的id也放入购物车，并且用id作为map的key。
+
+        car.add( id, item );
+
+
+        class ArticleService
+        {
+            public void addToCar( ShopCar car, String id, String num )
+            {
+                //把前面步骤全部放到这里
+            }
+        }
+
+
+        class ShopCar
+        {
+            private Map<String, OrderItem> map = new HashMap<>();
+
+            //使用id作为key，可以根据id从map里面删除OrderItem
+            public void add( String id, OrderItem item )
+            {
+                map.put( id, item );
+            }
+
+
+            //写一个返回所有的OrderItem对象的方法，用于显示购物车的列表
+            //显示购物车列表，需要小计、总计
+            //小计放到 OrderItem 类里面增加一个 getAmount 方法，公式  “折扣 * 单价 * 数量”
+            //总计应该要放到ShopCar里面
+
+            public Collection<OrderItem> getItems()
+            {
+                return map.values();
+            }
+
+            public Double getAmount()
+            {
+                //所有OrderItem里面的小计都加起来
+                Double amount = 0;
+                for( OrderItem item : getItems() )
+                {
+                    amount = amount + item.getAmount();
+                }
+
+                return amount;
+            }
+
+
+            //在购物车里面，就可以修改购买数量
+
+
+            //删除购物车里面的OrderItem
+        }
+
+
+
+
+
+
+
+
+

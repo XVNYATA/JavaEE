@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: org.apache.maven.archetype.catalog,org.apache.maven.ar
+ chetype.catalog.io.xpp3,org.sonatype.nexus.plugins.mac
+Require-Bundle: org.sonatype.nexus.plugin-api;resolution:=optional,org
+ .sonatype.nexus.plugins.nexus-restlet1x-plugin;bundle-version=2.10.0.
+ 02,org.sonatype.nexus.plugins.nexus-indexer-lucene-plugin;bundle-vers
+ ion=2.10.0.02
+Bundle-ClassPath: nexus-archetype-plugin-2.10.0-02.jar,dependencies/ar
+ chetype-catalog-2.2.jar
+Bundle-Version: 2.10.0.02
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.sonatype.nexus.plugins.nexus-archetype-plugin
+

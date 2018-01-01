@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>OA</display-name>
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+  </welcome-file-list>
+    
+    <!-- 指定spring配置文件存放位置 -->
+    <context-param>
+       <param-name>contextConfigLocation</param-name>
+       <param-value>/WEB-INF/application*.xml</param-value>
+    </context-param>
+    
+    <!-- 配置Spring监听器  -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    
+    <!-- 配置Struts2核心拦截器 -->
+    <filter>
+        <filter-name>struts-invoke</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+<!--     <filter> -->
+<!--     	<description> -->
+<!--     	</description> -->
+<!--     	<display-name>Loginlnteceptor</display-name> -->
+<!--     	<filter-name>Loginlnteceptor</filter-name> -->
+<!--     	<filter-class>org.fkjava.oa.util.filter.Loginlnteceptor</filter-class> -->
+<!--     </filter> -->
+    
+    <filter-mapping>
+        <filter-name>struts-invoke</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+<!--     <filter-mapping> -->
+<!--     	<filter-name>Loginlnteceptor</filter-name> -->
+<!--     	<url-pattern>/Loginlnteceptor</url-pattern> -->
+<!--     </filter-mapping> -->
+   
+   <!-- 配置session有效时间 -->
+   <session-config>
+       <session-timeout>60</session-timeout>
+   </session-config>
+   
+  <jsp-config>
+      <jsp-property-group>
+         <url-pattern>*.jsp</url-pattern>
+         <include-prelude>/WEB-INF/jsp/common/common.jsp</include-prelude>
+      </jsp-property-group>
+   </jsp-config>
+</web-app>

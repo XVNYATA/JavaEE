@@ -1,0 +1,8 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Sun Sep 04 14:16:55 CST 2016
+@default-pubic-http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1452435373107
+http\://localhost\:8081/nexus/content/groups/public/.lastUpdated=1472969815737
+@default-public-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1456906836272
+http\://192.168.10.122\:8081/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven.plugins\:maven-install-plugin\:pom\:2.4 from/to pubic (http\://192.168.10.122\:8081/nexus/content/groups/public/)\: connect timed out
+https\://repo.maven.apache.org/maven2/.lastUpdated=1456902373087
+@default-pubic-http\://192.168.10.122\:8081/nexus/content/groups/public/.lastUpdated=1461740987631

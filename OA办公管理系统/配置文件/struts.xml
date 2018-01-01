@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 配置Struts2常量 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="jspx,action,do"/>
+
+    <package name="oa" namespace="/" extends="struts-default">
+        
+        <!-- 定义一个全局的结果类型 -->
+        <result-types>
+            <result-type name="ajax" class="org.fkjava.oa.core.common.struts.result.AjaxResultAction"></result-type>
+        </result-types>
+
+		<!-- 全局结果配置 -->
+        <global-results>
+            <result name="error">/error.jsp</result>
+<!--             <result name="login">/WEB-INF/jsp/admin/login.jsp</result> -->
+        </global-results>
+        
+		<!-- 全局异常配置 -->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+        
+     
+        
+    </package>
+    
+    <include file="org/fkjava/oa/admin/struts-admin.xml"></include>
+    
+</struts>

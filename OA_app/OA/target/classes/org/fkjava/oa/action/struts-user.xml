@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name = "user" namespace="/user" extends="oa">
+		<!-- 异步登录 -->
+		<action name = "userLogin" class="org.fkjava.oa.identity.action.UserAction" method="userLogin">
+			<interceptor-ref name = "defaultStack"></interceptor-ref>
+		</action>
+		
+		 <!-- 用户退出 -->
+        <action name="logout" class="org.fkjava.oa.identity.action.UserAction" method="logout">
+            <result>/WEB-INF/jsp/login.jsp</result>
+        </action>
+        
+        <!-- 用户分页查询 -->
+        <action name="selectUserByPage" class="org.fkjava.oa.identity.action.UserAction" method="selectUserByPage">
+        	<result>/WEB-INF/jsp/user/user.jsp</result>
+        </action>
+        
+        <!-- 删除用户信息 -->
+        <action name="deleteUserByIds" class="org.fkjava.oa.identity.action.UserAction" method="deleteUserByIds">
+           <result type="chain">selectUserByPage</result>
+        </action>
+		
+		<!-- 审核用户状态 -->
+		<action name="checkUserBuIds" class="org.fkjava.oa.identity.action.UserAction" method="checkUserBuIds">
+			<result type="chain">selectUserByPage</result>
+		</action>
+		
+		<!-- 展现添加用户页面 -->
+		<action name="showAddUser">
+			<result>/WEB-INF/jsp/user/addUser.jsp</result>
+		</action>
+		
+		<!-- 异步加载部门职位信息 -->
+		<action name = "ajaxLoadDeptAndJob" class="org.fkjava.oa.identity.action.UserAction"  method="ajaxLoadDeptAndJob"></action>
+		
+		<!-- 异步校验用户信息 -->
+		<action name = "ajaxValidUserId" class="org.fkjava.oa.identity.action.UserAction" method="ajaxValidUserId"></action>
+		
+		<!-- 添加用户 -->
+		<action name = "addUser" class = "org.fkjava.oa.identity.action.UserAction" method="addUser">
+			<!-- 引入防表单重复提交 -->
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="OAStack"></interceptor-ref>
+			<result>/WEB-INF/jsp/user/addUser.jsp</result>
+			<!-- 当表单重复提交的时候,token拦截器会反悔invalid.token -->
+			<result name = "invalid.token">/WEB-INF/jsp/user/addUser.jsp</result>
+			<result name = "input">/WEB-INF/jsp/user/addUser.jsp</result>
+		</action>
+		
+		   <!-- 展示修改用户页面 -->
+        <action name="showUpdateUser"  class="org.fkjava.oa.identity.action.UserAction" method="showUpdateUser">
+               <result>/WEB-INF/jsp/user/updateUser.jsp</result>
+        </action>
+        
+        <!-- 修改用户 -->
+        <action name="updateUser" class="org.fkjava.oa.identity.action.UserAction" method="updateUser">
+        	<!-- 引入防表单重复提交 -->
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="OAStack"></interceptor-ref>
+			<result>/WEB-INF/jsp/user/updateUser.jsp</result>
+			<!-- 当表单重复提交的时候,token拦截器会反悔invalid.token -->
+			<result name = "invalid.token">/WEB-INF/jsp/user/updateUser.jsp</result>
+			<result name = "input">/WEB-INF/jsp/user/updateUser.jsp</result>
+        </action>
+        
+        <!-- 展现修改个人信息页面 -->
+        <action name="showUpdateSelf">
+        	<result>/WEB-INF/jsp/user/self.jsp</result>
+        </action>
+        
+        <!-- 修改个人信息 -->
+        <action name="updateSelf" class="org.fkjava.oa.identity.action.UserAction" method="updateSelf">
+        	<result>/WEB-INF/jsp/user/self.jsp</result>
+        </action>
+        
+        <!--跳转至修改页面 -->
+		 <action name="showUpdatePass" >
+		     <result>/WEB-INF/jsp/user/password.jsp</result>
+		  </action>
+		  
+		  <!-- 修改密码 -->
+		  <action name="updatePassword" class="org.fkjava.oa.identity.action.UserAction" method="updatePassword">
+		  	 <result>/WEB-INF/jsp/user/password.jsp</result>
+		  </action>
+	</package>
+</struts>

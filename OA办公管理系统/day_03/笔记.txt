@@ -1,0 +1,33 @@
+1、用户多添件分页查询
+
+
+2、删除用户信息
+
+
+3、添加用户信息    通过jqueryEasyUi   
+   a、添加成功时给出提示信息，并实现防止表单重复提交
+   引入token拦截器
+   b、异步校验用户名是否存在
+
+   $("#divDialog").dialog({
+		title : "修改用户", // 标题
+		cls : "easyui-dialog", // class
+		width : 480, // 宽度
+		height : 255, // 高度
+		maximizable : true, // 最大化
+		minimizable : false, // 最小化
+		collapsible : true, // 可伸缩
+		modal : true, // 模态窗口
+		onClose : function(){ // 关闭窗口
+			window.location = "${ctx}/admin/identity/selectUser.jspx?pageModel.pageIndex=${pageModel.pageIndex}&user.name=${user.name}&user.phone=${user.phone}&user.dept.id=${user.dept.id}";
+		}
+	});
+
+
+4、加入自定义异常
+
+
+
+5、审核用户信息
+
+

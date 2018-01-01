@@ -1,0 +1,170 @@
+目标
+    同一个组里面的每人都要实现相同的功能，所有功能都要做。
+
+    实现一个电子商务系统（类似淘宝）网站。
+
+
+    运行演示的项目
+        1.导入项目到eclipse里面
+        2.检查项目里面的 jdbc.properties 文件，里面记录了连接数据库的url、用户名、密码等信息
+            如果数据库没有对应的数据库名、用户名、密码，需要创建或者修改。
+
+        3.如果数据库名已经确定，则需要检查对应的数据库里面是否有数据。
+            如果没有则需要把 “商品资源” 里面的其中一个sql语句放到数据库里面执行。
+        4.把项目添加到Tomcat里面去运行。
+            http://127.0.0.1:8080/ec
+
+
+    需求分析
+        详见 《需求分析.xls》 文件。
+
+        这个表格里面，处理记录需求、任务意外，还要记录任务的完成情况。
+
+
+    需要使用的技术
+        XML  -  配置MyBatis、web.xml
+        IO   -  生成图片验证码、文件的上传下载
+        Servlet - 处理浏览器的请求
+        JSP     - 显示处理结果
+        MySQL   - 存储数据
+        HTML    - 浏览器的组件
+        CSS     - 控制组件的显示
+        JavaScript - 提高HTML的交互性
+        Tomcat  - 容器，用于运行程序
+
+
+        email   - 注册成功以后，可以发送一个激活邮件。还可以实现找回密码功能。
+
+团队
+    5人一组
+    第一组
+        雷圣超、罗樟、陈波、曹万合、吴培璋
+
+        组长 陈波
+
+    第二组
+        陈泽威、邓海潮、许清艳、曾江凯、关健宏、潘志恒
+
+        组长 许清艳
+
+    第三组
+        卢志强、叶启群、郑智发、姚振强、梁浚辉、邓广
+
+        组长 叶启群
+
+    第四组
+        王兴华、闫彦坡、贾慧霞、吴文学、陈俊健、刘晓伟
+
+        组长 王兴华
+
+
+
+
+项目的初始化
+    1.创建项目，统一使用UTF-8的编码！
+        项目里面设置字符编码、换行符！
+
+    2.把需要的jar文件复制到项目里面
+        WEB-INF/lib
+
+        mybatis
+        mysql
+        log4j
+        jstl
+
+    3.进行一些配置
+        MyBatis
+        log4j
+    4.准备测试数据
+        项目资源里面，三选一！
+    5.写一个HelloWorld测试前面的配置是否正确，比如数据库能够连接
+    
+
+完成数据库表和Java对象的映射
+    每个表都有添加、修改、删除、查询等操作。
+    所有的映射文件，都应该要准备好，并且有对应的接口。
+
+
+
+常见异常
+    Wrong namespace  : 预期的命名空间和实际写在xml里面的命名空间不相同。
+        正确的命名空间要求：xml里面 namespace 属性的值，必须也对应的Mapper接口的类名全名相同。
+
+
+    Type interface Mapper接口名称 is not known to the MapperRegistry.
+        Mapper接口并没有被MyBatis知道在哪里。通常是因为包扫描的时候包名错误，或者使用mapper的路径错误。
+
+
+    Invalid bound statement (not found): Mapper接口名称.方法名
+        无效的绑定的语句，原因是“没找到”。
+        没有找到Mapper接口里面调用方法对应的语句。
+
+        需要修改Mapper接口对应的xml，把语句的id改为和方法名相同。
+
+
+
+
+开发首页的步骤
+    1.创建一个IndexServlet，用于显示首页，此时直接forward到固定的jsp，显示出效果。
+        /index
+
+        jsp放到 /WEB-INF/views/index.jsp
+
+    2.修改web.xml里面的欢迎页，把/index加入欢迎页。
+
+    3.增加一个 ShopService 用于负责数据的查询。
+
+            ShopService -> ArticleTypeMapper.getTopLevelTypes -> ArticleTypeMapper.xml增加一个select，id为getTopLevelTypes
+
+            在ArticleTypeMapper.xml里面的getTopLevelTypes查询中，应该要查询所有的一级类型。
+
+            ShopService可以使用单例模式。
+
+    4.修改IndexServlet去调用 ShopService 获得一级商品的类型
+
+    5.修改index.jsp，把一级菜单循环显示出来
+        URL 重写
+
+            HttpSession 是基于Cookie里面一个名为 JSESSIONID 的Cookie。
+            浏览器是可以把Cookie禁用掉。这会导致 HttpSession 无法使用。
+
+            此时可以把 jsessionid 放到URL的后面，也可以使用 HttpSession。
+
+            /index?typeCode=0001  =>  /index;jsessionid=dsakfjkfwefkj?typeCode=0001
+
+            HttpSession 完全是依赖 JSESSIONID 进行识别的。
+
+
+
+    6.二级类型查询
+        6.1.选中的一级类型也要一起查询出来。
+        6.2.在没有传递typeCode过来的时候，意味着没有选中一级类型。
+            没有选中一级类型的时候，直接查询所有的一级类型和所有的二级类型。
+
+            此时需要使用动态的SQL语句。
+
+
+        IndexServlet -> ShopService.getAllTypes -> ArticleTypeMapper -> ArticleTypeMapper.xml -> index.jsp
+
+
+        动态SQL语句可以直接在xml里面写一些判断，通过参数来决定生成什么样的SQL语句。
+        此功能里面，如果typeCode为null的时候，则不需要条件，直接查询所有的类型。
+
+        Mapper接口的方法参数，如果被使用多次，那么必须要有参数的名称。
+        参数的名称，通过在接口方法的参数前面，增加 @Param 注解来提供。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
